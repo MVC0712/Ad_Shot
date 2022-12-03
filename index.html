@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="./Lib/main.css" />
+  <link rel="stylesheet" href="./Lib/home.css" />
+  </head>
+  <body>
+    <header>Home Page</header>
+    <div style="flex-direction: row; display:flex;">
+      <button id="daily_input_anod">Daily Input Anod</button>
+      <button id="daily_input_shot">Daily Input Shot</button>
+      <button disabled id="cutting_input">...</button>
+    </div>
+    <script src="./Lib/jquery.min.js"></script>
+    <script>
+      $(document).on("click", "#daily_input_anod", function () {
+        window.open("/AD_Shot/DailyReportAnod");
+      });
+      $(document).on("click", "#daily_input_shot", function () {
+        window.open("/AD_Shot/DailyReportShot");
+      });
+      $(document).on("click", "#export", function () {
+        window.open("/AD_Shot/Exportbillet");
+      });
+    </script>
+</html>

@@ -88,21 +88,21 @@ input {
 #product_date {
   width: 100px;
 }
-.product_type_outer {
+.machine_id_outer {
   width: 170px;
   margin-right: 10px;
 }
-.product_type_title {
+.machine_id_title {
   width: 120px;
 }
-.product_dim_outer {
+.order_sheet_id_outer {
   width: 170px;
 }
-.product_dim_title {
+.order_sheet_id_title {
   width: 120px;
 }
-#product_type,
-#product_dim {
+#machine_id,
+#order_sheet_id {
   width: 70px;
 }
 

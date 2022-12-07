@@ -32,7 +32,7 @@ const getDateTime = (date) => {
     return `${year}-${month}-${day} ${hours}:${mins}:00`;
 }
 $(function () {
-  // makeSummaryTable();
+  makeSummaryTable();
   makeSelStaff()
   selStopHumanCode()
   selShift();
@@ -485,20 +485,12 @@ function putDataToInput(data) {
   });
   $("#file_url").html(data[0].file_url);
 };
-
 function checkInput() {
   let check = true;
-  $(".top__wrapper input .save-data").each(function() {
-    if ($(this).val() == "") {
+  $(".save-data").each(function() {
+    if ($(this).hasClass("no-input")) {
       check = false;
     }
-    console.log($(this).val())
-  });
-  $(".top__wrapper select .save-data").each(function() {
-    if ($(this).val() == 0) {
-      check = false;
-    }
-    console.log($(this).val())
   });
   if ($("#summary_table tbody tr").hasClass("selected-record")) {
     check = false;
@@ -508,6 +500,7 @@ function checkInput() {
   } else {
     $("#save").attr("disabled", true);
   } 
+  return check;
 };
 function checkUpdate() {
   let check = true;

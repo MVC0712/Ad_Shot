@@ -4,10 +4,10 @@ $dbh = new DBHandler();
 if ($dbh->getInstance() === null) {
     die("No database connection");
 }
-$targetId = "";
-$targetId = $_POST['targetId'];
+$datetime = date("Y-m-d H:i:s");
 try {
-    $sql = "SELECT * FROM t_record_anod WHERE id = '$targetId'";
+    $sql = "SELECT * FROM t_record_anod WHERE 1
+    ORDER BY product_date DESC;";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

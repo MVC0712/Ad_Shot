@@ -4,16 +4,15 @@ $dbh = new DBHandler();
 if ($dbh->getInstance() === null) {
     die("No database connection");
 }
-$material_name_id = "";
-$material_name_id = $_POST['material_name_id'];
-$datetime = date("Y-m-d H:i:s");
+$id = $_POST['id'];
+$stop_human_start_time = $_POST['stop_human_start_time'];
+$stop_human_end_time = $_POST['stop_human_end_time'];
+
 try {
-    $sql = "SELECT 
-    id, material_name_type
-    FROM
-        billet_casting.m_material_name_type
-    WHERE
-        material_name_id = '$material_name_id';)";
+    $sql = "UPDATE t_stop_human SET 
+    start_time = '$stop_human_start_time' ,
+    end_time = '$stop_human_end_time'
+    WHERE id= '$id'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

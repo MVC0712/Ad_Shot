@@ -5,18 +5,16 @@ if ($dbh->getInstance() === null) {
     die("No database connection");
 }
 $id = $_POST['id'];
-$material = $_POST['material'];
-$material_type = $_POST['material_type'];
-$material_weight = $_POST['material_weight'];
-$material_note = $_POST['material_note'];
+$machine_error_code = $_POST['machine_error_code'];
+$machine_error_start_time = $_POST['machine_error_start_time'];
+$machine_error_end_time = $_POST['machine_error_end_time'];
 
 $datetime = date("Y-m-d H:i:s");
 try {
-    $sql = "UPDATE t_add_material SET 
+    $sql = "UPDATE t_machine_runtime SET 
     material = '$material' ,
     material_type = '$material_type' ,
-    weight = '$material_weight',
-    note = '$material_note'
+    weight = '$material_weight'
     WHERE id= '$id'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

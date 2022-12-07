@@ -221,8 +221,8 @@ input {
 #add_machine_error_table thead tr th:nth-child(5) {
   width: 100px;
 }
-#add_machine_error_table thead tr th:nth-child(1) select {
-  width: 100px;
+#add_machine_error_table thead tr th:nth-child(1) input {
+  width: 94px;
 }
 #add_machine_error_table thead tr th:nth-child(2) input {
   width: 94px;
@@ -238,7 +238,7 @@ input {
 }
 #machine_error_table tbody {
   height: 240px;
-  width: 430px;
+  width: 330px;
   overflow: auto;
 }
 #machine_error_table thead tr th:nth-child(1),
@@ -261,8 +261,8 @@ input {
 #machine_error_table tbody tr td:nth-child(5) {
   width: 100px;
 }
-#machine_error_table tbody tr td:nth-child(2) select {
-  width: 100px;
+#machine_error_table tbody tr td:nth-child(2) input {
+  width: 94px;
 }
 #machine_error_table tbody tr td:nth-child(3) input {
   width: 94px;
@@ -321,7 +321,7 @@ input {
 }
 #stop_human_table tbody {
   height: 240px;
-  width: 325px;
+  width: 435px;
   overflow: auto;
 }
 #stop_human_table thead tr th:nth-child(1),
@@ -348,7 +348,7 @@ input {
   width: 90px;
 }
 #stop_human_table tbody tr td:nth-child(3) input {
-  width: 144px;
+  width: 94px;
 }
 #stop_human_table tbody tr td:nth-child(4) input {
   width: 94px;

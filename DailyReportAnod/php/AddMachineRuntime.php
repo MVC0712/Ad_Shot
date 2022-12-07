@@ -4,22 +4,14 @@ $dbh = new DBHandler();
 if ($dbh->getInstance() === null) {
     die("No database connection");
 }
-$t_casting = "";
-$material = "";
-$material_type = "";
-$weight = "";
-$note = "";
-
-$t_casting = $_POST['t_casting'];
-$material = $_POST['material'];
-$material_type = $_POST['material_type'];
-$weight = $_POST['weight'];
-$note = $_POST['note'];
+$record_anod_id = $_POST['record_anod_id'];
+$machine_error_start_time = $_POST['machine_error_start_time'];
+$machine_error_end_time = $_POST['machine_error_end_time'];
 
 try {
-    $sql = "INSERT INTO t_add_material (t_casting, material, material_type, weight, note
+    $sql = "INSERT INTO t_machine_runtime(line_id, record_id, start_time, end_time
       ) VALUES (
-          '$t_casting', '$material', '$material_type', '$weight', '$note'
+          1, '$record_anod_id', '$machine_error_start_time', '$machine_error_end_time'
       )";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

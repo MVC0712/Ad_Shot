@@ -7,20 +7,27 @@ if ($dbh->getInstance() === null) {
 $datetime = date("Y-m-d H:i:s");
 try {
     $sql = "SELECT 
-    t_casting.id,
-    code,
+    t_record_anod.id,
+    order_code,
     product_date,
-    material_type,
-    melting_start,
-    melting_end,
-    melting_gas_start,
-    melting_gas_end,
-    casting_start,
-    casting_end
+    shift,
+    machine,
+    product_name,
+    input_quantity,
+    ng_quantity,
+    input_quantity - ng_quantity
 FROM
-    billet_casting.t_casting
+    t_record_anod
         LEFT JOIN
-    m_material_type ON m_material_type.id = t_casting.product_type
+    m_machine ON m_machine.id = t_record_anod.machine_id
+        LEFT JOIN
+    t_order_sheet ON t_order_sheet.id = t_record_anod.order_sheet_id
+        LEFT JOIN
+    m_product ON m_product.id = t_record_anod.product_id
+        LEFT JOIN
+    m_shift ON m_shift.id = t_record_anod.shift_id
+        LEFT JOIN
+    m_staff ON m_staff.id = t_record_anod.worker_id
     ORDER BY product_date DESC;";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

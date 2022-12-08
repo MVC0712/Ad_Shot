@@ -58,13 +58,39 @@ function makeSummaryTable() {
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary_table tbody"));
 };
+function makeMachineRuntime() {
+  var fileName = "SelMachineRuntime.php";
+  var sendData = {
+      targetId: $("#selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillTableBody(ajaxReturnData, $("#machine_error_table tbody"));
+};
+function makeStopHuman() {
+  var fileName = "SelStopHuman.php";
+  var sendData = {
+    targetId: $("#selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillTableBody(ajaxReturnData, $("#stop_human_table tbody"));
+};
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
   data.forEach(function(trVal) {
       let newTr = $("<tr>");
-      Object.keys(trVal).forEach(function(tdVal, index) {
-          $("<td>").html(trVal[tdVal]).appendTo(newTr);
-      });
+      Object.keys(trVal).forEach(function(tdVal) {
+        if (tdVal == "Position" || tdVal == "id") {
+            $("<td>").html(trVal[tdVal]).appendTo(newTr);
+        } else if (tdVal == "code_id") {
+            $("<td>").append(errorCodeOption(trVal[tdVal])).appendTo(newTr);
+        } else if (tdVal == "start_time" || tdVal == "end_time") {
+            $("<td>")
+                .append(makeTime(trVal[tdVal]))
+                .appendTo(newTr);
+        } else {
+            $("<td>").html(trVal[tdVal]).appendTo(newTr);
+        }
+    });
       $(newTr).appendTo(tbodyDom);
   });
 };
@@ -88,8 +114,8 @@ $(document).on("click", "#summary_table tbody tr", function (e) {
   }
   $("#save").attr("disabled", true);
   $("#update").attr("disabled", false);
-  // makeMachineRuntime();
-  // makeStopHuman();
+  makeMachineRuntime();
+  makeStopHuman();
   $(".save-data").each(function (index, element) {
     $(this).removeClass("no-input").addClass("complete-input");
   });
@@ -177,7 +203,6 @@ $(document).on("change keyup", ".save-data", function() {
   } else {
       $(this).removeClass("complete-input").addClass("no-input");
   }
-  // checkUpdate();
   checkInput();
 });
 $(document).on("change keyup", ".need-check", function() {
@@ -243,7 +268,7 @@ $("#add_machine_error").on("click", function () {
         machine_error_end_time: $("#machine_error_end_time").val(),
       };
       myAjax.myAjax(fileName, sendData);
-      makeAddMaterial();
+      makeMachineRuntime();
       $("#machine_error_start_time").val("").focus().removeClass("complete-input").addClass("no-input");
       $("#machine_error_end_time").val("").removeClass("complete-input").addClass("no-input");
       $(this).prop("disabled", true);
@@ -270,6 +295,7 @@ $(document).on("change", "#machine_error_table tbody tr", function () {
   };
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);
+  makeMachineRuntime();
 });
 $("#add_stop_human").on("click", function () {
   switch ($(this).text()) {
@@ -297,7 +323,7 @@ $("#add_stop_human").on("click", function () {
         stop_human_end_time: $("#stop_human_end_time").val(),
       };
       myAjax.myAjax(fileName, sendData);
-      makeAddMaterial();
+      makeStopHuman();
       $("#stop_human_code").val(0).removeClass("complete-input").addClass("no-input");
       $("#stop_human_start_time").val("").removeClass("complete-input").addClass("no-input");
       $("#stop_human_end_time").val("").removeClass("complete-input").addClass("no-input");
@@ -326,6 +352,7 @@ $(document).on("change", "#stop_human_table tbody tr", function () {
   };
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);
+  makeStopHuman();
 });
 function addMachineError() {
   if ($("#machine_error_start_time").val() == "" ||
@@ -476,6 +503,8 @@ $(document).on("click", "#update", function () {
   makeSummaryTable();
   $("#add_machine_error").text("Save");
   $("#add_stop_human").text("Save");
+  $("#save").attr("disabled", true);
+  $("#update").attr("disabled", true);
 });
 function putDataToInput(data) {
     data.forEach(function (trVal) {
@@ -524,3 +553,10 @@ function checkUpdate() {
   } 
   return check;
 };
+$(document).on("click", "#add_button", function () {
+  window.open(
+    "./OrderSheetSelect.html",
+    null,
+    "width=830, height=500,toolbar=yes,menubar=yes,scrollbars=no"
+  );
+});

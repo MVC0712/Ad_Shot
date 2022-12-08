@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DailyReport Preview</title>
+    <title>DailyReportAnod Preview</title>
     <style type="text/css">
       body {
         width: 600px;
@@ -55,7 +55,7 @@
           $("<object>")
             .attr(
               "data",
-              "../FileUpload/DailyReport/" + filename +
+              "../FileUpload/DailyReportAnod/" + filename +
                 "#toolbar=0&navpanes=0"
             )
             .attr("type", "application/pdf")
@@ -64,7 +64,7 @@
         case "jpg":
         case "JPG":
           $("<object>")
-            .attr("data", "../FileUpload/DailyReport/" + filename)
+            .attr("data", "../FileUpload/DailyReportAnod/" + filename)
             .attr("type", "image/jpeg")
             .appendTo("body");
           break;

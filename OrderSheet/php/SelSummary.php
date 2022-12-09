@@ -7,7 +7,7 @@ if ($dbh->getInstance() === null) {
 $datetime = date("Y-m-d H:i:s");
 try {
     $sql = "SELECT 
-    t_record_shot.id,
+    t_record_anod.id,
     order_code,
     product_date,
     shift,
@@ -17,17 +17,17 @@ try {
     ng_quantity,
     input_quantity - ng_quantity
 FROM
-    t_record_shot
+    t_record_anod
         LEFT JOIN
-    m_machine ON m_machine.id = t_record_shot.machine_id
+    m_machine ON m_machine.id = t_record_anod.machine_id
         LEFT JOIN
-    t_order_sheet ON t_order_sheet.id = t_record_shot.order_sheet_id
+    t_order_sheet ON t_order_sheet.id = t_record_anod.order_sheet_id
         LEFT JOIN
-    m_product ON m_product.id = t_record_shot.product_id
+    m_product ON m_product.id = t_record_anod.product_id
         LEFT JOIN
-    m_shift ON m_shift.id = t_record_shot.shift_id
+    m_shift ON m_shift.id = t_record_anod.shift_id
         LEFT JOIN
-    m_staff ON m_staff.id = t_record_shot.worker_id
+    m_staff ON m_staff.id = t_record_anod.worker_id
     ORDER BY product_date DESC;";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

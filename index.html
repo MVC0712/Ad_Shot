@@ -12,7 +12,7 @@
     <div style="flex-direction: row; display:flex;">
       <button id="daily_input_anod">Daily Input Anod</button>
       <button id="daily_input_shot">Daily Input Shot</button>
-      <button disabled id="cutting_input">...</button>
+      <button id="order_sheet">Order Sheet</button>
     </div>
     <script src="./Lib/jquery.min.js"></script>
     <script>
@@ -22,8 +22,8 @@
       $(document).on("click", "#daily_input_shot", function () {
         window.open("/AD_Shot/DailyReportShot");
       });
-      $(document).on("click", "#export", function () {
-        window.open("/AD_Shot/Exportbillet");
+      $(document).on("click", "#order_sheet", function () {
+        window.open("/AD_Shot/OrderSheet");
       });
     </script>
 </html>

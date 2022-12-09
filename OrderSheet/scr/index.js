@@ -74,14 +74,6 @@ function makeStopHuman() {
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#stop_human_table tbody"));
 };
-function makeMaterial() {
-  var fileName = "SelMaterial.php";
-  var sendData = {
-    targetId: $("#selected__tr").find("td").eq(0).html(),
-  };
-  myAjax.myAjax(fileName, sendData);
-  fillTableBody(ajaxReturnData, $("#material_table tbody"));
-};
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
   data.forEach(function(trVal) {
@@ -91,12 +83,10 @@ function fillTableBody(data, tbodyDom) {
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
         } else if (tdVal == "code_id") {
             $("<td>").append(errorCodeOption(trVal[tdVal])).appendTo(newTr);
-        } else if (tdVal == "shot_material_id") {
-            $("<td>").append(materialtypeOption(trVal[tdVal])).appendTo(newTr);
         } else if (tdVal == "start_time" || tdVal == "end_time") {
-            $("<td>").append(makeTime(trVal[tdVal])).appendTo(newTr);
-        } else if (tdVal == "lot" || tdVal == "quantity") {
-            $("<td>").append(makeInput(trVal[tdVal])).appendTo(newTr);
+            $("<td>")
+                .append(makeTime(trVal[tdVal]))
+                .appendTo(newTr);
         } else {
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
         }
@@ -119,7 +109,6 @@ $(document).on("click", "#summary_table tbody tr", function (e) {
     putDataToInput(ajaxReturnData);
     $("#add_machine_error").text("Add");
     $("#add_stop_human").text("Add");
-    $("#add_material").text("Add");
   } else {
     // deleteDialog.showModal();
   }
@@ -127,7 +116,6 @@ $(document).on("click", "#summary_table tbody tr", function (e) {
   $("#update").attr("disabled", false);
   makeMachineRuntime();
   makeStopHuman();
-  makeMaterial();
   $(".save-data").each(function (index, element) {
     $(this).removeClass("no-input").addClass("complete-input");
   });
@@ -225,7 +213,6 @@ $(document).on("change keyup", ".need-check", function() {
   }
   addMachineError();
   addStopHuman();
-  addMaterial()
 });
 function getTableData(tableTrObj) {
   var tableData = [];
@@ -276,7 +263,7 @@ $("#add_machine_error").on("click", function () {
       let sendData = new Object();
       fileName = "AddMachineRuntime.php";
       sendData = {
-        record_shot_id: $("#selected__tr td:nth-child(1)").text(),
+        record_anod_id: $("#selected__tr td:nth-child(1)").text(),
         machine_error_start_time: $("#machine_error_start_time").val(),
         machine_error_end_time: $("#machine_error_end_time").val(),
       };
@@ -330,7 +317,7 @@ $("#add_stop_human").on("click", function () {
       let sendData = new Object();
       fileName = "AddStopHuman.php";
       sendData = {
-        record_shot_id: $("#selected__tr td:nth-child(1)").text(),
+        record_anod_id: $("#selected__tr td:nth-child(1)").text(),
         stop_human_code: $("#stop_human_code").val(),
         stop_human_start_time: $("#stop_human_start_time").val(),
         stop_human_end_time: $("#stop_human_end_time").val(),
@@ -367,72 +354,6 @@ $(document).on("change", "#stop_human_table tbody tr", function () {
   myAjax.myAjax(fileName, sendData);
   makeStopHuman();
 });
-$("#add_material").on("click", function () {
-  switch ($(this).text()) {
-    case "Save":
-      $("<tr>")
-        .append("<td></td>")
-        .append($("<td>").append(materialtypeOption($("#material_type_id").val())))
-        .append($("<td>").append(makeInput($("#material_lot").val())))
-        .append($("<td>").append(makeInput($("#material_quantity").val())))
-        .appendTo("#material_table tbody");
-      $(this).prop("disabled", true);
-      $("#material_type_id").val(0).focus().removeClass("complete-input").addClass("no-input");
-      $("#material_lot").val("").removeClass("complete-input").addClass("no-input");
-      $("#material_quantity").val("").removeClass("complete-input").addClass("no-input");
-    break;
-    case "Add":
-      let fileName;
-      let sendData = new Object();
-      fileName = "AddMaterial.php";
-      sendData = {
-        record_shot_id: $("#selected__tr td:nth-child(1)").text(),
-        material_type_id: $("#material_type_id").val(),
-        material_lot: $("#material_lot").val(),
-        material_quantity: $("#material_quantity").val(),
-      };
-      myAjax.myAjax(fileName, sendData);
-      makeMaterial();
-      $("#material_type_id").val(0).removeClass("complete-input").addClass("no-input");
-      $("#material_lot").val("").removeClass("complete-input").addClass("no-input");
-      $("#material_quantity").val("").removeClass("complete-input").addClass("no-input");
-      $(this).prop("disabled", true);
-    break;
-  }
-});
-$(document).on("click", "#material_table tbody tr", function() {
-  if (!$(this).hasClass("selected-record")) {
-      $(this).parent().find("tr").removeClass("selected-record");
-      $(this).addClass("selected-record");
-      $("#material_selected").removeAttr("id");
-      $(this).attr("id", "material_selected");
-  } else {
-    // $(this).remove();
-  }
-});
-$(document).on("change", "#material_table tbody tr", function () {
-  let sendData = new Object();
-  let fileName;
-  fileName = "UpdateMaterial.php";
-  sendData = {
-    id: $("#material_selected td:nth-child(1)").html(),
-    material_type_id: $("#material_selected td:nth-child(2) select").val(),
-    material_lot: $("#material_selected td:nth-child(3) input").val(),
-    material_quantity: $("#material_selected td:nth-child(4) input").val(),
-  };
-  console.log(sendData);
-  myAjax.myAjax(fileName, sendData);
-  makeMaterial();
-});
-function addMaterial() {
-  if ($("#material_type_id").val() == 0 ||
-      $("#material_lot").val() == "" ||
-      $("#material_quantity").val() == "") {
-      $("#add_material").prop("disabled", true);
-  } else {
-      $("#add_material").prop("disabled", false);
-  }
-};
 function addMachineError() {
   if ($("#machine_error_start_time").val() == "" ||
       $("#machine_error_end_time").val() == "") {
@@ -450,33 +371,6 @@ function addStopHuman() {
       $("#add_stop_human").prop("disabled", false);
   }
 };
-function materialtypeOption(seletedId) {
-  let targetDom = $("<select>");
-  var materialType=[
-    {
-        "id": 1,
-        "type": "Glass"
-    },
-    {
-        "id": 2,
-        "type": "Inox"
-    }]
-materialType.forEach(function(element) {
-      if (element["id"] == seletedId) {
-        $("<option>")
-          .html(element["type"])
-          .val(element["id"])
-          .prop("selected", true)
-          .appendTo(targetDom);
-      } else {
-        $("<option>")
-          .html(element["type"])
-          .val(element["id"])
-          .appendTo(targetDom);
-      }
-  });
-  return targetDom;
-}
 function errorCodeOption(seletedId) {
   let targetDom = $("<select>");
 
@@ -505,12 +399,6 @@ function makeTime(time) {
   let targetDom = $("<input>");
   targetDom.attr("type", "time");
   targetDom.val(time);
-  return targetDom;
-}
-function makeInput(value) {
-  let targetDom = $("<input>");
-  targetDom.attr("type", "text");
-  targetDom.val(value);
   return targetDom;
 }
 function makeTimeDiff(time1, time2) {
@@ -543,7 +431,6 @@ function clearInputData() {
   $("#file_url").html("No file");
   $("#stop_human_table tbody").empty();
   $("#machine_error_table tbody").empty();
-  $("#material_table tbody").empty();
 }
 function getTableData(tableTrObj) {
   var tableData = [];
@@ -603,13 +490,6 @@ $(document).on("click", "#save", function () {
   sendData = JSON.stringify(tableData);
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);
-
-  tableData = getTableData($("#material_table tbody tr"));
-  tableData.push(targetId);
-  fileName = "InsMaterial.php";
-  sendData = JSON.stringify(tableData);
-  console.log(sendData);
-  myAjax.myAjax(fileName, sendData);
   clearInputData();
   makeSummaryTable();
 });
@@ -623,7 +503,6 @@ $(document).on("click", "#update", function () {
   makeSummaryTable();
   $("#add_machine_error").text("Save");
   $("#add_stop_human").text("Save");
-  $("#add_material").text("Save");
   $("#save").attr("disabled", true);
   $("#update").attr("disabled", true);
 });

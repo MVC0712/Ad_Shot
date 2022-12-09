@@ -4,12 +4,10 @@ $dbh = new DBHandler();
 if ($dbh->getInstance() === null) {
     die("No database connection");
 }
-$targetId = "";
-$targetId = $_POST['targetId'];
+
+$datetime = date("Y-m-d H:i:s");
 try {
-    $sql = "SELECT id, code_id, start_time, end_time, Hour(TIMEDIFF(end_time, start_time)) as Hour1 FROM t_stop_human
-    WHERE
-    line_id = '2' AND record_id = '$targetId';";
+    $sql = "SELECT * FROM m_line WHERE 1";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

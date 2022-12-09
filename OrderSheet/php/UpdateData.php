@@ -4,8 +4,7 @@ $dbh = new DBHandler();
 if ($dbh->getInstance() === null) {
     die("No database connection");
 }
-
-$confirm_id = $_POST['confirm_id'];
+$id = $_POST['targetId'];$confirm_id = $_POST['confirm_id'];
 $worker_id = $_POST['worker_id'];
 $shift = $_POST['shift'];
 $product_id = $_POST['product_id'];
@@ -17,14 +16,18 @@ $input_quantity = $_POST['input_quantity'];
 $file_url = $_POST['file_url'];
 
 try {
-    $sql = "INSERT INTO t_record_shot(machine_id, order_sheet_id, shift_id, product_id, 
-            product_date, input_quantity, ng_quantity, worker_id, confirm_id, file_url) VALUES (
-    '$machine_id', '$order_sheet_id', '$shift', '$product_id','$product_date', 
-    '$input_quantity', '$ng_quantity', '$worker_id', '$confirm_id', '$file_url')";
+    $sql = "UPDATE t_record_anod SET 
+    worker_id = '$worker_id' ,
+    shift_id = '$shift' ,
+    product_id = '$product_id' ,
+    product_date = '$product_date' ,
+    order_sheet_id = '$order_sheet_id' ,
+    ng_quantity = '$ng_quantity' ,
+    machine_id = '$machine_id' ,
+    input_quantity = '$input_quantity' ,
+    file_url = '$file_url'
+    WHERE id= '$id'";
     $stmt = $dbh->getInstance()->prepare($sql);
-    $stmt->execute();
-
-    $stmt = $dbh->getInstance()->prepare("SELECT MAX(t_record_shot.id) AS id FROM t_record_shot");
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 } 

@@ -16,7 +16,7 @@ $input_quantity = $_POST['input_quantity'];
 $file_url = $_POST['file_url'];
 
 try {
-    $sql = "UPDATE t_record_anod SET 
+    $sql = "UPDATE t_record_shot SET 
     worker_id = '$worker_id' ,
     shift_id = '$shift' ,
     product_id = '$product_id' ,

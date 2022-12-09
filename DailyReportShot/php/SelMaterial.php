@@ -7,9 +7,9 @@ if ($dbh->getInstance() === null) {
 $targetId = "";
 $targetId = $_POST['targetId'];
 try {
-    $sql = "SELECT id, code_id, start_time, end_time, Hour(TIMEDIFF(end_time, start_time)) as Hour1 FROM t_stop_human
+    $sql = "SELECT id, shot_material_id, lot, quantity FROM t_record_shot_material
     WHERE
-    line_id = '2' AND record_id = '$targetId';";
+    line_id = '2' AND record_shot_id = '$targetId';";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

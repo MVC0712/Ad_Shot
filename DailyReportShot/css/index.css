@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(680px - 2px);
-  width: calc(800px - 2px);
+  width: calc(940px - 2px);
 }
 input {
   text-align: left;
@@ -238,7 +238,7 @@ input {
 }
 #machine_error_table tbody {
   height: 240px;
-  width: 330px;
+  width: 290px;
   overflow: auto;
 }
 #machine_error_table thead tr th:nth-child(1),
@@ -255,11 +255,12 @@ input {
 }
 #machine_error_table thead tr th:nth-child(4),
 #machine_error_table tbody tr td:nth-child(4) {
-  width: 100px;
+  width: 60px;
+  text-align: center;
 }
 #machine_error_table thead tr th:nth-child(5),
 #machine_error_table tbody tr td:nth-child(5) {
-  width: 100px;
+  width: 60px;
 }
 #machine_error_table tbody tr td:nth-child(2) input {
   width: 94px;
@@ -268,7 +269,7 @@ input {
   width: 94px;
 }
 #machine_error_table tbody tr td:nth-child(4) input {
-  width: 94px;
+  width: 64px;
 }
 #machine_error_table tbody tr td:nth-child(5) input {
   width: 94px;
@@ -294,11 +295,11 @@ input {
 }
 #add_stop_human_table tbody tr td:nth-child(3),
 #add_stop_human_table thead tr th:nth-child(3) {
-  width: 100px;
+  width: 60px;
 }
 #add_stop_human_table tbody tr td:nth-child(4),
 #add_stop_human_table thead tr th:nth-child(4) {
-  width: 100px;
+  width: 60px;
 }
 #add_stop_human_table tbody tr td:nth-child(5),
 #add_stop_human_table thead tr th:nth-child(5) {
@@ -314,14 +315,14 @@ input {
   width: 94px;
 }
 #add_stop_human_table thead tr th:nth-child(4) input {
-  width: 94px;
+  width: 54px;
 }
 #stop_human_table {
   margin-left: 10px;
 }
 #stop_human_table tbody {
   height: 240px;
-  width: 435px;
+  width: 395px;
   overflow: auto;
 }
 #stop_human_table thead tr th:nth-child(1),
@@ -342,7 +343,8 @@ input {
 }
 #stop_human_table thead tr th:nth-child(5),
 #stop_human_table tbody tr td:nth-child(5) {
-  width: 100px;
+  width: 60px;
+  text-align: center;
 }
 #stop_human_table tbody tr td:nth-child(2) input {
   width: 90px;
@@ -354,9 +356,74 @@ input {
   width: 94px;
 }
 #stop_human_table tbody tr td:nth-child(5) input {
-  width: 94px;
+  width: 54px;
 }
 #add_stop_human {
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+#add_material_table {
+  height: 20px;
+  /* margin-left: 10px; */
+}
+#add_material_table tbody tr td:nth-child(1),
+#add_material_table thead tr th:nth-child(1) {
+  width: 100px;
+}
+#add_material_table tbody tr td:nth-child(2),
+#add_material_table thead tr th:nth-child(2) {
+  width: 60px;
+}
+#add_material_table tbody tr td:nth-child(3),
+#add_material_table thead tr th:nth-child(3) {
+  width: 60px;
+}
+#add_material_table thead tr th:nth-child(1) select {
+  width: 100px;
+}
+#add_material_table thead tr th:nth-child(2) input {
+  width: 54px;
+}
+#add_material_table thead tr th:nth-child(3) input {
+  width: 54px;
+}
+#material_table {
+  /* margin-left: 10px; */
+}
+#material_table tbody {
+  height: 240px;
+  width: 250px;
+  overflow: auto;
+}
+#material_table thead tr th:nth-child(1),
+#material_table tbody tr td:nth-child(1){
+  display: none;
+}
+#material_table thead tr th:nth-child(2),
+#material_table tbody tr td:nth-child(2) {
+  width: 100px;
+}
+#material_table thead tr th:nth-child(3),
+#material_table tbody tr td:nth-child(3) {
+  width: 60px;
+}
+#material_table thead tr th:nth-child(4),
+#material_table tbody tr td:nth-child(4) {
+  width: 60px;
+}
+#material_table tbody tr td:nth-child(2) select {
+  width: 100px;
+}
+#material_table tbody tr td:nth-child(3) input {
+  width: 54px;
+}
+#material_table tbody tr td:nth-child(4) input {
+  width: 54px;
+}
+#add_material {
   width: 100%;
   height: 20px;
   padding: 0;
@@ -432,6 +499,7 @@ input {
 .right_error__wrapper {
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
 #summary_material_table {

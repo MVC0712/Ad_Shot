@@ -17,14 +17,15 @@ $input_quantity = $_POST['input_quantity'];
 $file_url = $_POST['file_url'];
 
 try {
-    $sql = "INSERT INTO t_record_shot(machine_id, order_sheet_id, shift_id, product_id, 
+    $sql = "INSERT INTO t_record_anod(machine_id, order_sheet_id, shift_id, product_id, 
             product_date, input_quantity, ng_quantity, worker_id, confirm_id, file_url) VALUES (
     '$machine_id', '$order_sheet_id', '$shift', '$product_id','$product_date', 
     '$input_quantity', '$ng_quantity', '$worker_id', '$confirm_id', '$file_url')";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
 
-    $stmt = $dbh->getInstance()->prepare("SELECT MAX(t_record_shot.id) AS id FROM t_record_shot");
+
+    $stmt = $dbh->getInstance()->prepare("SELECT MAX(t_record_anod.id) AS id FROM t_record_anod");
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 } 

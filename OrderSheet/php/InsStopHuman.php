@@ -13,9 +13,9 @@ try {
 
     if(count($data_json) > 0){
         foreach($data_json as $val){
-          $sql_paramater[] = "(2, '{$targetId}', '{$val[1]}', '{$val[2]}')";
+          $sql_paramater[] = "(1, '{$targetId}', '{$val[1]}', '{$val[2]}', '{$val[3]}')";
         }
-        $sql = "INSERT INTO t_machine_runtime(line_id, record_id, start_time, end_time) VALUES ".join(",", $sql_paramater);
+        $sql = "INSERT INTO t_stop_human(line_id, record_id, code_id, start_time, end_time) VALUES ".join(",", $sql_paramater);
         $stmt = $dbh->getInstance()->prepare($sql);
         $stmt->execute();
       }

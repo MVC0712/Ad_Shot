@@ -4,19 +4,20 @@ $dbh = new DBHandler();
 if ($dbh->getInstance() === null) {
     die("No database connection");
 }
-$record_shot_id = $_POST['record_shot_id'];
+$id = $_POST['id'];
 $stop_human_code = $_POST['stop_human_code'];
 $stop_human_start_time = $_POST['stop_human_start_time'];
 $stop_human_end_time = $_POST['stop_human_end_time'];
 
 try {
-    $sql = "INSERT INTO t_stop_human(line_id, record_id, code_id, start_time, end_time
-      ) VALUES (
-          2, '$record_shot_id', '$stop_human_code', '$stop_human_start_time', '$stop_human_end_time'
-      )";
+    $sql = "UPDATE t_stop_human SET 
+    code_id = '$stop_human_code' ,
+    start_time = '$stop_human_start_time' ,
+    end_time = '$stop_human_end_time'
+    WHERE id= '$id'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
-    echo json_encode("INSERTED");
+    echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 } 
 catch(PDOException $e) {
     echo $e;

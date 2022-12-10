@@ -7,7 +7,7 @@ if ($dbh->getInstance() === null) {
 $targetId = "";
 $targetId = $_POST['targetId'];
 try {
-    $sql = "SELECT * FROM t_record_anod WHERE id = '$targetId'";
+    $sql = "SELECT * FROM t_order_sheet WHERE id = '$targetId'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

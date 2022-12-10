@@ -19,356 +19,72 @@ input {
 }
 .top_up__wrapper,
 .top_down__wrapper {
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-.error__wrapper {
-  width: 100%;
-  /* height: 600px; */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: left;
-}
-.left__error {
-  flex: 1;
-  flex-direction: column;
-}
-.right__error {
-  /* flex: 1; */
-  flex-direction: column;
-  margin-right: 20px;
-}
-.element__wrapper {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.melting__wrapper {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.casting__wrapper {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.code_outer {
+.order_code_outer {
   width: 170px;
   margin-right: 10px;
 }
-.code_title {
-  width: 70px;
+.order_code_title {
+  width: 50px;
 }
-#code {
-  width: 100px;
-}
-.order_sheet_id_outer {
-  width: 200px;
-  margin-right: 10px;
-}
-.order_sheet_id_title {
-  width: 45px;
-}
-#order_sheet_id {
-  width: 100px;
-}
-#ods {
-  display: flex;
-  flex-direction: row;
+#order_code {
+  width: 120px;
 }
 .product_id_outer {
-  width: 200px;
+  width: 190px;
   margin-right: 10px;
 }
 .product_id_title {
   width: 50px;
 }
 #product_id {
-  width: 120px;
+  width: 130px;
 }
-.shift_outer {
-  width: 100px;
-  margin-right: 10px;
-}
-.shift_title {
-  width: 30px;
-}
-#shift {
-  width: 60px;
-}
-.machine_id_outer {
-  width: 120px;
-  margin-right: 10px;
-}
-.machine_id_title {
-  width: 40px;
-}
-#machine_id {
-  width: 80px;
-}
-.product_date_outer {
+.order_date_outer {
   width: 180px;
   margin-right: 10px;
 }
-.product_date_title {
+.order_date_title {
   width: 80px;
 }
-#product_date {
+#order_date {
   width: 100px;
 }
-.worker_id_outer {
-  width: 240px;
+.end_date_outer {
+  width: 180px;
   margin-right: 10px;
 }
-.worker_id_title {
-  width: 90px;
+.end_date_title {
+  width: 80px;
 }
-#worker_id {
-  width: 150px;
+#end_date {
+  width: 100px;
 }
-.confirm_id_outer {
-  width: 220px;
+.quantity_outer {
+  width: 120px;
   margin-right: 10px;
 }
-.confirm_id_title {
-  width: 70px;
+.quantity_title {
+  width: 60px;
 }
-#confirm_id {
-  width: 150px;
+#quantity {
+  width: 50px;
 }
-.input_quantity_outer {
-  width: 100px;
+.note_outer {
+  width: 190px;
   margin-right: 10px;
 }
-.input_quantity_title {
-  width: 50px;
-}
-#input_quantity {
-  width: 50px;
-}
-.ng_quantity_outer {
-  width: 100px;
-  margin-right: 10px;
-}
-.ng_quantity_title {
-  width: 50px;
-}
-#ng_quantity {
-  width: 50px;
-}
-.file_outer {
-  width: 350px;
-  margin-right: 10px;
-}
-.file_title {
-  width: 30px;
-}
-#file_upload {
-  /* width: 270px; */
-  display: none;
-}
-#file_upload + label {
-  background-color: white;
-  display: inline-block;
-  cursor: pointer;
-  border: solid 1px #0000ff;
-  width: 260px;
-  height: 20px;
-}
-/* #file_url {
-  width: 250px;
-} */
-#preview__button {
-  width: 50px;
-}
-
-#add_machine_error_table {
-  height: 20px;
-  margin-left: 10px;
-}
-#add_machine_error_table tbody tr td:nth-child(1),
-#add_machine_error_table thead tr th:nth-child(1) {
-  width: 100px;
-}
-#add_machine_error_table tbody tr td:nth-child(2),
-#add_machine_error_table thead tr th:nth-child(2) {
-  width: 100px;
-}
-#add_machine_error_table tbody tr td:nth-child(3),
-#add_machine_error_table thead tr th:nth-child(3) {
-  width: 60px;
-}
-#add_machine_error_table tbody tr td:nth-child(4),
-#add_machine_error_table thead tr th:nth-child(4) {
-  width: 60px;
-}
-#add_machine_error_table tbody tr td:nth-child(5),
-#add_machine_error_table thead tr th:nth-child(5) {
-  width: 100px;
-}
-#add_machine_error_table thead tr th:nth-child(1) input {
-  width: 94px;
-}
-#add_machine_error_table thead tr th:nth-child(2) input {
-  width: 94px;
-}
-#add_machine_error_table thead tr th:nth-child(3) input {
-  width: 94px;
-}
-#add_machine_error_table thead tr th:nth-child(4) input {
-  width: 94px;
-}
-#machine_error_table {
-  margin-left: 10px;
-}
-#machine_error_table tbody {
-  height: 240px;
-  width: 330px;
-  overflow: auto;
-}
-#machine_error_table thead tr th:nth-child(1),
-#machine_error_table tbody tr td:nth-child(1){
-  display: none;
-}
-#machine_error_table thead tr th:nth-child(2),
-#machine_error_table tbody tr td:nth-child(2) {
-  width: 100px;
-}
-#machine_error_table thead tr th:nth-child(3),
-#machine_error_table tbody tr td:nth-child(3) {
-  width: 100px;
-}
-#machine_error_table thead tr th:nth-child(4),
-#machine_error_table tbody tr td:nth-child(4) {
-  width: 60px;
-  text-align: center;
-}
-#machine_error_table thead tr th:nth-child(5),
-#machine_error_table tbody tr td:nth-child(5) {
-  width: 100px;
-}
-#machine_error_table tbody tr td:nth-child(2) input {
-  width: 94px;
-}
-#machine_error_table tbody tr td:nth-child(3) input {
-  width: 94px;
-}
-#machine_error_table tbody tr td:nth-child(4) input {
-  width: 54px;
-}
-#machine_error_table tbody tr td:nth-child(5) input {
-  width: 94px;
-}
-#add_machine_error {
-  width: 100%;
-  height: 20px;
-  padding: 0;
-  margin: 0;
-}
-
-#add_stop_human_table {
-  height: 20px;
-  margin-left: 10px;
-}
-#add_stop_human_table tbody tr td:nth-child(1),
-#add_stop_human_table thead tr th:nth-child(1) {
-  width: 100px;
-}
-#add_stop_human_table tbody tr td:nth-child(2),
-#add_stop_human_table thead tr th:nth-child(2) {
-  width: 100px;
-}
-#add_stop_human_table tbody tr td:nth-child(3),
-#add_stop_human_table thead tr th:nth-child(3) {
-  width: 60px;
-}
-#add_stop_human_table tbody tr td:nth-child(4),
-#add_stop_human_table thead tr th:nth-child(4) {
-  width: 60px;
-}
-#add_stop_human_table tbody tr td:nth-child(5),
-#add_stop_human_table thead tr th:nth-child(5) {
-  width: 60px;
-}
-#add_stop_human_table thead tr th:nth-child(1) input {
-  width: 94px;
-}
-#add_stop_human_table thead tr th:nth-child(2) input {
-  width: 94px;
-}
-#add_stop_human_table thead tr th:nth-child(3) input {
-  width: 94px;
-}
-#add_stop_human_table thead tr th:nth-child(4) input {
-  width: 54px;
-}
-#stop_human_table {
-  margin-left: 10px;
-}
-#stop_human_table tbody {
-  height: 240px;
-  width: 435px;
-  overflow: auto;
-}
-#stop_human_table thead tr th:nth-child(1),
-#stop_human_table tbody tr td:nth-child(1){
-  display: none;
-}
-#stop_human_table thead tr th:nth-child(2),
-#stop_human_table tbody tr td:nth-child(2) {
-  width: 100px;
-}
-#stop_human_table thead tr th:nth-child(3),
-#stop_human_table tbody tr td:nth-child(3) {
-  width: 100px;
-}
-#stop_human_table thead tr th:nth-child(4),
-#stop_human_table tbody tr td:nth-child(4) {
-  width: 100px;
-}
-#stop_human_table thead tr th:nth-child(5),
-#stop_human_table tbody tr td:nth-child(5) {
-  width: 60px;
-  text-align: center;
-}
-#stop_human_table tbody tr td:nth-child(2) input {
-  width: 90px;
-}
-#stop_human_table tbody tr td:nth-child(3) input {
-  width: 94px;
-}
-#stop_human_table tbody tr td:nth-child(4) input {
-  width: 94px;
-}
-#stop_human_table tbody tr td:nth-child(5) input {
-  width: 54px;
-}
-#add_stop_human {
-  width: 100%;
-  height: 20px;
-  padding: 0;
-  margin: 0;
-}
-#add_button {
+.note_title {
   width: 40px;
-  height: 22px;
-  padding: 0;
-  margin: 0;
+}
+#note {
+  width: 150px;
 }
 #button_wrapper {
   width: 100%;
@@ -386,7 +102,7 @@ input {
   margin-bottom: 10px;
 }
 #summary_table tbody {
-  height: 210px;
+  height: 555px;
   width: 780px;
   overflow: auto;
 }
@@ -408,19 +124,19 @@ input {
 }
 #summary_table thead tr th:nth-child(5),
 #summary_table tbody tr td:nth-child(5) {
-  width: 80px;
+  width: 60px;
 }
 #summary_table thead tr th:nth-child(6),
 #summary_table tbody tr td:nth-child(6) {
-  width: 140px;
+  width: 150px;
 }
 #summary_table thead tr th:nth-child(7),
 #summary_table tbody tr td:nth-child(7) {
-  width: 80px;
+  width: 150px;
 }
 #summary_table thead tr th:nth-child(8),
 #summary_table tbody tr td:nth-child(8) {
-  width: 80px;
+  width: 120px;
 }
 #summary_table thead tr th:nth-child(9),
 #summary_table tbody tr td:nth-child(9) {
@@ -429,37 +145,4 @@ input {
 #summary_table thead tr th:nth-child(10),
 #summary_table tbody tr td:nth-child(10) {
   width: 100px;
-}
-
-.right_error__wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-#summary_material_table {
-  margin-right: 20px;
-}
-#summary_material_table tbody {
-  height: 140px;
-  width: 430px;
-  overflow: auto;
-}
-#summary_material_table thead tr th:nth-child(1),
-#summary_material_table tbody tr td:nth-child(1){
-  width: 60px;
-}
-#summary_material_table thead tr th:nth-child(2),
-#summary_material_table tbody tr td:nth-child(2) {
-  width: 50px;
-}
-
-#staff_id {
-  width: 200px;
-}
-.staff_id_title {
-  width: 150px;
-}
-.staff_id_outer {
-  width: 300px;
-  margin-right: 10px;
 }

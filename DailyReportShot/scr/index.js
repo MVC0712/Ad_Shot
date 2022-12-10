@@ -150,10 +150,10 @@ function selShift() {
   var sendData = {
   };
   myAjax.myAjax(fileName, sendData);
-  $("#shift option").remove();
-  $("#shift").append($("<option>").val(0).html("NO"));
+  $("#shift_id option").remove();
+  $("#shift_id").append($("<option>").val(0).html("NO"));
   ajaxReturnData.forEach(function(value) {
-      $("#shift").append(
+      $("#shift_id").append(
           $("<option>").val(value["id"]).html(value["shift"])
       );
   });
@@ -540,6 +540,7 @@ function clearInputData() {
   $(".top__wrapper select.need-clear").each(function (index, element) {
     $(this).val("0").removeClass("complete-input").addClass("no-input");
   });
+  $("#order_sheet_id").val(0).removeClass("no-input").addClass("complete-input");
   $("#file_url").html("No file");
   $("#stop_human_table tbody").empty();
   $("#machine_error_table tbody").empty();

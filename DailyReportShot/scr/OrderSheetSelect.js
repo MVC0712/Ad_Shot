@@ -57,7 +57,7 @@ $(document).on("click", "#summary__table tr", function (e) {
   } else {
     let ordersheetId = $(this).find("td").eq(0).html();
     let ordersheetNumber = $(this).find("td").eq(1).html();
-    let product = $(this).find("td").eq(3).html();
+    let product = $(this).find("td").eq(5).html();
     $(window.opener.document)
       .find("#order_sheet_id")
       .empty()

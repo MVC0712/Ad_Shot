@@ -7,7 +7,7 @@ if ($dbh->getInstance() === null) {
 
 $confirm_id = $_POST['confirm_id'];
 $worker_id = $_POST['worker_id'];
-$shift = $_POST['shift'];
+$shift_id = $_POST['shift_id'];
 $product_id = $_POST['product_id'];
 $product_date = $_POST['product_date'];
 $order_sheet_id = $_POST['order_sheet_id'];
@@ -19,7 +19,7 @@ $file_url = $_POST['file_url'];
 try {
     $sql = "INSERT INTO t_record_shot(machine_id, order_sheet_id, shift_id, product_id, 
             product_date, input_quantity, ng_quantity, worker_id, confirm_id, file_url) VALUES (
-    '$machine_id', '$order_sheet_id', '$shift', '$product_id','$product_date', 
+    '$machine_id', '$order_sheet_id', '$shift_id', '$product_id','$product_date', 
     '$input_quantity', '$ng_quantity', '$worker_id', '$confirm_id', '$file_url')";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

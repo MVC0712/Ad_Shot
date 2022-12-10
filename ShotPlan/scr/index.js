@@ -3,7 +3,7 @@ let inputData = new Object();
 let fileName;
 let sendData = new Object();
 let ajaxReturnData;
-let line_id = 1;
+let line_id = 2;
 const myAjax = {
   myAjax: function (fileName, sendData) {
     $.ajax({
@@ -117,7 +117,7 @@ function makeInput(qty) {
   targetDom.val(qty);
   return targetDom;
 }
-$(document).on("change", "#anod_date_at", function (e) {
+$(document).on("change", "#shot_date_at", function (e) {
   if ($(this).val() != 0 && $(this).val() != "") {
     $(this).removeClass("no-input").addClass("complete-input");
   } else {
@@ -129,7 +129,7 @@ $(document).on("keyup", "#product_name", function (e) {
   makeSummaryTable();
 });
 function checkSave() {
-  if ($("#add__table tbody tr").length==0 || $("#anod_date_at").val()=="") {
+  if ($("#add__table tbody tr").length==0 || $("#shot_date_at").val()=="") {
     $("#save__button").prop("disabled", true);
   } else {
     $("#save__button").prop("disabled", false);
@@ -225,13 +225,13 @@ $(document).on("click", "#delete-dialog-delete__button", function () {
   makeSummaryTable();
 });
 $(document).on("click", "#save__button", function () {
-  var fileName = "InsAnodPlan.php";
+  var fileName = "InsshotPlan.php";
   tableData = getTableDataInput($("#add__table tbody tr"))
     console.log(tableData); 
     jsonData = JSON.stringify(tableData);
     var sendData = {
         data : jsonData,
-        anod_date_at : $("#anod_date_at").val(),
+        shot_date_at : $("#shot_date_at").val(),
     };
     console.log(sendData);
   myAjax.myAjax(fileName, sendData);
@@ -241,7 +241,7 @@ $(document).on("click", "#save__button", function () {
 $(document).on("change", "#summary__table tbody tr td", function () {
   let sendData = new Object();
   let fileName;
-  fileName = "UpdateInputDataV3.php";
+  fileName = "UpdateData.php";
   sendData = {
     targetId : $("#selected__tr td:nth-child(1)").html(),
     date_plan : $("#selected__date").val(),

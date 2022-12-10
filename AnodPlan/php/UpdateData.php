@@ -15,7 +15,7 @@ try {
     machine_id = '$machine_id' ,
     quantity = '$quantity' ,
     note = '$note' ,
-    product_date = '$product_date'
+    product_date = '$date_plan'
     WHERE id= '$id'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

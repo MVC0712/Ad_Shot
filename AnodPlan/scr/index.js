@@ -241,7 +241,7 @@ $(document).on("click", "#save__button", function () {
 $(document).on("change", "#summary__table tbody tr td", function () {
   let sendData = new Object();
   let fileName;
-  fileName = "UpdateInputDataV3.php";
+  fileName = "UpdateData.php";
   sendData = {
     targetId : $("#selected__tr td:nth-child(1)").html(),
     date_plan : $("#selected__date").val(),

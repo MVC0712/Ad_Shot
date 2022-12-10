@@ -11,11 +11,11 @@ $quantity = $_POST['quantity'];
 $note = $_POST['note'];
 
 try {
-    $sql = "UPDATE t_anod_plan SET 
+    $sql = "UPDATE t_shot_plan SET 
     machine_id = '$machine_id' ,
     quantity = '$quantity' ,
     note = '$note' ,
-    product_date = '$product_date'
+    product_date = '$date_plan'
     WHERE id= '$id'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

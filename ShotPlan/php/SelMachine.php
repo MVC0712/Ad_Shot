@@ -7,7 +7,7 @@ if ($dbh->getInstance() === null) {
 
 $datetime = date("Y-m-d H:i:s");
 try {
-    $sql = "SELECT * FROM m_shift WHERE 1";
+    $sql = "SELECT * FROM m_machine WHERE line_id = 1";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

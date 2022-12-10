@@ -14,17 +14,14 @@ body {
 #summary__table tbody {
   height: 270px;
 }
-/* id */
 #summary__table th:nth-child(1),
 #summary__table td:nth-child(1) {
   display: none;
 }
-/* ordersheet number */
 #summary__table th:nth-child(2),
 #summary__table td:nth-child(2) {
   width: 100px;
 }
-/* Delivery Date */
 #summary__table th:nth-child(3),
 #summary__table td:nth-child(3) {
   width: 100px;
@@ -32,7 +29,6 @@ body {
 #summary__table td:nth-child(3) {
   text-align: center;
 }
-/* Issue Date */
 #summary__table th:nth-child(4),
 #summary__table td:nth-child(4) {
   width: 100px;
@@ -40,22 +36,26 @@ body {
 #summary__table td:nth-child(4) {
   text-align: center;
 }
-/* production number */
 #summary__table th:nth-child(5),
 #summary__table td:nth-child(5) {
-  width: 150px;
+ width: 40px;
 }
-/* production Qty */
 #summary__table th:nth-child(6),
-#summary__table td:nth-child(6),
+#summary__table td:nth-child(6) {
+   display: none;
+}
 #summary__table th:nth-child(7),
-#summary__table td:nth-child(7),
+#summary__table td:nth-child(7) {
+   width: 150px;
+}
 #summary__table th:nth-child(8),
-#summary__table td:nth-child(8),
+#summary__table td:nth-child(8) {
+  width: 60px;
+}
 #summary__table th:nth-child(9),
 #summary__table td:nth-child(9),
 #summary__table th:nth-child(10),
 #summary__table td:nth-child(10) {
-  width: 50px;
+  width: 110px;
   text-align: left;
 }

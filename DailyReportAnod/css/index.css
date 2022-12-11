@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(680px - 2px);
-  width: calc(800px - 2px);
+  width: calc(850px - 2px);
 }
 input {
   text-align: left;
@@ -19,7 +19,7 @@ input {
 }
 .top_up__wrapper,
 .top_down__wrapper {
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -78,7 +78,7 @@ input {
   width: 100px;
 }
 .order_sheet_id_outer {
-  width: 200px;
+  width: 170px;
   margin-right: 10px;
 }
 .order_sheet_id_title {
@@ -92,7 +92,7 @@ input {
   flex-direction: row;
 }
 .product_id_outer {
-  width: 200px;
+  width: 170px;
   margin-right: 10px;
 }
 .product_id_title {
@@ -102,7 +102,7 @@ input {
   width: 120px;
 }
 .shift_outer {
-  width: 100px;
+  width: 110px;
   margin-right: 10px;
 }
 .shift_title {
@@ -126,7 +126,7 @@ input {
   margin-right: 10px;
 }
 .product_date_title {
-  width: 80px;
+  width: 65px;
 }
 #product_date {
   width: 100px;
@@ -187,7 +187,7 @@ input {
   display: inline-block;
   cursor: pointer;
   border: solid 1px #0000ff;
-  width: 230px;
+  width: 280px;
   height: 20px;
 }
 /* #file_url {

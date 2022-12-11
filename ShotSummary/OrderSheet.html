@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Sheet Page</title>
+    <link rel="stylesheet" href="../Lib/main.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <header>Order Sheet Page</header>
+      <div class="top__wrapper">
+        <div class="top_up__wrapper">
+          <div class="input-block__outer order_code_outer">
+            <div class="input__title order_code_title">
+              CTSX
+            </div>
+            <div>
+              <input id="order_code" class="save-data need-clear no-input">
+            </div>
+          </div>
+          <div class="input-block__outer product_id_outer">
+            <div class="input__title product_id_title">
+              Mã SP
+            </div>
+            <div>
+              <select id="product_id" class="no-input save-data need-clear">
+                <option value="0">--</option>
+              </select>
+            </div>
+          </div>
+        <div class="input-block__outer order_date_outer">
+          <div class="input__title order_date_title">
+            Ngày BĐ
+          </div>
+          <div>
+            <input type="date" id="order_date" class="no-input save-data need-clear">
+          </div>
+        </div>
+        <div class="input-block__outer end_date_outer">
+          <div class="input__title end_date_title">
+            Ngày Xuất
+          </div>
+          <div>
+            <input type="date" id="end_date" class="no-input save-data need-clear">
+          </div>
+        </div>
+      </div>
+        <div class="top_up__wrapper">
+        <div class="input-block__outer quantity_outer">
+          <div class="input__title quantity_title">
+            Quantity
+          </div>
+          <div>
+            <input id="quantity" class="save-data need-clear no-input">
+          </div>
+        </div>
+        <div class="input-block__outer note_outer">
+          <div class="input__title note_title">
+            Note
+          </div>
+          <div>
+            <input id="note" class="save-data need-clear">
+          </div>
+        </div>
+      </div>
+      </div>
+    <div id="button_wrapper">
+      <button disabled id="save">
+        Save
+      </button>
+      <button disabled id="update">
+        Update
+      </button>
+    </div>
+      <table id="summary_table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>CTSX</th>
+            <th>Order date</th>
+            <th>Delivery</th>
+            <th>Quantity</th>
+            <th>Product</th>
+            <th>Note</th>
+            <th>Updated</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    <script src="../Lib/jquery.min.js"></script>
+    <script src="./scr/index.js"></script>
+  </body>
+</html>

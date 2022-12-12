@@ -31,158 +31,201 @@ const getDateTime = (date) => {
     const mins = getTwoDigits(date.getMinutes());
     return `${year}-${month}-${day} ${hours}:${mins}:00`;
 }
-$(function () {
-  makeSummaryTable();
-  selProduct();
-});
-function makeSummaryTable() {
-  var fileName = "SelSummary.php";
-  var sendData = {
-      dummy: "dummy",
+$(function() {
+  var now = new Date();
+  var MonthLastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  // var MonthFirstDate = new Date(now.getFullYear() - (now.getMonth() > 0 ? 0 : 1), (now.getMonth() + 12) % 12, 1);
+  var MonthFirstDate = new Date(now.getFullYear(), (now.getMonth() + 12) % 12, 1);
+  var formatDateComponent = function(dateComponent) {
+    return (dateComponent < 10 ? '0' : '') + dateComponent;
   };
-  myAjax.myAjax(fileName, sendData);
-  fillTableBody(ajaxReturnData, $("#summary_table tbody"));
-};
+
+  var formatDate = function(date) {
+    return date.getFullYear()  + '-' + formatDateComponent(date.getMonth() + 1) + '-' + formatDateComponent(date.getDate()) ;
+  };
+
+  var a = formatDate(MonthFirstDate);
+  var b = formatDate(MonthLastDate);
+
+  $("#std").val(a);
+  $("#end").val(b);
+});
+
+function round(num, decimalPlaces = 0) {
+  num = Math.round(num + "e" + decimalPlaces);
+  return Number(num + "e" + -decimalPlaces);
+}
+function makeSummaryTable() {
+    var fileName = "SelSummary.php";
+    var sendObj = new Object();
+    sendObj["start_s"] = $('#std').val();
+    sendObj["end_s"] = $("#end").val();
+    myAjax.myAjax(fileName, sendObj);
+    fillTableBody1(ajaxReturnData, $("#summary__table tbody"));
+    Total();
+}
+
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
-  data.forEach(function(trVal) {
-      let newTr = $("<tr>");
+    data.forEach(function(trVal) {
+      var newTr = $("<tr>");
       Object.keys(trVal).forEach(function(tdVal) {
-        if (tdVal == "Position" || tdVal == "id") {
+          if (tdVal == "idd" && (trVal+1).idd==tdVal.idd)  {
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
-        } else if (tdVal == "code_id") {
-            $("<td>").append(errorCodeOption(trVal[tdVal])).appendTo(newTr);
-        } else if (tdVal == "start_time" || tdVal == "end_time") {
-            $("<td>")
-                .append(makeTime(trVal[tdVal]))
-                .appendTo(newTr);
-        } else {
-            $("<td>").html(trVal[tdVal]).appendTo(newTr);
-        }
-    });
+            $("<td>").html((trVal+1)[tdVal]).appendTo(newTr);
+          } else {
+              $("<td>").html(trVal[tdVal]).appendTo(newTr);
+          }
+      });
       $(newTr).appendTo(tbodyDom);
   });
-};
-$(document).on("click", "#summary_table tbody tr", function (e) {
-  let fileName = "SelUpdateData.php";
-  let sendData;
-  if (!$(this).hasClass("selected-record")) {
+}
+function fillTableBody1(data, tbodyDom) {
+  $(tbodyDom).empty();
+  for (var i = 0; i < data.length -1; i++) {
+    var newTr = $("<tr>");
+    var newTrr = $("<tr>");
+      if ((data[i]).idd==data[i+1].idd) {
+        for (const a in data[i]) {
+          $("<td>").html(data[i][a]).appendTo(newTr);
+        }
+        for (const a in data[i+1]) {
+          $("<td>").html(data[i+1][a]).appendTo(newTrr);
+        }
+        i++;
+      } else {
+      }
+    $(newTr).appendTo(tbodyDom);
+    $(newTrr).appendTo(tbodyDom);
+  }
+}
+$(document).on("click", "#summary__table tbody tr", function(e) {
     $(this).parent().find("tr").removeClass("selected-record");
     $(this).addClass("selected-record");
-    $("#selected__tr").removeAttr("id");
-    $(this).attr("id", "selected__tr");
-    sendData = {
-      targetId: $("#selected__tr").find("td").eq(0).html(),
-    };
-    myAjax.myAjax(fileName, sendData);
-    putDataToInput(ajaxReturnData);
-  } else {
-  }
-  $("#save").attr("disabled", true);
-  $("#update").attr("disabled", false);
-  $(".save-data").each(function (index, element) {
-    $(this).removeClass("no-input").addClass("complete-input");
-  });
 });
-function selProduct() {
-  var fileName = "SelProduct.php";
-  var sendData = {
-  };
-  myAjax.myAjax(fileName, sendData);
-  $("#product_id option").remove();
-  $("#product_id").append($("<option>").val(0).html("NO"));
-  ajaxReturnData.forEach(function(value) {
-      $("#product_id").append(
-          $("<option>").val(value["id"]).html(value["product_name"])
-      );
-  });
-};
-$(document).on("change keyup", ".save-data", function() {
-  if ($(this).val() != ""||$(this).val() != 0) {
-      $(this).removeClass("no-input").addClass("complete-input");
+
+$(document).on("click", "#summary__table tbody td", function(e) {
+  if (!$(this).hasClass("active")) {
+    $("td").removeClass("active");
+    $(this).addClass("active");
   } else {
-      $(this).removeClass("complete-input").addClass("no-input");
+    $("td").removeClass("active");
   }
-  checkInput();
 });
-function getInputData() {
-  let inputData = new Object();
-    $(".top__wrapper input.save-data").each(function (index, element) {
-      inputData[$(this).attr("id")] = $(this).val();
-    });
-    $(".top__wrapper select.save-data").each(function (index, element) {
-      inputData[$(this).attr("id")] = $(this).val();
-    });
-  return inputData;
+
+$(document).on("change", "#std", function() {
+    renderHead($('div#table'), new Date($("#std").val()), new Date($("#end").val()));
+    makeSummaryTable();
+});
+$(document).on("change", "#end", function() {
+    renderHead($('div#table'), new Date($("#std").val()), new Date($("#end").val()));
+    makeSummaryTable();
+});
+$(function() {
+    renderHead($('div#table'), new Date($("#std").val()), new Date($("#end").val()));
+    makeSummaryTable();
+});
+
+var weekday = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+function renderHead(div, start, end) {
+    var c_year = start.getFullYear();
+    var r_year = "<tr> <th rowspan='4' style ='width: 150px;'>Production number</th> ";
+    var r_year1 = "<tr style='display:none;'><th style='display:none;'></th><th style='display:none;'></th>";
+    var daysInYear = 0;
+
+    var c_month = start.getMonth();
+    var r_month = "<tr>";
+    var r_month1 = "<tr style='display:none;'><th style='display:none;'></th><th style='display:none;'></th>";
+    var daysInMonth = 0;
+
+    var r_days = "<tr><th style='display:none;'></th><th style='display:none;'></th><th style='display:none;'></th>";
+    var r_days2 = "<tr><th style='display:none;'></th><th style='display:none;'></th><th style='display:none;'></th>";
+    for (start; start <= end; start.setDate(start.getDate() + 1)) {
+        if (start.getFullYear() !== c_year) {
+            r_year += '<th colspan="' + daysInYear + '">' + c_year + '</th>';
+            c_year = start.getFullYear();
+            daysInYear = 0;
+        }
+        daysInYear++;
+        if (start.getMonth() !== c_month) {
+            r_month += '<th colspan="' + daysInMonth + '">' + months[c_month] + '</th>';
+            // r_month1 += '<th>' + months[c_month] + '</th>';
+            c_month = start.getMonth();
+            daysInMonth = 0;
+        }
+        daysInMonth++;
+
+        r_days += '<th>' + start.getDate() + '</th>';
+        r_days2 += '<th>' + weekday[start.getDay()] + '</th>';
+        r_month1 += '<th>' + months[c_month] + '</th>';
+        r_year1 += '<th>' + c_year + '</th>';
+    }
+    r_days += "</tr>";
+    r_days2 += "</tr>";
+    r_year += '<th colspan="' + (daysInYear) + '">' + c_year + '</th>';
+    r_year1 += '<th>' + c_year + '</th>';
+    // r_year += "<th rowspan='4' style ='width: 40px;'>Total</th><th rowspan='4' style ='width: 45px;'>Per</th></tr>";
+    r_year += "<th rowspan='4' style ='width: 40px;'>Total</th></tr>";
+    r_year += "</tr>";
+    r_year1 += "</tr>";
+    r_month += '<th colspan="' + (daysInMonth) + '">' + months[c_month] + '</th>';
+    r_month1 += '<th>' + months[c_month] + '</th>';
+    r_month += "</tr>";
+    r_month1 += "</tr>";
+    table = "<table id='summary__table'> <thead>" + r_year + r_year1 + r_month + r_month1 + r_days + "</thead> <tbody> </tbody> </table>";
+
+    div.html(table);
 }
-function clearInputData() {
-  $(".top__wrapper input.need-clear").each(function (index, element) {
-    $(this).val("").removeClass("complete-input").addClass("no-input");
-  });
-  $(".top__wrapper select.need-clear").each(function (index, element) {
-    $(this).val("0").removeClass("complete-input").addClass("no-input");
-  });
-  $("#note").val("").removeClass("no-input").addClass("complete-input");
-};
-$(document).on("click", "#save", function () {
-  fileName = "InsData.php";
-  inputData = getInputData();
-  sendData = inputData;
-  myAjax.myAjax(fileName, sendData);
-  clearInputData();
-  makeSummaryTable();
-  $("#save").attr("disabled", true);
-  $("#update").attr("disabled", true);
-});
-$(document).on("click", "#update", function () {
-  fileName = "UpdateData.php";
-  inputData = getInputData();
-  inputData["targetId"] = $("#selected__tr").find("td").eq(0).html();
-  sendData = inputData;
-  myAjax.myAjax(fileName, sendData);
-  clearInputData();
-  makeSummaryTable();
-  $("#save").attr("disabled", true);
-  $("#update").attr("disabled", true);
-});
-function putDataToInput(data) {
-    data.forEach(function (trVal) {
-      Object.keys(trVal).forEach(function (tdVal) {
-        $("#" + tdVal).val(trVal[tdVal]); 
+
+function Total() {
+  hideValue();
+  $('#summary__table tbody tr').each(function(){
+    var sum = 0;
+    if ((Number($(this).find("td").eq(0).html()) == 1) || (Number($(this).find("td").eq(0).html()) == 2)) {
+      $(this).find('td').each(function(){
+        if(!isNaN(Number($(this).text()))){
+          sum = sum + Number($(this).text());
+        }
       });
-  });
-};
-function checkInput() {
-  let check = true;
-  $(".save-data").each(function() {
-    if ($(this).hasClass("no-input")) {
-      check = false;
+      sum = sum - Number($(this).find("td").eq(0).html())
+      - Number($(this).find("td").eq(1).html());
+      $(this).append('<td>'+sum+'</td>');
+    }
+    if ((Number($(this).find("td").eq(0).html()) == 3) || (Number($(this).find("td").eq(0).html()) == 4)) {
+      $(this).find('td').each(function(){
+        if((Number($(this).text()) > 0 )){
+          max = Number($(this).text());
+        }
+      });
+      $(this).append('<td>'+max+'</td>');
     }
   });
-  if ($("#summary_table tbody tr").hasClass("selected-record")) {
-    check = false;
-  }
-  if (check) {
-    $("#save").attr("disabled", false);
-  } else {
-    $("#save").attr("disabled", true);
-  } 
-  return check;
 };
-function checkUpdate() {
-  let check = true;
-  $(".save-data").each(function() {
-    if ($(this).hasClass("no-input")) {
-      check = false;
+
+function hideValue() {
+  var table = document.getElementById("summary__table");
+  var tbody = table.getElementsByTagName("tbody")[0];
+  var tr = tbody.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i += 1) {
+    for(var j = 0; j < tr[i].getElementsByTagName("td").length; j +=1) {
+      var td =  tr[i].getElementsByTagName("td")[0];
+      if($(td).html() == 1) {
+        var tdh =  tr[i].getElementsByTagName("td")[j];
+        if($(tdh).html() == "") {
+          var tdh2 =  tr[i+2].getElementsByTagName("td")[j];
+          $(tdh2).html("");
+        }
+      }
+      if($(td).html() == 2) {
+        var tdh =  tr[i].getElementsByTagName("td")[j];
+        if($(tdh).html() == "") {
+          var tdh2 =  tr[i+2].getElementsByTagName("td")[j];
+          $(tdh2).html("");
+        }
+      }
     }
-  });
-  if (!$("#summary_table tbody tr").hasClass("selected-record")) {
-    check = false;
   }
-  if (check) {
-    $("#update").attr("disabled", false);
-  } else {
-    $("#update").attr("disabled", true);
-  } 
-  return check;
 };

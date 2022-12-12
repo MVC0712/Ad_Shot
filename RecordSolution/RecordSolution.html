@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order Sheet Page</title>
+    <title>Record Solution</title>
     <link rel="stylesheet" href="../Lib/main.css" />
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
-    <header>Order Sheet Page</header>
+    <header>Record Solution</header>
       <div class="top__wrapper">
-        <div class="top_up__wrapper">
+        <!-- <div class="top_up__wrapper">
           <div class="input-block__outer order_code_outer">
             <div class="input__title order_code_title">
               CTSX
@@ -64,7 +64,64 @@
             <input id="note" class="save-data need-clear">
           </div>
         </div>
-      </div>
+      </div> -->
+
+      <table id="data_table">
+      <thead>
+        <tr>
+          <th rowspan="2">Time</th>
+          <th rowspan="2">Staff Check</th>
+          <th colspan="3">Tẩy dầu</th>
+          <th colspan="3">Etching</th>
+          <th colspan="3">polishing</th>
+          <th colspan="2">Smut</th>
+          <th colspan="2">Anod</th>
+          <th colspan="2">Fuco</th>
+          <th colspan="2">Acid rinse</th>
+        </tr>
+        <tr>
+          <th>H2SO4 75% (ml/L)</th>
+          <th>H2SO4 75% (L)</th>
+          <th>SO4- (L)</th>
+          <th>NaOH 25% (ml/L)</th>
+          <th>NaOH 25% (L)</th>
+          <th>SK- (L)</th>
+          <th>HNO3 62% (ml/L)</th>
+          <th>NaOH 62% (L)</th>
+          <th>SL (L)</th>
+          <th>H2SO4 75% (ml/L)</th>
+          <th>H2SO4 75% (L)</th>
+          <th>H2SO4 75% (ml/L)</th>
+          <th>H2SO4 75% (L)</th>
+          <th>MF-115 (g/L)</th>
+          <th>MF-115 (L)</th>
+          <th>H2SO4 75% (ml/L)</th>
+          <th>H2SO4 75% (L)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input id="input_date" type="date"><input id="input_time" type="time"></td>
+          <td>H2SO4 75% (ml/L)</td>
+          <td>H2SO4 75% (L)</td>
+          <td>SO4- (L)</td>
+          <td>NaOH 25% (ml/L)</td>
+          <td>NaOH 25% (L)</td>
+          <td>SK- (L)</td>
+          <td>HNO3 62% (ml/L)</td>
+          <td>NaOH 62% (L)</td>
+          <td>SL (L)</td>
+          <td>H2SO4 75% (ml/L)</td>
+          <td>H2SO4 75% (L)</td>
+          <td>H2SO4 75% (ml/L)</td>
+          <td>H2SO4 75% (L)</td>
+          <td>MF-115 (g/L)</td>
+          <td>MF-115 (L)</td>
+          <td>H2SO4 75% (ml/L)</td>
+          <td>H2SO4 75% (L)</td>
+        </tr>
+      </tbody>
+      </table>
       </div>
     <div id="button_wrapper">
       <button disabled id="save">

@@ -111,7 +111,7 @@ background-color: #d2cdff;
   width: 28px;
 }
 
-#summary__table tbody tr:nth-child(2n) {
+#summary__table tbody tr:nth-child(4n) {
   border-bottom: 2px solid rgb(0, 0, 0);
 }
 

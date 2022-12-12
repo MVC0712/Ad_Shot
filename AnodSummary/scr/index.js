@@ -181,43 +181,51 @@ function renderHead(div, start, end) {
 }
 
 function Total() {
+  hideValue();
   $('#summary__table tbody tr').each(function(){
     var sum = 0;
-    $(this).find('td').each(function(){
-      if(!isNaN(Number($(this).text()))){
-        sum = sum + Number($(this).text());
-      }
-    });
-    sum = sum - Number($(this).find("td").eq(0).html())
-    - Number($(this).find("td").eq(1).html());
-    $(this).append('<td>'+sum+'</td>');
-    console.log(sum);
+    if ((Number($(this).find("td").eq(0).html()) == 1) || (Number($(this).find("td").eq(0).html()) == 2)) {
+      $(this).find('td').each(function(){
+        if(!isNaN(Number($(this).text()))){
+          sum = sum + Number($(this).text());
+        }
+      });
+      sum = sum - Number($(this).find("td").eq(0).html())
+      - Number($(this).find("td").eq(1).html());
+      $(this).append('<td>'+sum+'</td>');
+    }
+    if ((Number($(this).find("td").eq(0).html()) == 3) || (Number($(this).find("td").eq(0).html()) == 4)) {
+      $(this).find('td').each(function(){
+        if((Number($(this).text()) > 0 )){
+          max = Number($(this).text());
+        }
+      });
+      $(this).append('<td>'+max+'</td>');
+    }
   });
-  // check_tt();
 };
 
-function check_tt() {
+function hideValue() {
   var table = document.getElementById("summary__table");
   var tbody = table.getElementsByTagName("tbody")[0];
   var tr = tbody.getElementsByTagName("tr");
-  var b = tr[0].cells.length - 1;
-  for (i = 0; i < tr.length; i += 2) {
-    var lastcol1 =tr[i].getElementsByTagName("td")[b].innerText;
-    var lastcol2 =tr[i+1].getElementsByTagName("td")[b].innerText;
-
-    if (lastcol1 != 0 || lastcol2 != 0) {
-      tr[i].style.display = "";
-      tr[i+1].style.display = "";
-      
-      if (lastcol1 == 0 && lastcol2 != 0) {
-        tbody.rows[i].append('No plan');
-      } else{
-        var per = lastcol2/lastcol1*100;
-        tbody.rows[i].append(round(per,1)+'%');
+  for (i = 0; i < tr.length; i += 1) {
+    for(var j = 0; j < tr[i].getElementsByTagName("td").length; j +=1) {
+      var td =  tr[i].getElementsByTagName("td")[0];
+      if($(td).html() == 1) {
+        var tdh =  tr[i].getElementsByTagName("td")[j];
+        if($(tdh).html() == "") {
+          var tdh2 =  tr[i+2].getElementsByTagName("td")[j];
+          $(tdh2).html("");
+        }
       }
-    } else {
-      tr[i].style.display = "none";
-      tr[i+1].style.display = "none";
+      if($(td).html() == 2) {
+        var tdh =  tr[i].getElementsByTagName("td")[j];
+        if($(tdh).html() == "") {
+          var tdh2 =  tr[i+2].getElementsByTagName("td")[j];
+          $(tdh2).html("");
+        }
+      }
     }
   }
 };

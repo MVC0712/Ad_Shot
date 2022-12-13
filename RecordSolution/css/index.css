@@ -4,87 +4,21 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(680px - 2px);
-  width: calc(1200px - 2px);
+  width: calc(1330px - 2px);
 }
 input {
+  width: 55px;
+  height: 40px;
   text-align: left;
 }
-.top__wrapper {
+.top__wrapper, 
+.bottom__wrapper {
   width: 100%;
   /* height: 50px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
-.top_up__wrapper,
-.top_down__wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.order_code_outer {
-  width: 170px;
-  margin-right: 10px;
-}
-.order_code_title {
-  width: 50px;
-}
-#order_code {
-  width: 120px;
-}
-.product_id_outer {
-  width: 190px;
-  margin-right: 10px;
-}
-.product_id_title {
-  width: 50px;
-}
-#product_id {
-  width: 130px;
-}
-.order_date_outer {
-  width: 180px;
-  margin-right: 10px;
-}
-.order_date_title {
-  width: 80px;
-}
-#order_date {
-  width: 100px;
-}
-.end_date_outer {
-  width: 180px;
-  margin-right: 10px;
-}
-.end_date_title {
-  width: 80px;
-}
-#end_date {
-  width: 100px;
-}
-.quantity_outer {
-  width: 120px;
-  margin-right: 10px;
-}
-.quantity_title {
-  width: 60px;
-}
-#quantity {
-  width: 50px;
-}
-.note_outer {
-  width: 190px;
-  margin-right: 10px;
-}
-.note_title {
-  width: 40px;
-}
-#note {
-  width: 150px;
+  align-items: left;
 }
 #button_wrapper {
   width: 100%;
@@ -101,48 +35,62 @@ input {
   margin-right: 30px;
   margin-bottom: 10px;
 }
+#data_table tbody,
 #summary_table tbody {
-  height: 555px;
-  width: 780px;
+  height: 50px;
   overflow: auto;
+}
+#summary_table tbody {
+  height: 450px;
+  overflow: auto;
+}
+#summary_table tbody td, tbody th {
+  width: 60px;
+}
+#data_table thead tr th:nth-child(1),
+#data_table tbody tr td:nth-child(1) {
+  width: 110px;
+}
+#data_table tbody tr td:nth-child(1),
+#summary_table tbody tr td:nth-child(1) {
+  width: 110px;
+  display: flex;
+  flex-direction: column;
 }
 #summary_table thead tr th:nth-child(1),
 #summary_table tbody tr td:nth-child(1) {
   display: none;
 }
+#data_table tbody tr td:nth-child(1) input,
+#summary_table tbody tr td:nth-child(1) input {
+  width: 104px;
+  height: 20px;
+}
+#data_table thead tr th:nth-child(2),
+#data_table tbody tr td:nth-child(2) {
+  width: 120px;
+}
 #summary_table thead tr th:nth-child(2),
 #summary_table tbody tr td:nth-child(2) {
-  width: 120px;
+  width: 110px;
 }
 #summary_table thead tr th:nth-child(3),
 #summary_table tbody tr td:nth-child(3) {
-  width: 70px;
-}
-#summary_table thead tr th:nth-child(4),
-#summary_table tbody tr td:nth-child(4) {
-  width: 80px;
-}
-#summary_table thead tr th:nth-child(5),
-#summary_table tbody tr td:nth-child(5) {
-  width: 60px;
-}
-#summary_table thead tr th:nth-child(6),
-#summary_table tbody tr td:nth-child(6) {
-  width: 150px;
-}
-#summary_table thead tr th:nth-child(7),
-#summary_table tbody tr td:nth-child(7) {
-  width: 150px;
-}
-#summary_table thead tr th:nth-child(8),
-#summary_table tbody tr td:nth-child(8) {
   width: 120px;
 }
-#summary_table thead tr th:nth-child(9),
-#summary_table tbody tr td:nth-child(9) {
-  width: 100px;
+#data_table tbody tr td:nth-child(2) select,
+#summary_table tbody tr td:nth-child(2) select {
+  width: 120px;
+  height: 40px
 }
-#summary_table thead tr th:nth-child(10),
-#summary_table tbody tr td:nth-child(10) {
-  width: 100px;
+
+#data_table thead td, thead th,
+#summary_table thead td, thead th {
+  background-color: #0000ff;
+  border: solid 1px white;
+  color: white;
+  text-align: center;
+  font-size: 9pt;
+  font-weight: normal;
+  width: 60px;
 }

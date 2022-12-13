@@ -11,83 +11,28 @@
   <body>
     <header>Record Solution</header>
       <div class="top__wrapper">
-        <!-- <div class="top_up__wrapper">
-          <div class="input-block__outer order_code_outer">
-            <div class="input__title order_code_title">
-              CTSX
-            </div>
-            <div>
-              <input id="order_code" class="save-data need-clear no-input">
-            </div>
-          </div>
-          <div class="input-block__outer product_id_outer">
-            <div class="input__title product_id_title">
-              Mã SP
-            </div>
-            <div>
-              <select id="product_id" class="no-input save-data need-clear">
-                <option value="0">--</option>
-              </select>
-            </div>
-          </div>
-        <div class="input-block__outer order_date_outer">
-          <div class="input__title order_date_title">
-            Ngày BĐ
-          </div>
-          <div>
-            <input type="date" id="order_date" class="no-input save-data need-clear">
-          </div>
-        </div>
-        <div class="input-block__outer end_date_outer">
-          <div class="input__title end_date_title">
-            Ngày Xuất
-          </div>
-          <div>
-            <input type="date" id="end_date" class="no-input save-data need-clear">
-          </div>
-        </div>
-      </div>
-        <div class="top_up__wrapper">
-        <div class="input-block__outer quantity_outer">
-          <div class="input__title quantity_title">
-            Quantity
-          </div>
-          <div>
-            <input id="quantity" class="save-data need-clear no-input">
-          </div>
-        </div>
-        <div class="input-block__outer note_outer">
-          <div class="input__title note_title">
-            Note
-          </div>
-          <div>
-            <input id="note" class="save-data need-clear">
-          </div>
-        </div>
-      </div> -->
-
       <table id="data_table">
       <thead>
         <tr>
           <th rowspan="2">Time</th>
           <th rowspan="2">Staff Check</th>
-          <th colspan="3">Tẩy dầu</th>
+          <th colspan="3">Tẩy dầu - Oil remover</th>
           <th colspan="3">Etching</th>
-          <th colspan="3">polishing</th>
+          <th colspan="3">Polishing</th>
           <th colspan="2">Smut</th>
           <th colspan="2">Anod</th>
           <th colspan="2">Fuco</th>
           <th colspan="2">Acid rinse</th>
         </tr>
         <tr>
-          <th>H2SO4 75% (ml/L)</th>
-          <th>H2SO4 75% (L)</th>
+          <th style="width: 60px">H2SO4 75% (ml/L)</th>
+          <th style="width: 60px">H2SO4 75% (L)</th>
           <th>SO4- (L)</th>
           <th>NaOH 25% (ml/L)</th>
           <th>NaOH 25% (L)</th>
           <th>SK- (L)</th>
           <th>HNO3 62% (ml/L)</th>
-          <th>NaOH 62% (L)</th>
+          <th>HNO3 62% (L)</th>
           <th>SL (L)</th>
           <th>H2SO4 75% (ml/L)</th>
           <th>H2SO4 75% (L)</th>
@@ -101,24 +46,34 @@
       </thead>
       <tbody>
         <tr>
-          <td><input id="input_date" type="date"><input id="input_time" type="time"></td>
-          <td>H2SO4 75% (ml/L)</td>
-          <td>H2SO4 75% (L)</td>
-          <td>SO4- (L)</td>
-          <td>NaOH 25% (ml/L)</td>
-          <td>NaOH 25% (L)</td>
-          <td>SK- (L)</td>
-          <td>HNO3 62% (ml/L)</td>
-          <td>NaOH 62% (L)</td>
-          <td>SL (L)</td>
-          <td>H2SO4 75% (ml/L)</td>
-          <td>H2SO4 75% (L)</td>
-          <td>H2SO4 75% (ml/L)</td>
-          <td>H2SO4 75% (L)</td>
-          <td>MF-115 (g/L)</td>
-          <td>MF-115 (L)</td>
-          <td>H2SO4 75% (ml/L)</td>
-          <td>H2SO4 75% (L)</td>
+          <td>
+            <input id="input_date" type="date" class="no-input save-data need-clear">
+            <input id="input_time" type="time" class="no-input save-data need-clear">
+          </td>
+          <td>
+            <select id="staff_check" class="no-input save-data need-clear">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </td>
+          <th><input id="oi_h2so4_mll" class="no-input save-data need-clear"></th>
+          <th><input id="oi_h2so4_l" class="no-input save-data need-clear"></th>
+          <th><input id="oi_so4_l" class="no-input save-data need-clear"></th>
+          <th><input id="et_naoh_mll" class="no-input save-data need-clear"></th>
+          <th><input id="et_naoh_l" class="no-input save-data need-clear"></th>
+          <th><input id="et_sk_l" class="no-input save-data need-clear"></th>
+          <th><input id="po_hno3_mll" class="no-input save-data need-clear"></th>
+          <th><input id="po_hno3_ml" class="no-input save-data need-clear"></th>
+          <th><input id="po_sl_l" class="no-input save-data need-clear"></th>
+          <th><input id="sm_h2so4_mll" class="no-input save-data need-clear"></th>
+          <th><input id="sm_h2so4_l" class="no-input save-data need-clear"></th>
+          <th><input id="an_h2so4_mll" class="no-input save-data need-clear"></th>
+          <th><input id="an_h2so4_ml" class="no-input save-data need-clear"></th>
+          <th><input id="fu_mf_gl" class="no-input save-data need-clear"></th>
+          <th><input id="fu_mf_l" class="no-input save-data need-clear"></th>
+          <th><input id="ac_h2so4_mll" class="no-input save-data need-clear"></th>
+          <th><input id="ac_h2so4_ml" class="no-input save-data need-clear"></th>
         </tr>
       </tbody>
       </table>
@@ -131,21 +86,45 @@
         Update
       </button>
     </div>
+    <div class="top__wrapper">
       <table id="summary_table">
         <thead>
           <tr>
             <th>id</th>
-            <th>CTSX</th>
-            <th>Order date</th>
-            <th>Delivery</th>
-            <th>Quantity</th>
-            <th>Product</th>
-            <th>Note</th>
-            <th>Updated</th>
+            <th rowspan="2">Time</th>
+            <th rowspan="2">Staff Check</th>
+            <th colspan="3">Tẩy dầu - Oil remover</th>
+            <th colspan="3">Etching</th>
+            <th colspan="3">Polishing</th>
+            <th colspan="2">Smut</th>
+            <th colspan="2">Anod</th>
+            <th colspan="2">Fuco</th>
+            <th colspan="2">Acid rinse</th>
+          </tr>
+          <tr>
+            <th>id</th>
+            <th style="width: 60px">H2SO4 75% (ml/L)</th>
+            <th style="width: 60px">H2SO4 75% (L)</th>
+            <th>SO4- (L)</th>
+            <th>NaOH 25% (ml/L)</th>
+            <th>NaOH 25% (L)</th>
+            <th>SK- (L)</th>
+            <th>HNO3 62% (ml/L)</th>
+            <th>HNO3 62% (L)</th>
+            <th>SL (L)</th>
+            <th>H2SO4 75% (ml/L)</th>
+            <th>H2SO4 75% (L)</th>
+            <th>H2SO4 75% (ml/L)</th>
+            <th>H2SO4 75% (L)</th>
+            <th>MF-115 (g/L)</th>
+            <th>MF-115 (L)</th>
+            <th>H2SO4 75% (ml/L)</th>
+            <th>H2SO4 75% (L)</th>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
+    </div>
     <script src="../Lib/jquery.min.js"></script>
     <script src="./scr/index.js"></script>
   </body>

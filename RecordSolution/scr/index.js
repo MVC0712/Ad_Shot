@@ -33,7 +33,6 @@ const getDateTime = (date) => {
 }
 $(function () {
   makeSummaryTable();
-  selProduct();
 });
 function makeSummaryTable() {
   var fileName = "SelSummary.php";
@@ -84,19 +83,6 @@ $(document).on("click", "#summary_table tbody tr", function (e) {
     $(this).removeClass("no-input").addClass("complete-input");
   });
 });
-function selProduct() {
-  var fileName = "SelProduct.php";
-  var sendData = {
-  };
-  myAjax.myAjax(fileName, sendData);
-  $("#product_id option").remove();
-  $("#product_id").append($("<option>").val(0).html("NO"));
-  ajaxReturnData.forEach(function(value) {
-      $("#product_id").append(
-          $("<option>").val(value["id"]).html(value["product_name"])
-      );
-  });
-};
 $(document).on("change keyup", ".save-data", function() {
   if ($(this).val() != ""||$(this).val() != 0) {
       $(this).removeClass("no-input").addClass("complete-input");

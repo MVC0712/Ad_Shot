@@ -5,22 +5,49 @@ if ($dbh->getInstance() === null) {
     die("No database connection");
 }
 $id = $_POST['targetId'];
-$end_date = $_POST['end_date'];
-$note = $_POST['note'];
-$order_code = $_POST['order_code'];
-$order_date = $_POST['order_date'];
-$product_id = $_POST['product_id'];
-$quantity = $_POST['quantity'];
-$datetime = date("Y-m-d H:i:s");
+$input_date = $_POST['input_date'];
+$input_time = $_POST['input_time'];
+$staff_check = $_POST['staff_check'];
+$ac_h2so4_ml = $_POST['ac_h2so4_ml'];
+$ac_h2so4_mll = $_POST['ac_h2so4_mll'];
+$an_h2so4_ml = $_POST['an_h2so4_ml'];
+$an_h2so4_mll = $_POST['an_h2so4_mll'];
+$et_naoh_l = $_POST['et_naoh_l'];
+$et_naoh_mll = $_POST['et_naoh_mll'];
+$et_sk_l = $_POST['et_sk_l'];
+$fu_mf_gl = $_POST['fu_mf_gl'];
+$fu_mf_l = $_POST['fu_mf_l'];
+$oi_h2so4_l = $_POST['oi_h2so4_l'];
+$oi_h2so4_mll = $_POST['oi_h2so4_mll'];
+$oi_so4_l = $_POST['oi_so4_l'];
+$po_hno3_ml = $_POST['po_hno3_ml'];
+$po_hno3_mll = $_POST['po_hno3_mll'];
+$po_sl_l = $_POST['po_sl_l'];
+$sm_h2so4_l = $_POST['sm_h2so4_l'];
+$sm_h2so4_mll = $_POST['sm_h2so4_mll'];
+
 try {
-    $sql = "UPDATE t_order_sheet SET 
-    end_date = '$end_date' ,
-    note = '$note' ,
-    order_code = '$order_code' ,
-    order_date = '$order_date' ,
-    product_id = '$product_id' ,
-    quantity = '$quantity',
-    updated_at = '$datetime'
+    $sql = "UPDATE t_recod_solution SET 
+    input_date = '$input_date',
+    input_time = '$input_time',
+    staff_check = '$staff_check',
+    ac_h2so4_ml = '$ac_h2so4_ml',
+    ac_h2so4_mll = '$ac_h2so4_mll',
+    an_h2so4_ml = '$an_h2so4_ml',
+    an_h2so4_mll = '$an_h2so4_mll',
+    et_naoh_l = '$et_naoh_l',
+    et_naoh_mll = '$et_naoh_mll',
+    et_sk_l = '$et_sk_l',
+    fu_mf_gl = '$fu_mf_gl',
+    fu_mf_l = '$fu_mf_l',
+    oi_h2so4_l = '$oi_h2so4_l',
+    oi_h2so4_mll = '$oi_h2so4_mll',
+    oi_so4_l = '$oi_so4_l',
+    po_hno3_ml = '$po_hno3_ml',
+    po_hno3_mll = '$po_hno3_mll',
+    po_sl_l = '$po_sl_l',
+    sm_h2so4_l = '$sm_h2so4_l',
+    sm_h2so4_mll = '$sm_h2so4_mll'
     WHERE id= '$id'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

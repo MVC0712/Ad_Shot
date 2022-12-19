@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anod Summary Page</title>
+    <title>Shot Summary Page</title>
     <link rel="stylesheet" href="../Lib/main.css" />
     <link rel="stylesheet" href="./css/index.css" />
+    <script src="../Lib/chart.min.js"></script>
   </head>
 
   <body>
-    <header>Anod Summary Page</header>
+    <header>Shot Summary Page</header>
     <div class="main__wrapper">
       <div class="input-block__wrapper">
         <div class="input__title">Term</div>
@@ -21,6 +22,10 @@
     <div class="summary__wrapper">
       <div id="table" class="calendar"></div>
     </div>
+    <div class="summary__wrapper">
+      <canvas id="chart_area" style="width:100%;max-height: 200px"></canvas>
+    </div>
+    <script src="../Lib/chart.min.js"></script>
     <script src="../Lib/jquery.min.js"></script>
     <script src="./scr/index.js"></script>
   </body>

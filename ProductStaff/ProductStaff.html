@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Staff</title>
+    <link rel="stylesheet" href="../Lib/main.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <header>Product Staff</header>
+      <div class="top__wrapper">
+        <div class="top_up__wrapper">
+          <div class="input-block__outer product_name_outer">
+            <div class="input__title product_name_title">
+              Product Name
+            </div>
+            <div>
+              <input id="product_name" class="save-data-product need-clear no-input">
+            </div>
+          </div>
+        </div>
+      </div>
+    <div id="button_wrapper">
+      <button disabled id="save_product">
+        Save
+      </button>
+    </div>
+      <table id="product">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Product</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="down__wrapper">
+        <div class="top_down__wrapper">
+          <div class="input-block__outer name_outer">
+            <div class="input__title name_title">
+              Name
+            </div>
+            <div>
+              <input id="name" class="save-data-staff need-clear no-input">
+            </div>
+          </div>
+          <div class="input-block__outer code_outer">
+            <div class="input__title code_title">
+              Code
+            </div>
+            <div>
+              <input id="code" class="save-data-staff need-clear no-input">
+            </div>
+          </div>
+          <div class="input-block__outer position_id_outer">
+            <div class="input__title position_id_title">
+              Position
+            </div>
+            <div>
+              <select id="position_id" class="no-input save-data-staff need-clear">
+                <option value="0">--</option>
+              </select>
+            </div>
+          </div>
+        <div class="input-block__outer join_date_outer">
+          <div class="input__title join_date_title">
+            Join date
+          </div>
+          <div>
+            <input type="date" id="join_date" class="no-input save-data-staff need-clear">
+          </div>
+        </div>
+        </div>
+      </div>
+    <div id="button_wrapper">
+      <button disabled id="save_staff">
+        Save
+      </button>
+    </div>
+      <table id="staff">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Emp code</th>
+            <th>Positon</th>
+            <th>Join date</th>
+            <th>Leave date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+    <script src="../Lib/jquery.min.js"></script>
+    <script src="./scr/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,192 @@
+body {
+  margin: 4px;
+  border: solid 1px #0000cc;
+  display: flex;
+  flex-direction: column;
+  height: calc(680px - 2px);
+  width: calc(800px - 2px);
+}
+input {
+  text-align: left;
+}
+.top__wrapper,
+.down__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.top_up__wrapper,
+.top_down__wrapper {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.product_name_outer {
+  width: 270px;
+  margin-right: 10px;
+}
+.product_name_title {
+  width: 120px;
+}
+#product_name {
+  width: 150px;
+}
+
+.name_outer {
+  width: 170px;
+  margin-right: 10px;
+}
+.name_title {
+  width: 50px;
+}
+#name {
+  width: 120px;
+}
+
+.code_outer {
+  width: 190px;
+  margin-right: 10px;
+}
+.code_title {
+  width: 50px;
+}
+#code {
+  width: 130px;
+}
+
+.position_id_outer {
+  width: 200px;
+  margin-right: 10px;
+}
+.position_id_title {
+  width: 70px;
+}
+#position_id {
+  width: 100px;
+}
+
+.join_date_outer {
+  width: 180px;
+  margin-right: 10px;
+}
+.join_date_title {
+  width: 80px;
+}
+#join_date {
+  width: 100px;
+}
+#button_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#save_product,
+#save_staff {
+  width: 40px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+#product tbody {
+  height: 280px;
+  width: 780px;
+  overflow: auto;
+}
+#product thead tr th:nth-child(1),
+#product tbody tr td:nth-child(1) {
+  display: none;
+}
+#product thead tr th:nth-child(2),
+#product tbody tr td:nth-child(2) {
+  width: 130px;
+}
+#product tbody tr td:nth-child(2) input {
+  width: 130px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+#product thead tr th:nth-child(3),
+#product tbody tr td:nth-child(3) {
+  width: 70px;
+}
+#product thead tr th:nth-child(4),
+#product tbody tr td:nth-child(4) {
+  width: 80px;
+}
+#product thead tr th:nth-child(5),
+#product tbody tr td:nth-child(5) {
+  width: 60px;
+}
+#product thead tr th:nth-child(6),
+#product tbody tr td:nth-child(6) {
+  width: 150px;
+}
+
+#staff tbody {
+  height: 200px;
+  width: 780px;
+  overflow: auto;
+}
+#staff thead tr th:nth-child(1),
+#staff tbody tr td:nth-child(1) {
+  display: none;
+}
+#staff thead tr th:nth-child(2),
+#staff tbody tr td:nth-child(2) {
+  width: 150px;
+}
+#staff tbody tr td:nth-child(2) input {
+  width: 150px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+#staff thead tr th:nth-child(3),
+#staff tbody tr td:nth-child(3) {
+  width: 70px;
+}
+#staff tbody tr td:nth-child(3) input {
+  width: 70px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+#staff thead tr th:nth-child(4),
+#staff tbody tr td:nth-child(4) {
+  width: 80px;
+}
+#staff tbody tr td:nth-child(4) select {
+  width: 80px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+#staff thead tr th:nth-child(5),
+#staff tbody tr td:nth-child(5) {
+  width: 120px;
+}
+#staff tbody tr td:nth-child(5) input {
+  width: 117px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+#staff thead tr th:nth-child(6),
+#staff tbody tr td:nth-child(6) {
+  width: 120px;
+}
+#staff tbody tr td:nth-child(6) input {
+  width: 117px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}

@@ -3,7 +3,6 @@ let inputData = new Object();
 let fileName;
 let sendData = new Object();
 let ajaxReturnData;
-let line_id = 1;
 const myAjax = {
   myAjax: function (fileName, sendData) {
     $.ajax({

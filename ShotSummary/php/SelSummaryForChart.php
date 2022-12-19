@@ -55,11 +55,11 @@ $end_s = $_POST['end_s'];
                     foreach ($period as $dtp) {
                         $dp = $dtp->format("Y-m-d");
                         $dpn = $dtp->format("Ymd");
-                        $sql5 = $sql5 ." MAX(CASE WHEN t_anod_plan.product_date = '". $dp ."' THEN t103.ttq ELSE '' END) AS '_". $dpn ."' ,";
+                        $sql5 = $sql5 ." MAX(CASE WHEN t_shot_plan.product_date = '". $dp ."' THEN t103.ttq ELSE '' END) AS '_". $dpn ."' ,";
                         }
                         $sql5 = substr(trim($sql5), 0, -1);
-                        $sql5 = $sql5." FROM t_anod_plan
-                        LEFT JOIN m_product ON m_product.id = t_anod_plan.production_id
+                        $sql5 = $sql5." FROM t_shot_plan
+                        LEFT JOIN m_product ON m_product.id = t_shot_plan.production_id
                         LEFT JOIN (SELECT 
                             '4' AS o,
                                 m_product.id AS iddd,
@@ -67,10 +67,10 @@ $end_s = $_POST['end_s'];
                                 m_product.product_name,
                                 SUM(quantity) AS ttq
                         FROM
-                            t_anod_plan
-                        LEFT JOIN m_product ON m_product.id = t_anod_plan.production_id
-                        GROUP BY product_date) t103 ON t103.iddd = t_anod_plan.production_id
-                            AND t103.product_date = t_anod_plan.product_date) t1003 ";
+                            t_shot_plan
+                        LEFT JOIN m_product ON m_product.id = t_shot_plan.production_id
+                        GROUP BY product_date) t103 ON t103.iddd = t_shot_plan.production_id
+                            AND t103.product_date = t_shot_plan.product_date) t1003 ";
     
                     $arr2 = array();
                     $sql6 = "";
@@ -107,11 +107,11 @@ $end_s = $_POST['end_s'];
                                     foreach ($period as $dtp) {
                                         $dp = $dtp->format("Y-m-d");
                                         $dpn = $dtp->format("Ymd");
-                                        $sql8 = $sql8 ." MAX(CASE WHEN t_record_anod.product_date = '". $dp ."' THEN t104.ttqq ELSE '' END) AS '_". $dpn ."' , ";
+                                        $sql8 = $sql8 ." MAX(CASE WHEN t_record_shot.product_date = '". $dp ."' THEN t104.ttqq ELSE '' END) AS '_". $dpn ."' , ";
                                         }
                                         $sql8 = substr(trim($sql8), 0, -1);
-                                        $sql8 = $sql8." FROM t_record_anod
-                                        LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
+                                        $sql8 = $sql8." FROM t_record_shot
+                                        LEFT JOIN m_product ON m_product.id = t_record_shot.product_id
                                         LEFT JOIN (SELECT 
                                             '3' AS o,
                                                 m_product.id AS idddd,
@@ -119,10 +119,10 @@ $end_s = $_POST['end_s'];
                                                 m_product.product_name,
                                                 SUM(input_quantity) - SUM(ng_quantity) AS ttqq
                                         FROM
-                                            t_record_anod
-                                        LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
-                                        GROUP BY product_date) t104 ON t104.idddd = t_record_anod.product_id
-                                            AND t104.product_date = t_record_anod.product_date) t1004
+                                            t_record_shot
+                                        LEFT JOIN m_product ON m_product.id = t_record_shot.product_id
+                                        GROUP BY product_date) t104 ON t104.idddd = t_record_shot.product_id
+                                            AND t104.product_date = t_record_shot.product_date) t1004
                                     ORDER BY o ASC
                                     ";
 

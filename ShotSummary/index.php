@@ -1,3 +1,3 @@
 <?php
-  readfile("AnodSummary.html");
+  readfile("ShotSummary.html");
 ?>

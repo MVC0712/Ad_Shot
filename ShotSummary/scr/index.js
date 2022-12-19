@@ -4,6 +4,7 @@ let fileName;
 let sendData = new Object();
 let ajaxReturnData;
 let line_id = 1;
+let ctx = document.getElementById('chart_area').getContext('2d');
 const myAjax = {
   myAjax: function (fileName, sendData) {
     $.ajax({
@@ -30,6 +31,12 @@ const getDateTime = (date) => {
     const hours = getTwoDigits(date.getHours());
     const mins = getTwoDigits(date.getMinutes());
     return `${year}-${month}-${day} ${hours}:${mins}:00`;
+}
+const getDate = (date) => {
+  const day = getTwoDigits(date.getDate());
+  const month = getTwoDigits(date.getMonth() + 1);
+  const year = date.getFullYear();
+  return `${day}-${month}`;
 }
 $(function() {
   var now = new Date();
@@ -124,6 +131,7 @@ $(document).on("change", "#end", function() {
 $(function() {
     renderHead($('div#table'), new Date($("#std").val()), new Date($("#end").val()));
     makeSummaryTable();
+    drawChart();
 });
 
 var weekday = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
@@ -229,3 +237,85 @@ function hideValue() {
     }
   }
 };
+
+function drawChart() {
+  var fileName = "SelSummaryForChart.php";
+  var sendObj = new Object();
+  sendObj["start_s"] = $('#std').val();
+  sendObj["end_s"] = $("#end").val();
+  myAjax.myAjax(fileName, sendObj);
+  dataPl = ajaxReturnData[0];
+  dataAc = ajaxReturnData[1];
+  Pl = [];
+  Ac = [];
+  for (const el in dataPl) {
+    Pl.push(dataPl[el]);
+  }
+  Pl.shift();
+  for (const el in dataAc) {
+    Ac.push(dataAc[el]);
+  }
+  Ac.shift();
+  var daysOfYear = [];
+  for (var d = new Date($("#std").val()); d <= new Date($("#end").val()); d.setDate(d.getDate() + 1)) {
+      daysOfYear.push(getDate(new Date(d)));
+  }
+  var data = {
+    labels: daysOfYear,
+    datasets: [{
+        label: "Actual",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(225,0,0,0.4)",
+        borderColor: "red",
+        borderCapStyle: 'square',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "yellow",
+        pointHoverBorderColor: "brown",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        data: Pl,
+        spanGaps: true,
+        type: 'line',
+      }, {
+        label: "Plan",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(167,105,0,0.4)",
+        borderColor: "rgb(167, 105, 0)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "white",
+        pointBackgroundColor: "black",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "brown",
+        pointHoverBorderColor: "yellow",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        data: Ac,
+        spanGaps: false,
+        type: 'line',
+      }, 
+  
+    ]
+  };
+  var options = {
+    scales: {
+    }  
+  };
+  new Chart(ctx, {
+    data: data,
+    options: options
+  });
+  };

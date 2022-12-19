@@ -30,6 +30,12 @@ const getDateTime = (date) => {
     const hours = getTwoDigits(date.getHours());
     const mins = getTwoDigits(date.getMinutes());
     return `${year}-${month}-${day} ${hours}:${mins}:00`;
+};
+const getDate = (date) => {
+  const day = getTwoDigits(date.getDate());
+  const month = getTwoDigits(date.getMonth() + 1);
+  const year = date.getFullYear();
+  return `${year}-${month}-${day}`;
 }
 $(function() {
   var now = new Date();
@@ -182,6 +188,7 @@ function renderHead(div, start, end) {
 
 function Total() {
   hideValue();
+  drawChart();
   $('#summary__table tbody tr').each(function(){
     var sum = 0;
     if ((Number($(this).find("td").eq(0).html()) == 1) || (Number($(this).find("td").eq(0).html()) == 2)) {
@@ -229,3 +236,127 @@ function hideValue() {
     }
   }
 };
+function drawChart() {
+
+  var fileName = "SelSummaryForChart.php";
+  var sendObj = new Object();
+  sendObj["start_s"] = $('#std').val();
+  sendObj["end_s"] = $("#end").val();
+  myAjax.myAjax(fileName, sendObj);
+  dataPl = ajaxReturnData[0];
+  dataAc = ajaxReturnData[1];
+  Pl = [];
+  Ac = [];
+  for (const el in dataPl) {
+    Pl.push(dataPl[el]);
+  }
+  Pl.shift();
+
+  for (const el in dataAc) {
+    Ac.push(dataAc[el]);
+  }
+  Ac.shift();
+
+  console.log(Pl, Ac) 
+  const ctx = document.getElementById('chart_area').getContext('2d');
+  // new Chart(ctx, {
+  //   type: 'line',
+  //   data: {
+  //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  //     datasets: [{
+  //       label: '1 of Votes',
+  //       data: Pl,
+  //       borderWidth: 1
+  //     }]
+  //   },
+  //   data: {
+  //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  //     datasets: [{
+  //       label: '2 of Votes',
+  //       data: Ac,
+  //       borderWidth: 1
+  //     }]
+  //   },
+  //   options: {
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true
+  //       }
+  //     }
+  //   }
+  // })
+
+  var daysOfYear = [];
+  for (var d = new Date($("#std").val()); d <= new Date($("#end").val()); d.setDate(d.getDate() + 1)) {
+      daysOfYear.push(getDate(new Date(d)));
+  }
+  console.log(daysOfYear);
+
+  var data = {
+    labels: daysOfYear,
+    datasets: [{
+        label: "Plan",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(225,0,0,0.4)",
+        borderColor: "red",
+        borderCapStyle: 'square',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "yellow",
+        pointHoverBorderColor: "brown",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        data: Pl,
+        spanGaps: true,
+      }, {
+        label: "Actual",
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(167,105,0,0.4)",
+        borderColor: "rgb(167, 105, 0)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "white",
+        pointBackgroundColor: "black",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "brown",
+        pointHoverBorderColor: "yellow",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        data: Ac,
+        spanGaps: false,
+      }
+  
+    ]
+  };
+  var options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero:true
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Quantity',
+          fontSize: 20 
+        }
+      }]            
+    }  
+  };
+  var myBarChart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: options
+  });
+  };

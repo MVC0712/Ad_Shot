@@ -7,6 +7,8 @@
     <title>Anod Summary Page</title>
     <link rel="stylesheet" href="../Lib/main.css" />
     <link rel="stylesheet" href="./css/index.css" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> -->
+    <script src="../Lib/chart.min.js"></script>
   </head>
 
   <body>
@@ -21,6 +23,10 @@
     <div class="summary__wrapper">
       <div id="table" class="calendar"></div>
     </div>
+    <div class="summary__wrapper">
+      <canvas id="chart_area" style="width:100%;max-height: 200px"></canvas>
+    </div>
+    <script src="../Lib/chart.min.js"></script>
     <script src="../Lib/jquery.min.js"></script>
     <script src="./scr/index.js"></script>
   </body>

@@ -59,7 +59,7 @@ div.calendar {
 
 #summary__table {
   /* width: 1170px; */
-  height: 535px;
+  /* height: 535px; */
 }
 
 #summary__table th {
@@ -80,7 +80,7 @@ position:sticky;
 }
 
 #summary__table tbody {
-  height: 475px;
+  height: 275px;
   /* width: 1135px; */
   width: 100%;
 }

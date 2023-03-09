@@ -33,6 +33,7 @@ const getDateTime = (date) => {
 }
 $(function () {
   makeSummaryTable();
+  selStaff();
 });
 function makeSummaryTable() {
   var fileName = "SelSummary.php";
@@ -60,6 +61,19 @@ function fillTableBody(data, tbodyDom) {
         }
     });
       $(newTr).appendTo(tbodyDom);
+  });
+};
+function selStaff() {
+  var fileName = "SelStaff.php";
+  var sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#staff_check option").remove();
+  $("#staff_check").append($("<option>").val(0).html("NO"));
+  ajaxReturnData.forEach(function(value) {
+      $("#staff_check").append(
+          $("<option>").val(value["id"]).html(value["name"])
+      );
   });
 };
 $(document).on("click", "#summary_table tbody tr", function (e) {

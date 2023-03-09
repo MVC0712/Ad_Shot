@@ -33,6 +33,8 @@ const getDateTime = (date) => {
 $(function () {
   selStaff();
   selProduct();
+  selShotMachine();
+  selAnodMachine();
   selPosition();
 });
 function selStaff() {
@@ -49,6 +51,20 @@ function selProduct() {
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#product tbody"));
 };
+function selShotMachine() {
+  var fileName = "SelShotMachine.php";
+  var sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillTableBody(ajaxReturnData, $("#shot tbody"));
+};
+function selAnodMachine() {
+  var fileName = "SelAnodMachine.php";
+  var sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillTableBody(ajaxReturnData, $("#anod tbody"));
+};
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
   data.forEach(function(trVal) {
@@ -56,7 +72,7 @@ function fillTableBody(data, tbodyDom) {
       Object.keys(trVal).forEach(function(tdVal) {
         if (tdVal == "position_id") {
           $("<td>").append(makePosition(trVal[tdVal])).appendTo(newTr);
-        } else if ((tdVal == "name") || (tdVal == "code") || (tdVal == "product_name")) {
+        } else if ((tdVal == "name") || (tdVal == "code") || (tdVal == "product_name") || (tdVal == "machine")) {
           $("<td>").append(makeInput(trVal[tdVal])).appendTo(newTr);
         } else if (tdVal == "join_date" || tdVal == "leave_date") {
           $("<td>").append(makeDate(trVal[tdVal])).appendTo(newTr);
@@ -132,6 +148,24 @@ $(document).on("click", "#product tbody tr", function (e) {
   } else {
   }
 });
+$(document).on("click", "#shot tbody tr", function (e) {
+  if (!$(this).hasClass("selected-record")) {
+    $(this).parent().find("tr").removeClass("selected-record");
+    $(this).addClass("selected-record");
+    $("#shot__tr").removeAttr("id");
+    $(this).attr("id", "shot__tr");
+  } else {
+  }
+});
+$(document).on("click", "#anod tbody tr", function (e) {
+  if (!$(this).hasClass("selected-record")) {
+    $(this).parent().find("tr").removeClass("selected-record");
+    $(this).addClass("selected-record");
+    $("#anod__tr").removeAttr("id");
+    $(this).attr("id", "anod__tr");
+  } else {
+  }
+});
 $(document).on("change keyup", ".save-data-product", function() {
   if ($(this).val() != ""||$(this).val() != 0) {
       $(this).removeClass("no-input").addClass("complete-input");
@@ -139,6 +173,22 @@ $(document).on("change keyup", ".save-data-product", function() {
       $(this).removeClass("complete-input").addClass("no-input");
   }
   checkInputProduct();
+});
+$(document).on("change keyup", ".save-data-shot", function() {
+  if ($(this).val() != ""||$(this).val() != 0) {
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  checkInputShot();
+});
+$(document).on("change keyup", ".save-data-anod", function() {
+  if ($(this).val() != ""||$(this).val() != 0) {
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  checkInputAnod();
 });
 $(document).on("change keyup", ".save-data-staff", function() {
   if ($(this).val() != ""||$(this).val() != 0) {
@@ -165,6 +215,28 @@ function getProductData() {
       inputData[$(this).attr("id")] = $(this).val();
     });
     $(".top__wrapper select.save-data-product").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+    console.log(inputData);
+  return inputData;
+}
+function getShotMachineData() {
+  let inputData = new Object();
+    $(".top__wrapper input.save-data-shot").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+    $(".top__wrapper select.save-data-shot").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+    console.log(inputData);
+  return inputData;
+}
+function getAnodMachineData() {
+  let inputData = new Object();
+    $(".top__wrapper input.save-data-anod").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+    $(".top__wrapper select.save-data-anod").each(function (index, element) {
       inputData[$(this).attr("id")] = $(this).val();
     });
     console.log(inputData);
@@ -207,6 +279,46 @@ $(document).on("change", "#product tbody tr td", function () {
   myAjax.myAjax(fileName, sendData);
   selProduct();
 });
+$(document).on("click", "#save_shot", function () {
+  fileName = "InsDataShotMachine.php";
+  inputData = getShotMachineData();
+  sendData = inputData;
+  myAjax.myAjax(fileName, sendData);
+  clearInputData();
+  selShotMachine();
+  $("#save_shot").attr("disabled", true);
+});
+$(document).on("change", "#shot tbody tr td", function () {
+  let sendData = new Object();
+  let fileName;
+  fileName = "UpdateShotMachine.php";
+  sendData = {
+    targetId : $("#shot__tr td:nth-child(1)").html(),
+    machine : $("#shot__tr td:nth-child(2) input").val(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  selShotMachine();
+});
+$(document).on("click", "#save_anod", function () {
+  fileName = "InsDataAnodMachine.php";
+  inputData = getAnodMachineData();
+  sendData = inputData;
+  myAjax.myAjax(fileName, sendData);
+  clearInputData();
+  selAnodMachine();
+  $("#save_anod").attr("disabled", true);
+});
+$(document).on("change", "#anod tbody tr td", function () {
+  let sendData = new Object();
+  let fileName;
+  fileName = "UpdateAnodMachine.php";
+  sendData = {
+    targetId : $("#anod__tr td:nth-child(1)").html(),
+    machine : $("#anod__tr td:nth-child(2) input").val(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  selAnodMachine();
+});
 $(document).on("change", "#staff tbody tr td", function () {
   let sendData = new Object();
   let fileName;
@@ -242,6 +354,34 @@ function checkInputProduct() {
     $("#save_product").attr("disabled", true);
   } 
   return check_product;
+};
+function checkInputShot() {
+  let check_shot = true;
+  $(".save-data-shot").each(function() {
+    if ($(this).hasClass("no-input")) {
+      check_shot = false;
+    }
+  });
+  if (check_shot) {
+    $("#save_shot").attr("disabled", false);
+  } else {
+    $("#save_shot").attr("disabled", true);
+  } 
+  return check_product;
+};
+function checkInputAnod() {
+  let check_anod = true;
+  $(".save-data-anod").each(function() {
+    if ($(this).hasClass("no-input")) {
+      check_anod = false;
+    }
+  });
+  if (check_anod) {
+    $("#save_anod").attr("disabled", false);
+  } else {
+    $("#save_anod").attr("disabled", true);
+  } 
+  return check_anod;
 };
 function checkInputStaff() {
   let check_staff = true;

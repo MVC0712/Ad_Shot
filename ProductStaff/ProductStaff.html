@@ -11,32 +11,69 @@
   <body>
     <header>Product Staff</header>
       <div class="top__wrapper">
-        <div class="top_up__wrapper">
-          <div class="input-block__outer product_name_outer">
+          <div class="product_wrapper">
+            <div class="input-block__outer product_name_outer">
             <div class="input__title product_name_title">
-              Product Name
+            Product
             </div>
-            <div>
-              <input id="product_name" class="save-data-product need-clear no-input">
+              <div>
+                <input id="product_name" class="save-data-product need-clear no-input">
+              </div>
+              <button disabled id="save_product">Save</button>
             </div>
+            <table id="product">
+              <thead>
+              <tr>
+                <th>id</th>
+                <th>Product</th>
+              </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
-        </div>
-      </div>
-    <div id="button_wrapper">
-      <button disabled id="save_product">
-        Save
-      </button>
-    </div>
-      <table id="product">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Product</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
 
+          <div class="shot_wrapper">
+            <div class="input-block__outer shot_name_outer">
+              <div class="input__title shot_name_title">
+                Shot machine
+              </div>
+                <div>
+                  <input id="shot_name" class="save-data-shot need-clear no-input">
+                </div>
+                <button disabled id="save_shot">Save</button>
+              </div>
+              <table id="shot">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Shot machine</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+          </div>
+
+          <div class="anod_wrapper">
+            <div class="input-block__outer anod_name_outer">
+                <div class="input__title anod_name_title">
+                    Anod machine
+                </div>
+                    <div>
+                    <input id="anod_name" class="save-data-anod need-clear no-input">
+                    </div>
+                    <button disabled id="save_anod">Save</button>
+                </div>
+                <table id="anod">
+                    <thead>
+                    <tr>
+                    <th>id</th>
+                    <th>Anod machine</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+          </div>
+      </div>
       <div class="down__wrapper">
         <div class="top_down__wrapper">
           <div class="input-block__outer name_outer">

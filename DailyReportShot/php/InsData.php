@@ -14,13 +14,14 @@ $order_sheet_id = $_POST['order_sheet_id'];
 $ng_quantity = $_POST['ng_quantity'];
 $machine_id = $_POST['machine_id'];
 $input_quantity = $_POST['input_quantity'];
+$performance = $_POST['performance'];
 $file_url = $_POST['file_url'];
 
 try {
     $sql = "INSERT INTO t_record_shot(machine_id, order_sheet_id, shift_id, product_id, 
-            product_date, input_quantity, ng_quantity, worker_id, confirm_id, file_url) VALUES (
+            product_date, input_quantity, ng_quantity, worker_id, confirm_id, performance, file_url) VALUES (
     '$machine_id', '$order_sheet_id', '$shift_id', '$product_id','$product_date', 
-    '$input_quantity', '$ng_quantity', '$worker_id', '$confirm_id', '$file_url')";
+    '$input_quantity', '$ng_quantity', '$worker_id', '$confirm_id', '$performance', '$file_url')";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
 

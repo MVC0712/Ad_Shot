@@ -171,6 +171,16 @@ input {
 #ng_quantity {
   width: 50px;
 }
+.performance_outer {
+  width: 100px;
+  margin-right: 10px;
+}
+.performance_title {
+  width: 73px;
+}
+#performance {
+  width: 27px;
+}
 .file_outer {
   width: 350px;
   margin-right: 10px;

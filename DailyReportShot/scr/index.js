@@ -227,6 +227,16 @@ $(document).on("change keyup", ".need-check", function() {
   addStopHuman();
   addMaterial()
 });
+
+$(document).on("keyup", ".number-input", function() {
+  if($.isNumeric($(this).val())){
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  checkInput();
+});
+
 function getTableData(tableTrObj) {
   var tableData = [];
   tableTrObj.each(function (index, element) {

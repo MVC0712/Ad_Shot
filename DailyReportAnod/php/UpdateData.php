@@ -13,6 +13,7 @@ $order_sheet_id = $_POST['order_sheet_id'];
 $ng_quantity = $_POST['ng_quantity'];
 $machine_id = $_POST['machine_id'];
 $input_quantity = $_POST['input_quantity'];
+$performance = $_POST['performance'];
 $file_url = $_POST['file_url'];
 
 try {
@@ -25,6 +26,7 @@ try {
     ng_quantity = '$ng_quantity' ,
     machine_id = '$machine_id' ,
     input_quantity = '$input_quantity' ,
+    performance = '$performance' ,
     file_url = '$file_url'
     WHERE id= '$id'";
     $stmt = $dbh->getInstance()->prepare($sql);

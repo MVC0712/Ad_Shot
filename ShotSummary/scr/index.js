@@ -327,7 +327,7 @@ $(document).on("click", "#download", function() {
     sendObj["end_s"] = $("#end").val();
     myAjax.myAjax(fileName, sendObj);
 
-    console.log(ajaxReturnData);
+    // console.log(ajaxReturnData);
     ajaxReturnData.push(sendObj["start_s"])
     ajaxReturnData.push(sendObj["end_s"])
     let data = new Object();

@@ -17,6 +17,8 @@ data = sys.stdin.read()
 params = json.loads(data)
 end = params[len(params) - 1]
 start = params[len(params) - 2]
+del params[-1]
+del params[-1]
 response = {"res": "OK"}
 
 print('Content-type: text/html\nAccess-Control-Allow-Origin: *\n')
@@ -27,7 +29,8 @@ print('\n')
 wb = openpyxl.load_workbook('SummaryReport.xlsx')
 sheet = wb.get_sheet_by_name('Data')
 
-# print(start)
-# print(end)
+print(start)
+print(end)
+print(params)
 
 wb.save("../FileDownLoad/Excel/" + start + "_" + end + "_ReportShot.xlsx")

@@ -4,10 +4,7 @@ SELECT
     '' AS b,
     '' AS c,
     '計画' AS d,
-    MAX(CASE
-        WHEN t_shot_plan.product_date = '2023-04-01' THEN t103.ttq
-        ELSE ''
-    END) AS '_20230401',
+    MAX(CASE WHEN t_shot_plan.product_date = '2023-04-01' THEN t103.ttq ELSE '' END) AS '_20230401',
     MAX(CASE
         WHEN t_shot_plan.product_date = '2023-04-02' THEN t103.ttq
         ELSE ''

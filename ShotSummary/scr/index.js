@@ -319,3 +319,46 @@ function drawChart() {
     options: options
   });
   };
+
+$(document).on("click", "#download", function() {
+    var fileName = "SelForExcel.php";
+    var sendObj = new Object();
+    sendObj["start_s"] = $('#std').val();
+    sendObj["end_s"] = $("#end").val();
+    myAjax.myAjax(fileName, sendObj);
+
+    console.log(ajaxReturnData);
+    ajaxReturnData.push(sendObj["start_s"])
+    ajaxReturnData.push(sendObj["end_s"])
+    let data = new Object();
+    let donwloadFileName;
+    data = ajaxReturnData;
+    donwloadFileName = $('#std').val() + "_" + $("#end").val() + "_ReportShot.xlsx";
+  
+    let JSONdata = JSON.stringify(data);
+
+    $.ajax({
+        async: false,
+        url: "../../AD_Shot/Py/ExportData.py",
+        type: "post",
+        data: JSONdata,
+        dataType: "json",
+    })
+    .done(function(data) {
+        console.log(data);
+        downloadExcelFile(donwloadFileName);
+    })
+    .fail(function() {
+        console.log("failed");
+    });
+});
+
+function downloadExcelFile(donwloadFileName) {
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = donwloadFileName;
+  a.href = "../FileDownLoad/Excel/" + donwloadFileName;
+
+  a.click();
+  a.remove();
+}

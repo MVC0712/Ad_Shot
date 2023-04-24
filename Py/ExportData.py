@@ -15,7 +15,8 @@ cgitb.enable()
 
 data = sys.stdin.read()
 params = json.loads(data)
-
+end = params[len(params) - 1]
+start = params[len(params) - 2]
 response = {"res": "OK"}
 
 print('Content-type: text/html\nAccess-Control-Allow-Origin: *\n')
@@ -23,51 +24,10 @@ print("\n\n")
 print(json.JSONEncoder().encode(response))
 print('\n')
 
-#######################################################
-#
-#  Put data
-#
-#######################################################
 wb = openpyxl.load_workbook('SummaryReport.xlsx')
 sheet = wb.get_sheet_by_name('Data')
 
-sheet['d6'] = params["die_number"]
-sheet['d7'] = params["production_number"]
-sheet['d8'] = params["plan_date_at"]  # 押出計画日
-sheet['d9'] = urllib.parse.unquote(params["pressing_type"])
-sheet['d10'] = params["press_length"]
-sheet['d11'] = params["production_length"]
-sheet['d12'] = params["material"]
-sheet['d13'] = params["specific_weight"]
-sheet['d14'] = params["ratio"]
-sheet['d15'] = params["nbn"]  # nBn
-sheet['d16'] = previousNote.replace('+', ' ')  # previous pressing note
-sheet['d17'] = staffName.replace('+', ' ')  # incharge person
-sheet['d18'] = params["issue_date"]  # issue date
-sheet['d19'] = ""  # plan pressing time
-sheet['d20'] = params["billet_input_quantity"]  # plan input billet qty
-sheet['d21'] = params["billet_length"]  # plan billet length
-sheet['d22'] = params["discard_thickness"]  # Discard thickness
-sheet['d23'] = params["ram_speed"]  # Ram speed
-sheet['d24'] = params["work_speed"]  # work speed
-sheet['d25'] = params["billet_temperature"]  # billet temp
-sheet['d26'] = params["billet_taper_heating"]  # billet heating type
-sheet['d27'] = params["die_temperature"]  # die temp
-sheet['d28'] = params["die_heating_time"]  # die heating time
-sheet['d29'] = params["stretch_ratio"]  # stretch ratio
-sheet['d30'] = params["cooling_type"]  # "" #cooling type
-sheet['d31'] = params["billet_size"]  # billet size
-sheet['d32'] = params["bolster_name"]  # bolstar
-sheet['d33'] = params["aging"]  # aging type
-sheet['d34'] = ""  # die ring
+# print(start)
+# print(end)
 
-sheet['d35'] = params["value_l"]
-sheet['d36'] = params["value_m"]
-sheet['d37'] = params["value_n"]
-if params["die_note"] == None:
-        sheet['d38'] = ""
-else:
-        sheet['d38'] = "Có pin nhỏ- Nguy hiểm: Không nhìn trực tiếp vào lỗ đầu ra máy đùn"
-sheet['d39'] = note.replace('+', ' ')
-wb.save("../../PressDirectiveFile/" +
-        params["plan_date_at"] + "_" + params["die_number"] + ".xlsx")
+wb.save("../FileDownLoad/Excel/" + start + "_" + end + "_ReportShot.xlsx")

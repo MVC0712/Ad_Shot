@@ -1,4 +1,4 @@
-let deleteDialog = document.getElementById("delete__dialog");
+// let deleteDialog = document.getElementById("delete__dialog");
 let inputData = new Object();
 let fileName;
 let sendData = new Object();
@@ -383,3 +383,47 @@ var getData = function() {
 
 // get new data every 3 seconds
 // setInterval(getData, 3000);
+
+
+$(document).on("click", "#download", function() {
+  var fileName = "SelForExcel.php";
+  var sendObj = new Object();
+  sendObj["start_s"] = $('#std').val();
+  sendObj["end_s"] = $("#end").val();
+  myAjax.myAjax(fileName, sendObj);
+
+  // console.log(ajaxReturnData);
+  ajaxReturnData.push(sendObj["start_s"])
+  ajaxReturnData.push(sendObj["end_s"])
+  let data = new Object();
+  let donwloadFileName;
+  data = ajaxReturnData;
+  donwloadFileName = $('#std').val() + "_" + $("#end").val() + "_ReportAnod.xlsx";
+
+  let JSONdata = JSON.stringify(data);
+
+  $.ajax({
+      async: false,
+      url: "../../AD_Shot/Py/ExportDataAnod.py",
+      type: "post",
+      data: JSONdata,
+      dataType: "json",
+  })
+  .done(function(data) {
+      console.log(data);
+      downloadExcelFile(donwloadFileName);
+  })
+  .fail(function() {
+      console.log("failed");
+  });
+});
+
+function downloadExcelFile(donwloadFileName) {
+const a = document.createElement("a");
+document.body.appendChild(a);
+a.download = donwloadFileName;
+a.href = "../FileDownLoad/Excel/" + donwloadFileName;
+
+a.click();
+a.remove();
+}

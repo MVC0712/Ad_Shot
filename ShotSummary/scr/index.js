@@ -339,7 +339,7 @@ $(document).on("click", "#download", function() {
 
     $.ajax({
         async: false,
-        url: "../../AD_Shot/Py/ExportData.py",
+        url: "../../AD_Shot/Py/ExportDataShot.py",
         type: "post",
         data: JSONdata,
         dataType: "json",

@@ -1,4 +1,4 @@
-let deleteDialog = document.getElementById("delete__dialog");
+// let deleteDialog = document.getElementById("delete__dialog");
 let inputData = new Object();
 let fileName;
 let sendData = new Object();

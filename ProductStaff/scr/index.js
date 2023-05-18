@@ -35,6 +35,8 @@ $(function () {
   selProduct();
   selShotMachine();
   selAnodMachine();
+  selMachineError();
+  selAnodError();
   selPosition();
 });
 function selStaff() {
@@ -65,6 +67,20 @@ function selAnodMachine() {
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#anod tbody"));
 };
+function selMachineError() {
+  var fileName = "SelMachineError.php";
+  var sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillTableBody(ajaxReturnData, $("#machine_error_table tbody"));
+};
+function selAnodError() {
+  var fileName = "SelAnodError.php";
+  var sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillTableBody(ajaxReturnData, $("#anod_error_table tbody"));
+};
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
   data.forEach(function(trVal) {
@@ -72,7 +88,8 @@ function fillTableBody(data, tbodyDom) {
       Object.keys(trVal).forEach(function(tdVal) {
         if (tdVal == "position_id") {
           $("<td>").append(makePosition(trVal[tdVal])).appendTo(newTr);
-        } else if ((tdVal == "name") || (tdVal == "code") || (tdVal == "product_name") || (tdVal == "machine")) {
+        } else if ((tdVal == "name") || (tdVal == "code") || (tdVal == "product_name") || (tdVal == "machine") || 
+                  (tdVal == "description") || (tdVal == "area") || (tdVal == "cond_no") ||(tdVal == "current_density")) {
           $("<td>").append(makeInput(trVal[tdVal])).appendTo(newTr);
         } else if (tdVal == "join_date" || tdVal == "leave_date") {
           $("<td>").append(makeDate(trVal[tdVal])).appendTo(newTr);
@@ -166,6 +183,24 @@ $(document).on("click", "#anod tbody tr", function (e) {
   } else {
   }
 });
+$(document).on("click", "#machine_error_table tbody tr", function (e) {
+  if (!$(this).hasClass("selected-record")) {
+    $(this).parent().find("tr").removeClass("selected-record");
+    $(this).addClass("selected-record");
+    $("#machine_error_table__tr").removeAttr("id");
+    $(this).attr("id", "machine_error_table__tr");
+  } else {
+  }
+});
+$(document).on("click", "#anod_error_table tbody tr", function (e) {
+  if (!$(this).hasClass("selected-record")) {
+    $(this).parent().find("tr").removeClass("selected-record");
+    $(this).addClass("selected-record");
+    $("#anod_error_table__tr").removeAttr("id");
+    $(this).attr("id", "anod_error_table__tr");
+  } else {
+  }
+});
 $(document).on("change keyup", ".save-data-product", function() {
   if ($(this).val() != ""||$(this).val() != 0) {
       $(this).removeClass("no-input").addClass("complete-input");
@@ -190,6 +225,22 @@ $(document).on("change keyup", ".save-data-anod", function() {
   }
   checkInputAnod();
 });
+$(document).on("change keyup", ".save-data-machine-error", function() {
+  if ($(this).val() != ""||$(this).val() != 0) {
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  checkInputMachineError();
+});
+$(document).on("change keyup", ".save-data-anod-error", function() {
+  if ($(this).val() != ""||$(this).val() != 0) {
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  checkInputAnodError();
+});
 $(document).on("change keyup", ".save-data-staff", function() {
   if ($(this).val() != ""||$(this).val() != 0) {
       $(this).removeClass("no-input").addClass("complete-input");
@@ -206,7 +257,6 @@ function getStaffData() {
     $(".down__wrapper select.save-data-staff").each(function (index, element) {
       inputData[$(this).attr("id")] = $(this).val();
     });
-    console.log(inputData);
   return inputData;
 };
 function getProductData() {
@@ -217,7 +267,6 @@ function getProductData() {
     $(".top__wrapper select.save-data-product").each(function (index, element) {
       inputData[$(this).attr("id")] = $(this).val();
     });
-    console.log(inputData);
   return inputData;
 }
 function getShotMachineData() {
@@ -228,7 +277,6 @@ function getShotMachineData() {
     $(".top__wrapper select.save-data-shot").each(function (index, element) {
       inputData[$(this).attr("id")] = $(this).val();
     });
-    console.log(inputData);
   return inputData;
 }
 function getAnodMachineData() {
@@ -239,7 +287,26 @@ function getAnodMachineData() {
     $(".top__wrapper select.save-data-anod").each(function (index, element) {
       inputData[$(this).attr("id")] = $(this).val();
     });
-    console.log(inputData);
+  return inputData;
+}
+function getMachineErrorData() {
+  let inputData = new Object();
+    $(".top__wrapper input.save-data-machine-error").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+    $(".top__wrapper select.save-data-machine-error").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+  return inputData;
+}
+function getAnodErrorData() {
+  let inputData = new Object();
+    $(".top__wrapper input.save-data-anod-error").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+    $(".top__wrapper select.save-data-anod-error").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
   return inputData;
 }
 function clearInputData() {
@@ -288,6 +355,24 @@ $(document).on("click", "#save_shot", function () {
   selShotMachine();
   $("#save_shot").attr("disabled", true);
 });
+$(document).on("click", "#save_machine_error", function () {
+  fileName = "InsMachineError.php";
+  inputData = getMachineErrorData();
+  sendData = inputData;
+  myAjax.myAjax(fileName, sendData);
+  clearInputData();
+  selMachineError();
+  $("#save_machine_error").attr("disabled", true);
+});
+$(document).on("click", "#save_anod_error", function () {
+  fileName = "InsDataAnodError.php";
+  inputData = getAnodErrorData();
+  sendData = inputData;
+  myAjax.myAjax(fileName, sendData);
+  clearInputData();
+  selAnodError();
+  $("#save_anod_error").attr("disabled", true);
+});
 $(document).on("change", "#shot tbody tr td", function () {
   let sendData = new Object();
   let fileName;
@@ -306,6 +391,8 @@ $(document).on("click", "#save_anod", function () {
   myAjax.myAjax(fileName, sendData);
   clearInputData();
   selAnodMachine();
+  selMachineError();
+  selAnodError();
   $("#save_anod").attr("disabled", true);
 });
 $(document).on("change", "#anod tbody tr td", function () {
@@ -318,6 +405,30 @@ $(document).on("change", "#anod tbody tr td", function () {
   };
   myAjax.myAjax(fileName, sendData);
   selAnodMachine();
+});
+$(document).on("change", "#machine_error_table tbody tr td", function () {
+  let sendData = new Object();
+  let fileName;
+  fileName = "UpdateMachineError.php";
+  sendData = {
+    targetId : $("#machine_error_table__tr td:nth-child(1)").html(),
+    code : $("#machine_error_table__tr td:nth-child(2) input").val(),
+    description : $("#machine_error_table__tr td:nth-child(3) input").val(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  selMachineError();
+});
+$(document).on("change", "#anod_error_table tbody tr td", function () {
+  let sendData = new Object();
+  let fileName;
+  fileName = "UpdateAnodError.php";
+  sendData = {
+    targetId : $("#anod_error_table__tr td:nth-child(1)").html(),
+    code : $("#anod_error_table__tr td:nth-child(2) input").val(),
+    description : $("#anod_error_table__tr td:nth-child(3) input").val(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  selAnodError();
 });
 $(document).on("change", "#staff tbody tr td", function () {
   let sendData = new Object();
@@ -380,6 +491,34 @@ function checkInputAnod() {
     $("#save_anod").attr("disabled", false);
   } else {
     $("#save_anod").attr("disabled", true);
+  } 
+  return check_anod;
+};
+function checkInputMachineError() {
+  let check_anod = true;
+  $(".save-data-machine-error").each(function() {
+    if ($(this).hasClass("no-input")) {
+      check_anod = false;
+    }
+  });
+  if (check_anod) {
+    $("#save_machine_error").attr("disabled", false);
+  } else {
+    $("#save_machine_error").attr("disabled", true);
+  } 
+  return check_anod;
+};
+function checkInputAnodError() {
+  let check_anod = true;
+  $(".save-data-anod-error").each(function() {
+    if ($(this).hasClass("no-input")) {
+      check_anod = false;
+    }
+  });
+  if (check_anod) {
+    $("#save_anod_error").attr("disabled", false);
+  } else {
+    $("#save_anod_error").attr("disabled", true);
   } 
   return check_anod;
 };

@@ -29,18 +29,13 @@ print('\n')
 wb = openpyxl.load_workbook('SummaryReport.xlsx')
 sheet = wb.get_sheet_by_name('Data')
 
-# print(start)
-# print(end)
-# print(params)
-
 sheet.append(list(params[0]))
 
 for index, value in enumerate(params):
     val = list(value.values())
     sheet.append(val)
     
-    # if (index + 1) % 4 == 0:
-        # sheet.insert_rows(index + 3)
-        # print(index+3)
+    if (index + 2) % 4 == 0 and index > 2:
+        sheet.insert_rows(index)
 
 wb.save("../FileDownLoad/Excel/" + start + "_" + end + "_ReportShot.xlsx")

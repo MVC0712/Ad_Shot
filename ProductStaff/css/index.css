@@ -4,7 +4,8 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(680px - 2px);
-  width: calc(800px - 2px);
+  width: calc(1000px - 2px);
+  font-size: 9pt;
 }
 input {
   text-align: left;
@@ -33,16 +34,28 @@ input {
   justify-content: center;
   align-items: center;
 }
-
-.product_wrapper,
-.shot_wrapper,
-.anod_wrapper {
-  width: 33%;
+.product_wrapper {
+  width: 30%;
   height: 370px;
   display: flex;
   flex-direction: column;
 }
-
+.shot_wrapper,
+.anod_wrapper  {
+  width: 10%;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px dotted #0000ff;
+}
+.machine_error_wrapper,
+.anod_error_wrapper {
+  width: 25%;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px dotted #0000ff;
+}
 .product_name_outer {
   width: 250px;
   margin-right: 10px;
@@ -54,26 +67,41 @@ input {
   width: 150px;
 }
 .shot_name_outer {
-  width: 250px;
-  margin-right: 10px;
+  width: 100px;
 }
 .shot_name_title {
-  width: 120px;
+  width: 35px;
 }
 #shot_name {
-  width: 100px;
+  width: 35px;
 }
 .anod_name_outer {
-  width: 250px;
-  margin-right: 10px;
-}
-.anod_name_title {
-  width: 120px;
-}
-#anod_name {
   width: 100px;
 }
-
+.anod_name_title {
+  width: 35px;
+}
+#anod_name {
+  width: 35px;
+}
+.machine_error_outer {
+  width: 240px;
+}
+.machine_error_title {
+  width: 60px;
+}
+#machine_error {
+  width: 30px;
+}
+.anod_error_outer {
+  width: 240px;
+}
+.anod_error_title {
+  width: 60px;
+}
+#anod_error {
+  width: 30px;
+}
 .name_outer {
   width: 170px;
   margin-right: 10px;
@@ -84,7 +112,6 @@ input {
 #name {
   width: 120px;
 }
-
 .code_outer {
   width: 190px;
   margin-right: 10px;
@@ -95,7 +122,6 @@ input {
 #code {
   width: 130px;
 }
-
 .position_id_outer {
   width: 200px;
   margin-right: 10px;
@@ -106,7 +132,6 @@ input {
 #position_id {
   width: 100px;
 }
-
 .join_date_outer {
   width: 180px;
   margin-right: 10px;
@@ -126,19 +151,27 @@ input {
 #save_product,
 #save_staff,
 #save_shot,
-#save_anod {
-  width: 40px;
+#save_anod,
+#save_machine_error,
+#save_anod_error {
+  width: 35px;
   height: 20px;
   padding: 0;
   margin: 0;
   margin-bottom: 10px;
   margin-top: 10px;
 }
-#product tbody,
-#shot tbody,
-#anod tbody {
+#product tbody {
   height: 320px;
-  width: 152px;
+  width: 98%;
+  overflow: auto;
+}
+#shot tbody,
+#anod tbody,
+#machine_error_table tbody,
+#anod_error_table tbody {
+  height: 320px;
+  width: 100%;
   overflow: auto;
 }
 #product thead tr th:nth-child(1),
@@ -146,42 +179,83 @@ input {
 #shot thead tr th:nth-child(1),
 #shot tbody tr td:nth-child(1),
 #anod thead tr th:nth-child(1),
-#anod tbody tr td:nth-child(1) {
+#anod tbody tr td:nth-child(1),
+#machine_error_table thead tr th:nth-child(1),
+#machine_error_table tbody tr td:nth-child(1),
+#anod_error_table thead tr th:nth-child(1),
+#anod_error_table tbody tr td:nth-child(1) {
   display: none;
 }
 #product thead tr th:nth-child(2),
-#product tbody tr td:nth-child(2),
+#product tbody tr td:nth-child(2)  {
+  width: 130px;
+}
 #shot thead tr th:nth-child(2),
 #shot tbody tr td:nth-child(2),
 #anod thead tr th:nth-child(2),
-#anod tbody tr td:nth-child(2) {
-  width: 130px;
+#anod tbody tr td:nth-child(2),
+#machine_error_table thead tr th:nth-child(2),
+#machine_error_table tbody tr td:nth-child(2),
+#anod_error_table thead tr th:nth-child(2),
+#anod_error_table tbody tr td:nth-child(2) {
+  width: 80px;
 }
-#product tbody tr td:nth-child(2) input,
-#shot tbody tr td:nth-child(2) input,
-#anod tbody tr td:nth-child(2) input {
+#product tbody tr td:nth-child(2) input  {
   width: 130px;
   border: 0;
   margin: 0;
   padding: 0;
 }
-#product thead tr th:nth-child(3),
-#product tbody tr td:nth-child(3) {
-  width: 70px;
+#shot tbody tr td:nth-child(2) input,
+#anod tbody tr td:nth-child(2) input,
+#machine_error_table tbody tr td:nth-child(2) input,
+#anod_error_table tbody tr td:nth-child(2) input {
+  width: 80px;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
+#machine_error_table thead tr th:nth-child(3),
+#machine_error_table tbody tr td:nth-child(3),
+#anod_error_table thead tr th:nth-child(3),
+#anod_error_table tbody tr td:nth-child(3) {
+  width: 140px;
+}
+#machine_error_table thead tr th:nth-child(3) input,
+#machine_error_table tbody tr td:nth-child(3) input,
+#anod_error_table thead tr th:nth-child(3) input,
+#anod_error_table tbody tr td:nth-child(3) input {
+  width: 140px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+#product thead tr th:nth-child(3),
+#product tbody tr td:nth-child(3),
 #product thead tr th:nth-child(4),
 #product tbody tr td:nth-child(4) {
-  width: 80px;
+  width: 40px;
+}
+#product thead tr th:nth-child(3) input,
+#product tbody tr td:nth-child(3) input,
+#product thead tr th:nth-child(4) input,
+#product tbody tr td:nth-child(4) input {
+  width: 40px;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 #product thead tr th:nth-child(5),
 #product tbody tr td:nth-child(5) {
-  width: 60px;
+  width: 50px;
 }
-#product thead tr th:nth-child(6),
-#product tbody tr td:nth-child(6) {
-  width: 150px;
+#product thead tr th:nth-child(5) input,
+#product tbody tr td:nth-child(5) input {
+  width: 50px;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
-
 #staff tbody {
   height: 200px;
   width: 780px;

@@ -26,6 +26,9 @@
               <tr>
                 <th>id</th>
                 <th>Product</th>
+                <th>Area</th>
+                <th>Current</th>
+                <th>Cond No</th>
               </tr>
               </thead>
               <tbody></tbody>
@@ -35,7 +38,7 @@
           <div class="shot_wrapper">
             <div class="input-block__outer shot_name_outer">
               <div class="input__title shot_name_title">
-                Shot machine
+                Shot
               </div>
                 <div>
                   <input id="shot_name" class="save-data-shot need-clear no-input">
@@ -56,7 +59,7 @@
           <div class="anod_wrapper">
             <div class="input-block__outer anod_name_outer">
                 <div class="input__title anod_name_title">
-                    Anod machine
+                    Anod
                 </div>
                     <div>
                     <input id="anod_name" class="save-data-anod need-clear no-input">
@@ -72,6 +75,62 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+          </div>
+
+          <div class="machine_error_wrapper">
+            <div class="input-block__outer machine_error_outer">
+              <div class="input__title machine_error_title">
+                Mach error
+            </div>
+            <div>
+              <input id="machine_error" class="save-data-machine-error need-clear no-input">
+            </div>
+            <div class="input__title machine_error_title">
+              Desc error
+            </div>
+            <div>
+              <input id="machine_error_code" class="save-data-machine-error need-clear no-input">
+            </div>
+              <button disabled id="save_machine_error">Save</button>
+          </div>
+          <table id="machine_error_table">
+              <thead>
+              <tr>
+              <th>id</th>
+              <th>Machine error</th>
+              <th>Description</th>
+              </tr>
+              </thead>
+              <tbody></tbody>
+          </table>
+          </div>
+
+          <div class="anod_error_wrapper">
+            <div class="input-block__outer anod_error_outer">
+              <div class="input__title anod_error_title">
+                  Anod error
+              </div>
+              <div>
+                <input id="anod_error" class="save-data-anod-error need-clear no-input">
+              </div>
+              <div class="input__title anod_error_title">
+                Desc error
+              </div>
+              <div>
+                <input id="anod_error_code" class="save-data-anod-error need-clear no-input">
+              </div>
+                <button disabled id="save_anod_error">Save</button>
+            </div>
+              <table id="anod_error_table">
+                  <thead>
+                  <tr>
+                  <th>id</th>
+                  <th>Anod error</th>
+                  <th>Description</th>
+                  </tr>
+                  </thead>
+                  <tbody></tbody>
+              </table>
           </div>
       </div>
       <div class="down__wrapper">

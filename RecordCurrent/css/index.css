@@ -1,0 +1,162 @@
+body {
+  margin: 4px;
+  border: solid 1px #0000cc;
+  display: flex;
+  flex-direction: column;
+  height: calc(680px - 2px);
+  width: calc(1125px - 2px);
+}
+input {
+  width: 100px;
+  height: 20px;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.top__wrapper, 
+.bottom__wrapper {
+  width: 100%;
+  /* height: 50px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+#button_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#save,
+#update {
+  width: 40px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+#data_table tbody,
+#summary_table tbody {
+  height: 50px;
+  overflow: auto;
+}
+#summary_table tbody {
+  height: 450px;
+  overflow: auto;
+}
+#summary_table tbody td, tbody th {
+  width: 60px;
+}
+#data_table thead tr th:nth-child(1),
+#data_table tbody tr td:nth-child(1),
+#data_table thead tr th:nth-child(2),
+#data_table tbody tr td:nth-child(2) {
+  width: 100px;
+}
+#data_table thead tr th:nth-child(3),
+#data_table tbody tr td:nth-child(3),
+#data_table thead tr th:nth-child(4),
+#data_table tbody tr td:nth-child(4),
+#data_table thead tr th:nth-child(5),
+#data_table tbody tr td:nth-child(5),
+#data_table thead tr th:nth-child(6),
+#data_table tbody tr td:nth-child(6),
+#data_table thead tr th:nth-child(7),
+#data_table tbody tr td:nth-child(7),
+#data_table thead tr th:nth-child(8),
+#data_table tbody tr td:nth-child(8),
+#data_table thead tr th:nth-child(9),
+#data_table tbody tr td:nth-child(9),
+#data_table thead tr th:nth-child(10),
+#data_table tbody tr td:nth-child(10),
+#data_table thead tr th:nth-child(11),
+#data_table tbody tr td:nth-child(11),
+#data_table thead tr th:nth-child(12),
+#data_table tbody tr td:nth-child(12),
+#data_table thead tr th:nth-child(13),
+#data_table tbody tr td:nth-child(13),
+#data_table thead tr th:nth-child(14),
+#data_table tbody tr td:nth-child(14),
+#data_table thead tr th:nth-child(15),
+#data_table tbody tr td:nth-child(15),
+#data_table thead tr th:nth-child(16),
+#data_table tbody tr td:nth-child(16),
+#data_table thead tr th:nth-child(17),
+#data_table tbody tr td:nth-child(17) {
+  width: 50px;
+}
+#data_table thead tr th:nth-child(5),
+#data_table tbody tr td:nth-child(5) {
+  width: 150px;
+}
+#data_table tbody tr td:nth-child(1) input,
+#data_table tbody tr td:nth-child(2) input {
+  width: 100px;
+}
+#data_table tbody tr td:nth-child(3) input,
+#data_table tbody tr td:nth-child(4) input,
+#data_table tbody tr td:nth-child(5) select,
+#data_table tbody tr td:nth-child(6) input,
+#data_table tbody tr td:nth-child(7) input,
+#data_table tbody tr td:nth-child(8) input,
+#data_table tbody tr td:nth-child(9) input,
+#data_table tbody tr td:nth-child(10) input,
+#data_table tbody tr td:nth-child(11) input,
+#data_table tbody tr td:nth-child(12) input,
+#data_table tbody tr td:nth-child(13) input,
+#data_table tbody tr td:nth-child(14) input,
+#data_table tbody tr td:nth-child(15) input,
+#data_table tbody tr td:nth-child(16) input,
+#data_table tbody tr td:nth-child(17) input {
+  width: 50px;
+}
+#data_table tbody tr td:nth-child(5) select {
+  width: 150px;
+}
+#summary_table thead tr th:nth-child(1),
+#summary_table tbody tr td:nth-child(1) {
+  display: none;
+}
+#summary_table thead tr th:nth-child(2),
+#summary_table tbody tr td:nth-child(2),
+#summary_table thead tr th:nth-child(3),
+#summary_table tbody tr td:nth-child(3)  {
+  width: 100px;
+}
+#summary_table thead tr th:nth-child(4),
+#summary_table tbody tr td:nth-child(4),
+#summary_table thead tr th:nth-child(5),
+#summary_table tbody tr td:nth-child(5),
+#summary_table thead tr th:nth-child(6),
+#summary_table tbody tr td:nth-child(6),
+#summary_table thead tr th:nth-child(7),
+#summary_table tbody tr td:nth-child(7),
+#summary_table thead tr th:nth-child(8),
+#summary_table tbody tr td:nth-child(8),
+#summary_table thead tr th:nth-child(9),
+#summary_table tbody tr td:nth-child(9),
+#summary_table thead tr th:nth-child(10),
+#summary_table tbody tr td:nth-child(10),
+#summary_table thead tr th:nth-child(11),
+#summary_table tbody tr td:nth-child(11),
+#summary_table thead tr th:nth-child(12),
+#summary_table tbody tr td:nth-child(12),
+#summary_table thead tr th:nth-child(13),
+#summary_table tbody tr td:nth-child(13),
+#summary_table thead tr th:nth-child(14),
+#summary_table tbody tr td:nth-child(14),
+#summary_table thead tr th:nth-child(15),
+#summary_table tbody tr td:nth-child(15),
+#summary_table thead tr th:nth-child(16),
+#summary_table tbody tr td:nth-child(16),
+#summary_table thead tr th:nth-child(17),
+#summary_table tbody tr td:nth-child(17) {
+  width: 50px;
+}
+#summary_table thead tr th:nth-child(6),
+#summary_table tbody tr td:nth-child(6) {
+  width: 150px;
+}

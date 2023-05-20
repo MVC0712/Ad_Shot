@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Record Current</title>
+    <link rel="stylesheet" href="../Lib/main.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <header>Record Current</header>
+      <div class="top__wrapper">
+      <table id="data_table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Times</th>
+          <th>Type</th>
+          <th>Products</th>
+          <th>Quantity</th>
+          <th>Area</th>
+          <th>Current density</th>
+          <th>Total current</th>
+          <th>Total area</th>
+          <th>Cond No</th>
+          <th>Anod No</th>
+          <th>Temp</th>
+          <th>Start current</th>
+          <th>Finish curren</th>
+          <th>Start Volt</th>
+          <th>Finish Volt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input id="date" type="date" class="no-input save-data need-clear"></td>
+          <td><input id="time" type="time" class="no-input save-data need-clear"></td>
+          <td><input id="times" class="no-input save-data need-clear"></td>
+          <td><input id="type" class="no-input save-data need-clear"></td>
+          <td>
+            <select id="product_id" class="no-input save-data need-clear">
+              <option value="0">0</option>
+            </select>
+          </td>
+          <td><input id="quantity" class="no-input save-data need-clear"></td>
+          <td><input disabled id="area" class="save-data need-clear"></td>
+          <td><input disabled id="current_density" class="save-data need-clear"></td>
+          <td><input disabled id="total_current" class="save-data need-clear"></td>
+          <td><input disabled id="total_area" class="save-data need-clear"></td>
+          <td><input disabled id="cond_no" class="save-data need-clear"></td>
+          <td><input id="anod_no" class="no-input save-data need-clear"></td>
+          <td><input id="temp" class="no-input save-data need-clear"></td>
+          <td><input id="start_current" class="no-input save-data need-clear"></td>
+          <td><input id="finish_current" class="no-input save-data need-clear"></td>
+          <td><input id="start_volt" class="no-input save-data need-clear"></td>
+          <td><input id="finish_volt" class="no-input save-data need-clear"></td>
+        </tr>
+      </tbody>
+      </table>
+      </div>
+    <div id="button_wrapper">
+      <button disabled id="save">
+        Save
+      </button>
+      <button disabled id="update">
+        Update
+      </button>
+    </div>
+    <div class="top__wrapper">
+      <table id="summary_table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Times</th>
+            <th>Type</th>
+            <th>Products</th>
+            <th>Quantity</th>
+            <th>Area</th>
+            <th>Current density</th>
+            <th>Total current</th>
+            <th>Total area</th>
+            <th>Cond No</th>
+            <th>Anod No</th>
+            <th>Temp</th>
+            <th>Start current</th>
+            <th>Finish curren</th>
+            <th>Start Volt</th>
+            <th>Finish Volt</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script src="../Lib/jquery.min.js"></script>
+    <script src="./scr/index.js"></script>
+  </body>
+</html>

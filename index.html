@@ -9,16 +9,21 @@
   </head>
   <body>
     <header>Home Page</header>
-    <div style="flex-direction: row; display:flex;">
-      <button id="daily_input_anod">Daily Input Anod</button>
-      <button id="record_solution">Record Solution</button>
-      <button id="daily_input_shot">Daily Input Shot</button>
-      <button id="anod_plan">Anod Plan</button>
-      <button id="shot_plan">Shot Plan</button>
-      <button id="anod_summary">Anod summary</button>
-      <button id="shot_summary">Shot summary</button>
-      <button id="order_sheet">Order Sheet</button>
-      <button id="product_staff">Product Staff</button>
+    <div style="flex-direction: column; display:flex;">
+      <div style="flex-direction: row; display:flex;">
+        <button id="daily_input_anod">Daily Input Anod</button>
+        <button id="record_solution">Record Solution</button>
+        <button id="record_current">Record Current</button>
+        <button id="daily_input_shot">Daily Input Shot</button>
+        <button id="anod_plan">Anod Plan</button>
+        <button id="shot_plan">Shot Plan</button>
+      </div>
+      <div style="flex-direction: row; display:flex;">
+        <button id="anod_summary">Anod summary</button>
+        <button id="shot_summary">Shot summary</button>
+        <button id="order_sheet">Order Sheet</button>
+        <button id="product_staff">Product Staff</button>
+      </div>
     </div>
     <script src="./Lib/jquery.min.js"></script>
     <script>
@@ -27,6 +32,9 @@
       });
       $(document).on("click", "#record_solution", function () {
         window.open("/AD_Shot/RecordSolution");
+      });
+      $(document).on("click", "#record_current", function () {
+        window.open("/AD_Shot/RecordCurrent");
       });
       $(document).on("click", "#daily_input_shot", function () {
         window.open("/AD_Shot/DailyReportShot");

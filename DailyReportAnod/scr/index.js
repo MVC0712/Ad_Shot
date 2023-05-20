@@ -33,8 +33,9 @@ const getDateTime = (date) => {
 }
 $(function () {
   makeSummaryTable();
-  makeSelStaff()
-  selStopHumanCode()
+  makeSelStaff();
+  selStopHumanCode();
+  selAnodError();
   selShift();
   selMachine();
   selProduct();
@@ -66,6 +67,14 @@ function makeMachineRuntime() {
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#machine_error_table tbody"));
 };
+function makeAnodError() {
+  var fileName = "SelAnodError.php";
+  var sendData = {
+      targetId: $("#selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillTableBody(ajaxReturnData, $("#machine_error_table tbody"));
+};
 function makeStopHuman() {
   var fileName = "SelStopHuman.php";
   var sendData = {
@@ -83,6 +92,8 @@ function fillTableBody(data, tbodyDom) {
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
         } else if (tdVal == "code_id") {
             $("<td>").append(errorCodeOption(trVal[tdVal])).appendTo(newTr);
+        } else if (tdVal == "record_anod_id") {
+          $("<td>").append(anodErrorCodeOption(trVal[tdVal])).appendTo(newTr);
         } else if (tdVal == "start_time" || tdVal == "end_time") {
             $("<td>")
                 .append(makeTime(trVal[tdVal]))
@@ -129,6 +140,19 @@ function selStopHumanCode() {
   $("#stop_human_code").append($("<option>").val(0).html("NO"));
   ajaxReturnData.forEach(function(value) {
       $("#stop_human_code").append(
+          $("<option>").val(value["id"]).html(value["code"])
+      );
+  });
+};
+function selAnodError() {
+  var fileName = "SelAnodErrorCode.php";
+  var sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#anod_error_id option").remove();
+  $("#anod_error_id").append($("<option>").val(0).html("NO"));
+  ajaxReturnData.forEach(function(value) {
+      $("#anod_error_id").append(
           $("<option>").val(value["id"]).html(value["code"])
       );
   });
@@ -213,6 +237,7 @@ $(document).on("change keyup", ".need-check", function() {
   }
   addMachineError();
   addStopHuman();
+  addAnodError();
 });
 
 $(document).on("keyup", ".number-input", function() {
@@ -307,6 +332,67 @@ $(document).on("change", "#machine_error_table tbody tr", function () {
   myAjax.myAjax(fileName, sendData);
   makeMachineRuntime();
 });
+
+$("#add_anod_error").on("click", function () {
+  switch ($(this).text()) {
+    case "Save":
+      $("<tr>")
+        .append("<td></td>")
+        .append($("<td>").append(anodErrorCodeOption($("#anod_error_id").val())))
+        .append($("<td>").append($("#ng_quantity").val()))
+        .appendTo("#anod_error_table tbody");
+      $(this).prop("disabled", true);
+      $("#anod_error_id").val("").focus().removeClass("complete-input").addClass("no-input");
+      $("#ng_quantity").val("").removeClass("complete-input").addClass("no-input");
+    break;
+    case "Add":
+      let fileName;
+      let sendData = new Object();
+      fileName = "AddAnodError.php";
+      sendData = {
+        record_anod_id: $("#selected__tr td:nth-child(1)").text(),
+        anod_error_id: $("#anod_error_id").val(),
+        ng_quantity: $("#ng_quantity").val(),
+      };
+      myAjax.myAjax(fileName, sendData);
+      makeAnodError();
+      $("#anod_error_id").val("").focus().removeClass("complete-input").addClass("no-input");
+      $("#ng_quantity").val("").removeClass("complete-input").addClass("no-input");
+      $(this).prop("disabled", true);
+    break;
+  }
+});
+$(document).on("click", "#anod_error_table tbody tr", function() {
+  if (!$(this).hasClass("selected-record")) {
+      $(this).parent().find("tr").removeClass("selected-record");
+      $(this).addClass("selected-record");
+      $("#anod_error_selected").removeAttr("id");
+      $(this).attr("id", "anod_error_selected");
+  } else {
+  }
+});
+$(document).on("change", "#anod_error_table tbody tr", function () {
+  let sendData = new Object();
+  let fileName;
+  fileName = "UpdateAnodError.php";
+  sendData = {
+    id: $("#anod_error_selected td:nth-child(1)").html(),
+    anod_error_id: $("#anod_error_selected td:nth-child(2) select").val(),
+    ng_quantity: $("#anod_error_selected td:nth-child(3) input").val(),
+  };
+  console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+  makeAnodError();
+});
+function addAnodError() {
+  if ($("#anod_error_id").val() == 0 ||
+      !$.isNumeric($("#ng_quantity").val())) {
+      $("#add_anod_error").prop("disabled", true);
+  } else {
+      $("#add_anod_error").prop("disabled", false);
+  }
+};
+
 $("#add_stop_human").on("click", function () {
   switch ($(this).text()) {
     case "Save":
@@ -385,6 +471,30 @@ function errorCodeOption(seletedId) {
   let targetDom = $("<select>");
 
   fileName = "SelCode.php";
+  sendData = {
+      ng_code: "%",
+  };
+  myAjax.myAjax(fileName, sendData);
+  ajaxReturnData.forEach(function(element) {
+      if (element["id"] == seletedId) {
+        $("<option>")
+          .html(element["code"])
+          .val(element["id"])
+          .prop("selected", true)
+          .appendTo(targetDom);
+      } else {
+        $("<option>")
+          .html(element["code"])
+          .val(element["id"])
+          .appendTo(targetDom);
+      }
+  });
+  return targetDom;
+}
+function anodErrorCodeOption(seletedId) {
+  let targetDom = $("<select>");
+
+  fileName = "SelAnodErrorCode.php";
   sendData = {
       ng_code: "%",
   };
@@ -498,6 +608,13 @@ $(document).on("click", "#save", function () {
   tableData = getTableData($("#stop_human_table tbody tr"));
   tableData.push(targetId);
   fileName = "InsStopHuman.php";
+  sendData = JSON.stringify(tableData);
+  console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+
+  tableData = getTableData($("#anod_error_table tbody tr"));
+  tableData.push(targetId);
+  fileName = "InsAnodError.php";
   sendData = JSON.stringify(tableData);
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);

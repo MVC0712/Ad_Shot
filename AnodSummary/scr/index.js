@@ -176,7 +176,7 @@ function renderHead(div, start, end) {
     r_year += '<th colspan="' + (daysInYear) + '">' + c_year + '</th>';
     r_year1 += '<th>' + c_year + '</th>';
     // r_year += "<th rowspan='4' style ='width: 40px;'>Total</th><th rowspan='4' style ='width: 45px;'>Per</th></tr>";
-    r_year += "<th rowspan='4' style ='width: 40px;'>Total</th></tr>";
+    r_year += "</tr>";
     r_year += "</tr>";
     r_year1 += "</tr>";
     r_month += '<th colspan="' + (daysInMonth) + '">' + months[c_month] + '</th>';

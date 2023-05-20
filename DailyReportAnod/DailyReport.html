@@ -72,14 +72,14 @@
             <input id="input_quantity" class="save-data need-clear number-input no-input">
           </div>
         </div>
-        <div class="input-block__outer ng_quantity_outer">
+        <!-- <div class="input-block__outer ng_quantity_outer">
           <div class="input__title ng_quantity_title">
             Sl NG
           </div>
           <div>
             <input id="ng_quantity" class="save-data need-clear number-input no-input">
           </div>
-        </div>
+        </div> -->
         <div class="input-block__outer worker_id_outer">
           <div class="input__title worker_id_title">
             Người nhập
@@ -116,9 +116,7 @@
             Xem
           </button>
         </div>
-      </div>
 
-      <div class="top_down__wrapper">
         <div class="input-block__outer performance_outer">
           <div class="input__title performance_title">
             Hiệu suất
@@ -128,6 +126,17 @@
           </div>
         </div>
       </div>
+
+      <!-- <div class="top_down__wrapper">
+        <div class="input-block__outer performance_outer">
+          <div class="input__title performance_title">
+            Hiệu suất
+          </div>
+          <div>
+            <input id="performance" class="save-data need-clear number-input no-input">
+          </div>
+        </div>
+      </div> -->
 
       <!-- <div class="top_down__wrapper">
         <div class="input-block__outer file_outer">
@@ -221,6 +230,43 @@
           </table>
         </div>
       </div>
+
+      <div class="right__error right_error__wrapper">
+        <div>
+          <table id="add_anod_error_table">
+            <thead>
+              <tr>
+                <th>Mã lỗi</th>
+                <th>SLNG</th>
+                <th><button id="add_anod_error" disabled>Save</button></th>
+              </tr>
+              <tr>
+                <th>
+                  <select id="anod_error_id" class="no-input need-clear need-check">
+                  </select>
+                </th>
+                <th>
+                  <input id="ng_quantity" class="no-input need-clear need-check number-input">
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div>
+          <table id="anod_error_table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Mã lỗi</th>
+                <th>SLNG</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
     <div id="button_wrapper">
       <button disabled id="save">

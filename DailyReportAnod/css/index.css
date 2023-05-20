@@ -41,7 +41,7 @@ input {
 .right__error {
   /* flex: 1; */
   flex-direction: column;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .element__wrapper {
   width: 100%;
@@ -248,7 +248,7 @@ input {
 }
 #machine_error_table tbody {
   height: 240px;
-  width: 330px;
+  width: 260px;
   overflow: auto;
 }
 #machine_error_table thead tr th:nth-child(1),
@@ -257,15 +257,15 @@ input {
 }
 #machine_error_table thead tr th:nth-child(2),
 #machine_error_table tbody tr td:nth-child(2) {
-  width: 100px;
+  width: 90px;
 }
 #machine_error_table thead tr th:nth-child(3),
 #machine_error_table tbody tr td:nth-child(3) {
-  width: 100px;
+  width: 90px;
 }
 #machine_error_table thead tr th:nth-child(4),
 #machine_error_table tbody tr td:nth-child(4) {
-  width: 60px;
+  width: 50px;
   text-align: center;
 }
 #machine_error_table thead tr th:nth-child(5),
@@ -279,7 +279,7 @@ input {
   width: 94px;
 }
 #machine_error_table tbody tr td:nth-child(4) input {
-  width: 54px;
+  width: 44px;
 }
 #machine_error_table tbody tr td:nth-child(5) input {
   width: 94px;
@@ -297,42 +297,42 @@ input {
 }
 #add_stop_human_table tbody tr td:nth-child(1),
 #add_stop_human_table thead tr th:nth-child(1) {
-  width: 100px;
+  width: 90px;
 }
 #add_stop_human_table tbody tr td:nth-child(2),
 #add_stop_human_table thead tr th:nth-child(2) {
-  width: 100px;
+  width: 90px;
 }
 #add_stop_human_table tbody tr td:nth-child(3),
 #add_stop_human_table thead tr th:nth-child(3) {
-  width: 60px;
+  width: 50px;
 }
 #add_stop_human_table tbody tr td:nth-child(4),
 #add_stop_human_table thead tr th:nth-child(4) {
-  width: 60px;
+  width: 50px;
 }
 #add_stop_human_table tbody tr td:nth-child(5),
 #add_stop_human_table thead tr th:nth-child(5) {
   width: 60px;
 }
 #add_stop_human_table thead tr th:nth-child(1) input {
-  width: 94px;
+  width: 84px;
 }
 #add_stop_human_table thead tr th:nth-child(2) input {
-  width: 94px;
+  width: 84px;
 }
 #add_stop_human_table thead tr th:nth-child(3) input {
-  width: 94px;
+  width: 84px;
 }
 #add_stop_human_table thead tr th:nth-child(4) input {
-  width: 54px;
+  width: 44px;
 }
 #stop_human_table {
   margin-left: 10px;
 }
 #stop_human_table tbody {
   height: 240px;
-  width: 435px;
+  width: 360px;
   overflow: auto;
 }
 #stop_human_table thead tr th:nth-child(1),
@@ -345,15 +345,15 @@ input {
 }
 #stop_human_table thead tr th:nth-child(3),
 #stop_human_table tbody tr td:nth-child(3) {
-  width: 100px;
+  width: 90px;
 }
 #stop_human_table thead tr th:nth-child(4),
 #stop_human_table tbody tr td:nth-child(4) {
-  width: 100px;
+  width: 90px;
 }
 #stop_human_table thead tr th:nth-child(5),
 #stop_human_table tbody tr td:nth-child(5) {
-  width: 60px;
+  width: 50px;
   text-align: center;
 }
 #stop_human_table tbody tr td:nth-child(2) input {
@@ -366,9 +366,10 @@ input {
   width: 94px;
 }
 #stop_human_table tbody tr td:nth-child(5) input {
-  width: 54px;
+  width: 44px;
 }
-#add_stop_human {
+#add_stop_human,
+#add_anod_error {
   width: 100%;
   height: 20px;
   padding: 0;
@@ -472,4 +473,50 @@ input {
 .staff_id_outer {
   width: 300px;
   margin-right: 10px;
+}
+
+#add_anod_error_table {
+  height: 20px;
+  margin-left: 10px;
+}
+#add_anod_error_table tbody tr td:nth-child(1),
+#add_anod_error_table thead tr th:nth-child(1) {
+  width: 90px;
+}
+#add_anod_error_table tbody tr td:nth-child(2),
+#add_anod_error_table thead tr th:nth-child(2) {
+  width: 50px;
+}
+#add_anod_error_table thead tr th:nth-child(1) select {
+  width: 90px;
+}
+#add_anod_error_table thead tr th:nth-child(2) input {
+  width: 44px;
+}
+
+#anod_error_table {
+  margin-left: 10px;
+}
+#anod_error_table tbody {
+  height: 240px;
+  width: 170px;
+  overflow: auto;
+}
+#anod_error_table thead tr th:nth-child(1),
+#anod_error_table tbody tr td:nth-child(1){
+  display: none;
+}
+#anod_error_table thead tr th:nth-child(2),
+#anod_error_table tbody tr td:nth-child(2) {
+  width: 90px;
+}
+#anod_error_table thead tr th:nth-child(3),
+#anod_error_table tbody tr td:nth-child(3) {
+  width: 50px;
+}
+#anod_error_table tbody tr td:nth-child(2) select {
+  width: 94px;
+}
+#anod_error_table tbody tr td:nth-child(3) input {
+  width: 44px;
 }

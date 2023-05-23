@@ -6,17 +6,8 @@ if ($dbh->getInstance() === null) {
 }
 $start = $_POST['start'];
 $end = $_POST['end'];
-$product_name = $_POST['product_name'];
-
-if ($product_name == "") {
-    $add = "";
-} else {
-    $add = " AND product_name LIKE '$product_name'";
-};
-
 try {
     $sql = "SELECT 
-    t_record_anod.id,
     order_code,
     product_date,
     shift,
@@ -71,8 +62,9 @@ FROM
         t_record_anod_error
     LEFT JOIN m_anod_error ON m_anod_error.id = t_record_anod_error.anod_error_id
     GROUP BY record_anod_id) t1 ON t1.idd = t_record_anod.id
-    WHERE product_date BETWEEN '$start' AND '$end' $add
-ORDER BY product_date DESC;";
+WHERE product_date BETWEEN '$start' AND '$end'
+ORDER BY product_date DESC
+;";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

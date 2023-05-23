@@ -52,9 +52,21 @@ $(function () {
 
 });
 function makeSummaryTable() {
+  if ($("#start").val() == "") {
+    st = "2022-01-01"
+  } else {
+    st = $("#start").val();
+  }
+  if ($("#end").val() == "") {
+    en = "2050-01-01"
+  } else {
+    en = $("#end").val();
+  }
   var fileName = "SelSummary.php";
   var sendData = {
-      dummy: "dummy",
+      start: st,
+      end: en,
+      product_name: $("#pro_code").val()
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary_table tbody"));
@@ -73,7 +85,7 @@ function makeAnodError() {
       targetId: $("#selected__tr").find("td").eq(0).html(),
   };
   myAjax.myAjax(fileName, sendData);
-  fillTableBody(ajaxReturnData, $("#machine_error_table tbody"));
+  fillTableBody(ajaxReturnData, $("#anod_error_table tbody"));
 };
 function makeStopHuman() {
   var fileName = "SelStopHuman.php";
@@ -92,7 +104,7 @@ function fillTableBody(data, tbodyDom) {
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
         } else if (tdVal == "code_id") {
             $("<td>").append(errorCodeOption(trVal[tdVal])).appendTo(newTr);
-        } else if (tdVal == "record_anod_id") {
+        } else if (tdVal == "anod_error_id") {
           $("<td>").append(anodErrorCodeOption(trVal[tdVal])).appendTo(newTr);
         } else if (tdVal == "start_time" || tdVal == "end_time") {
             $("<td>")
@@ -120,6 +132,7 @@ $(document).on("click", "#summary_table tbody tr", function (e) {
     putDataToInput(ajaxReturnData);
     $("#add_machine_error").text("Add");
     $("#add_stop_human").text("Add");
+    $("#add_anod_error").text("Add");
   } else {
     // deleteDialog.showModal();
   }
@@ -127,6 +140,7 @@ $(document).on("click", "#summary_table tbody tr", function (e) {
   $("#update").attr("disabled", false);
   makeMachineRuntime();
   makeStopHuman();
+  makeAnodError();
   $(".save-data").each(function (index, element) {
     $(this).removeClass("no-input").addClass("complete-input");
   });
@@ -392,7 +406,19 @@ function addAnodError() {
       $("#add_anod_error").prop("disabled", false);
   }
 };
-
+$(document).on("change", "#start", function () {
+  downloadButton()
+});
+$(document).on("change", "#end", function () {
+  downloadButton()
+});
+function downloadButton() {
+  if ($("#start").val() == "" || $("#end").val() == "") {
+      $("#download").prop("disabled", true);
+  } else {
+      $("#download").prop("disabled", false);
+  }
+};
 $("#add_stop_human").on("click", function () {
   switch ($(this).text()) {
     case "Save":
@@ -552,6 +578,7 @@ function clearInputData() {
   $("#file_url").html("No file");
   $("#stop_human_table tbody").empty();
   $("#machine_error_table tbody").empty();
+  $("#anod_error_table tbody").empty();
 }
 function getTableData(tableTrObj) {
   var tableData = [];
@@ -631,6 +658,7 @@ $(document).on("click", "#update", function () {
   makeSummaryTable();
   $("#add_machine_error").text("Save");
   $("#add_stop_human").text("Save");
+  $("#add_anod_error").text("Save");
   $("#save").attr("disabled", true);
   $("#update").attr("disabled", true);
 });
@@ -688,3 +716,45 @@ $(document).on("click", "#add_button", function () {
     "width=830, height=500,toolbar=yes,menubar=yes,scrollbars=no"
   );
 });
+
+$(document).on("click", "#download", function() {
+  var fileName = "SelForExcel.php";
+  var sendObj = new Object();
+  sendObj["start"] = $('#start').val();
+  sendObj["end"] = $("#end").val();
+  myAjax.myAjax(fileName, sendObj);
+
+  ajaxReturnData.push(sendObj["start"])
+  ajaxReturnData.push(sendObj["end"])
+  let data = new Object();
+  let donwloadFileName;
+  data = ajaxReturnData;
+  donwloadFileName = $('#start').val() + "_" + $("#end").val() + "_DLReport.xlsx";
+
+  let JSONdata = JSON.stringify(data);
+
+  $.ajax({
+      async: false,
+      url: "../../AD_Shot/Py/ExportDLRP.py",
+      type: "post",
+      data: JSONdata,
+      dataType: "json",
+  })
+  .done(function(data) {
+      console.log(data);
+      downloadExcelFile(donwloadFileName);
+  })
+  .fail(function() {
+      console.log("failed");
+  });
+});
+
+function downloadExcelFile(donwloadFileName) {
+const a = document.createElement("a");
+document.body.appendChild(a);
+a.download = donwloadFileName;
+a.href = "../FileDownLoad/Excel/" + donwloadFileName;
+
+a.click();
+a.remove();
+}

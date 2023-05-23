@@ -396,9 +396,23 @@ input {
   margin-right: 30px;
   margin-bottom: 10px;
 }
+#download {
+  width: 60px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+#pro_code,
+#start,
+#end {
+  width: 100px;
+}
+
 #summary_table tbody {
   height: 210px;
-  width: 780px;
+  width: 820px;
   overflow: auto;
 }
 #summary_table thead tr th:nth-child(1),
@@ -426,20 +440,24 @@ input {
   width: 140px;
 }
 #summary_table thead tr th:nth-child(7),
-#summary_table tbody tr td:nth-child(7) {
-  width: 80px;
-}
+#summary_table tbody tr td:nth-child(7),
 #summary_table thead tr th:nth-child(8),
-#summary_table tbody tr td:nth-child(8) {
-  width: 80px;
-}
+#summary_table tbody tr td:nth-child(8),
 #summary_table thead tr th:nth-child(9),
 #summary_table tbody tr td:nth-child(9) {
-  width: 100px;
+  width: 40px;
 }
 #summary_table thead tr th:nth-child(10),
-#summary_table tbody tr td:nth-child(10) {
-  width: 100px;
+#summary_table tbody tr td:nth-child(10),
+#summary_table thead tr th:nth-child(11),
+#summary_table tbody tr td:nth-child(11),
+#summary_table thead tr th:nth-child(12),
+#summary_table tbody tr td:nth-child(12),
+#summary_table thead tr th:nth-child(13),
+#summary_table tbody tr td:nth-child(13),
+#summary_table thead tr th:nth-child(14),
+#summary_table tbody tr td:nth-child(14) {
+  width: 30px;
 }
 
 .right_error__wrapper {

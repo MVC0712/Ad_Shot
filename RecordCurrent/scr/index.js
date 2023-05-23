@@ -96,7 +96,7 @@ $(document).on("change", "#product_id", function() {
     $("#total_area").val("")
   }
 });
-$(document).on("change", "#quantity", function() {
+$(document).on("keyup", "#quantity", function() {
     $("#total_current").val(Math.round((($("#area").val())*($("#current_density").val())*($("#quantity").val()) + Number.EPSILON) * 100) / 100);
     $("#total_area").val(Math.round((($("#area").val())*($("#quantity").val()) + Number.EPSILON) * 100) / 100);
 });

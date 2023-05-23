@@ -38,7 +38,7 @@ $sql1 = "SELECT
     '' AS 'Total Actual',
     '' AS 'Total plan',
     '' AS 'Completion rate',
-    'Plan' AS 'Plan/Actual',
+    'Plan' AS 'PlanOrActual',
 ";
 
 foreach ($period as $dt) {
@@ -75,7 +75,7 @@ for ($i = 0; $i <= iterator_count($period)-1; $i++) {
 $sql2 = substr(trim($sql2), 0, -1);
 $sql2 = $sql2.") AS 'Total plan',
     '' AS 'Completion rate',
-    'Total plan' AS 'Plan/Actual',
+    'Total plan' AS 'PlanOrActual',
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
     $sql2 = $sql2."(";
@@ -117,7 +117,7 @@ $sql3 = " UNION SELECT
     '' AS 'Total Actual',
     '' AS 'Total plan',
     '' AS 'Completion rate',
-    'Actual' AS 'Plan/Actual',
+    'Actual' AS 'PlanOrActual',
 ";
 
 foreach ($period as $dt) {
@@ -142,6 +142,34 @@ LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
 GROUP BY product_date) t104 ON t104.idddd = t_record_anod.product_id
     AND t104.product_date = t_record_anod.product_date ";
 
+    $sqlng = " UNION SELECT 
+    'Total' AS product_name,
+    '' AS 'Total Actual',
+    '' AS 'Total plan',
+    '' AS 'Completion rate',
+    'NG' AS 'PlanOrActual',
+";
+
+foreach ($period as $dt) {
+    $di = $dt->format("Y-m-d");
+    $din = $dt->format("Ymd");
+    $sqlng = $sqlng ." MAX(CASE WHEN t_record_anod.product_date = '" . $di . "' THEN t105.ttqq ELSE '' END) AS '_" . $din ."',";
+}
+$sqlng = substr(trim($sqlng), 0, -1);
+$sqlng = $sqlng." FROM
+t_record_anod
+    LEFT JOIN
+m_product ON m_product.id = t_record_anod.product_id
+    LEFT JOIN
+(SELECT 
+        record_anod_id AS idddd,
+        product_date,
+        SUM(t_record_anod_error.ng_quantity) AS ttqq
+FROM
+    t_record_anod_error 
+LEFT JOIN t_record_anod ON t_record_anod.id = t_record_anod_error.record_anod_id
+GROUP BY product_date) t105 ON t105.idddd = t_record_anod.id ";
+
 $sql4 = " UNION SELECT 
     'Total' AS product_name,
     (
@@ -154,7 +182,7 @@ $sql4 = substr(trim($sql4), 0, -1);
 $sql4 = $sql4.") AS 'Total Actual',
     '' AS 'Total plan',
     '' AS 'Completion rate',
-    'Total Actual' AS 'Plan/Actual',
+    'Total Actual' AS 'PlanOrActual',
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
     $sql4 = $sql4."(";
@@ -196,7 +224,7 @@ $sql5 = " UNION SELECT
     '' AS 'Total Actual',
     '' AS 'Total plan',
     '' AS 'Completion rate',
-    'Plan' AS 'Plan/Actual',
+    'Plan' AS 'PlanOrActual',
 ";
 
 foreach ($period as $dt) {
@@ -234,7 +262,7 @@ for ($i = 0; $i <= iterator_count($period)-1; $i++) {
 $sql6 = substr(trim($sql6), 0, -1);
 $sql6 = $sql6.") AS 'Total plan',
     '' AS 'Completion rate',
-    'Total plan' AS 'Plan/Actual',
+    'Total plan' AS 'PlanOrActual',
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
     $sql6 = $sql6."(";
@@ -277,7 +305,7 @@ $sql7 = " UNION SELECT
     '' AS 'Total Actual',
     '' AS 'Total plan',
     '' AS 'Completion rate',
-    'Actual' AS 'Plan/Actual',
+    'Actual' AS 'PlanOrActual',
 ";
 
 foreach ($period as $dt) {
@@ -315,7 +343,7 @@ $sql8 = substr(trim($sql8), 0, -1);
 $sql8 = $sql8.") AS 'Total Actual',
     '' AS 'Total plan',
     '' AS 'Completion rate',
-    'Total Actual' AS 'Plan/Actual',
+    'Total Actual' AS 'PlanOrActual',
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
     $sql8 = $sql8."(";
@@ -351,17 +379,19 @@ FROM
 LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
 GROUP BY product_date , idddd) t104 ON t104.idddd = t_record_anod.product_id
     AND t104.product_date = t_record_anod.product_date
-GROUP BY product_name) t1004
-ORDER BY product_name DESC , CASE 'Plan/Actual'
+GROUP BY product_name) t1004";
+
+$sql = "SELECT * FROM (".$sql1.$sql2.$sql3.$sqlng.$sql4.$sql5.$sql6.$sql7.$sql8.") tt 
+ORDER BY 
+product_name DESC,
+CASE tt.PlanOrActual
 WHEN 'Plan' THEN 4
 WHEN 'Total plan' THEN 3
 WHEN 'Actual' THEN 2
 WHEN 'Total actual' THEN 1
 ELSE 0
-END DESC ";
-
-$sql = $sql1.$sql2.$sql3.$sql4.$sql5.$sql6.$sql7.$sql8;
-print_r($sql);
+END DESC";
+// print_r($sql);
 
 try {
     $stmt = $dbh->getInstance()->prepare($sql);

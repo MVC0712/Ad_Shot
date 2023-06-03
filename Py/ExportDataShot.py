@@ -35,7 +35,7 @@ for index, value in enumerate(params):
     val = list(value.values())
     sheet.append(val)
     
-    if (index + 2) % 4 == 0 and index > 2:
-        sheet.insert_rows(index)
+    # if (index + 2) % 4 == 0 and index > 2:
+    #     sheet.insert_rows(index)
 
 wb.save("../FileDownLoad/Excel/" + start + "_" + end + "_ReportShot.xlsx")

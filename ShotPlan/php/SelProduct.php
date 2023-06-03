@@ -6,7 +6,7 @@ if ($dbh->getInstance() === null) {
 }
 $production_number = $_POST["production_number"];
 try {
-    $sql = "SELECT * FROM m_product WHERE product_name LIKE '%$production_number%'";
+    $sql = "SELECT id, product_name FROM m_product WHERE product_name LIKE '%$production_number%'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

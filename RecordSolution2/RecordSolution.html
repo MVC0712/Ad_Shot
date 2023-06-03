@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Record Solution</title>
+    <link rel="stylesheet" href="../Lib/main.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <header>Record Solution</header>
+      <div class="top__wrapper">
+      <table id="data_table">
+      <thead>
+        <tr>
+          <th rowspan="2">Date</th>
+          <th rowspan="2">Time</th>
+          <th rowspan="2" style="width:130px">Staff Check</th>
+          <th rowspan="2">Shift</th>
+          <th colspan="4">Degreasing</th>
+          <th colspan="7">Etching</th>
+          <th colspan="4">Chemical Polishing</th>
+        </tr>
+        <tr>
+          <th style="width: 60px">NaOH 1N (mL)</th>
+          <th style="width: 60px">TT H2SO4 (g/L)</th>
+          <th>H2SO4 75% (L)</th>
+          <th>SO4 (L)</th>
+          <th>HCl 1N (mL)</th>
+          <th>HCl 1N (mL)</th>
+          <th>TT NaOH (g/L)</th>
+          <th>Free NaOH (g/L)</th>
+          <th>AL</th>
+          <th>NaOH 25% (L)</th>
+          <th>SL (L)</th>
+          <th>Density (g/cm3)</th>
+          <th>Fe(NH4)2 (SO4)2 (ml)</th>
+          <th>Fe(NH4)2 (SO4)2 (ml)</th>
+          <th>TT HNO3(%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><input id="date" type="date" class="no-input save-data need-clear"></th>
+          <th><input id="time" type="time" class="no-input save-data need-clear"></th>
+          <th>
+            <select id="staff" class="no-input save-data need-clear">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </th>
+          <th>
+            <select id="shift" class="no-input save-data need-clear">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </th>
+          <th><input id="degreasing_naoh_1n" class="caculate no-input save-data need-clear"></th>
+          <th><input disabled id="degreasing_tt_h2so4" class="save-data need-clear"></th>
+          <th><input id="degreasing_so4" class="no-input save-data need-clear"></th>
+          <th><input id="degreasing_naoh_25" class="no-input save-data need-clear"></th>
+          <th><input id="etching_hcl_1n1" class="caculate no-input save-data need-clear"></th>
+          <th><input id="etching_hcl_1n2" class="caculate no-input save-data need-clear"></th>
+          <th><input disabled id="etching_tt_naoh" class="save-data need-clear"></th>
+          <th><input disabled id="etching_free_naoh" class="save-data need-clear"></th>
+          <th><input disabled id="etching_al" class="save-data need-clear"></th>
+          <th><input id="etching_naoh_25" class="no-input save-data need-clear"></th>
+          <th><input id="etching_sl" class="no-input save-data need-clear"></th>
+          <th><input id="chemical_polishing_density" class="caculate no-input save-data need-clear"></th>
+          <th><input id="chemical_polishing_fenh4_1" class="caculate no-input save-data need-clear"></th>
+          <th><input id="chemical_polishing_fenh4_2" class="caculate no-input save-data need-clear"></th>
+          <th><input disabled id="chemical_polishing_tt_hno3" class="save-data need-clear"></th>
+        </tr>
+      </tbody>
+      </table>
+      <table id="data_table">
+        <thead>
+          <tr>
+            <th colspan="6">Chemical Polishing</th>
+            <th colspan="3">Smut</th>
+            <th colspan="6">Anodizing 1</th>
+            <th colspan="6">Anodizing 2</th>
+            
+          </tr>
+          <tr>
+            <th style="width: 60px">NaOH 1N (mL)</th>
+            <th style="width: 60px">TT H3PO4 (%)</th>
+            <th style="width: 60px">EDTA (mL)</th>
+            <th style="width: 60px">TT AlPO4 (%)</th>
+            <th>HNO3 62% (L)</th>
+            <th>SL (L)</th>
+            <th>NaOH 2N (mL)</th>
+            <th>TT H2SO4 (g/L)</th>
+            <th>H2SO4 75% (L)</th>
+            <th>NaOH 2N (mL)</th>
+            <th>NaOH 2N (mL)</th>
+            <th>TT acid (g/L)</th>
+            <th>Free acid (g/L)</th>
+            <th>Al3+ (g/L)</th>
+            <th>H2SO4 (L)</th>
+            <th>NaOH 2N (mL)</th>
+            <th>NaOH 2N (mL)</th>
+            <th>TT acid (g/L)</th>
+            <th>Free acid (g/L)</th>
+            <th>Al3+ (g/L)</th>
+            <th>H2SO4 (L)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><input id="chemical_polishing_naoh_1n" class="caculate no-input save-data need-clear"></th>
+            <th><input disabled id="chemical_polishing_tt_h3po4" class="save-data need-clear"></th>
+            <th><input id="chemical_polishing_edta" class="caculate no-input save-data need-clear"></th>
+            <th><input disabled id="chemical_polishing_tt_alpo4" class="save-data need-clear"></th>
+            <th><input id="chemical_polishing_hno3_62" class="no-input save-data need-clear"></th>
+            <th><input id="chemical_polishing_sl" class="no-input save-data need-clear"></th>
+            <th><input id="smut_naoh_2n" class="caculate no-input save-data need-clear"></th>
+            <th><input disabled id="smut_tt_h2so4" class="save-data need-clear"></th>
+            <th><input id="smut_h2so4_75" class="no-input save-data need-clear"></th>
+            <th><input id="anodizing1_naoh_2n_1" class="caculate no-input save-data need-clear"></th>
+            <th><input id="anodizing1_naoh_2n_2" class="caculate no-input save-data need-clear"></th>
+            <th><input disabled id="anodizing1_tt_acid" class="save-data need-clear"></th>
+            <th><input disabled id="anodizing1_free_acid" class="save-data need-clear"></th>
+            <th><input disabled id="anodizing1_al" class="save-data need-clear"></th>
+            <th><input id="anodizing1_h2so4" class="no-input save-data need-clear"></th>
+            <th><input id="anodizing2_naoh_2n_1" class="caculate no-input save-data need-clear"></th>
+            <th><input id="anodizing2_naoh_2n_2" class="caculate no-input save-data need-clear"></th>
+            <th><input disabled id="anodizing2_tt_acid" class="save-data need-clear"></th>
+            <th><input disabled id="anodizing2_free_acid" class="save-data need-clear"></th>
+            <th><input disabled id="anodizing2_al" class="save-data need-clear"></th>
+            <th><input id="anodizing2_h2so4" class="no-input save-data need-clear"></th>
+          </tr>
+        </tbody>
+      </table>
+      <table id="data_table">
+        <thead>
+          <tr>
+            <th colspan="6">Anodizing 3</th>
+            <th colspan="6">Anodizing 4</th>
+            <th colspan="4">Hole Sealing</th>
+            <th colspan="3">Acid Cleaning</th>
+          </tr>
+          <tr>
+            <th style="width: 60px">NaOH 2N (mL)</th>
+            <th style="width: 60px">NaOH 2N (mL)</th>
+            <th>TT acid (g/L)</th>
+            <th>Free acid (g/L)</th>
+            <th>Al3+ (g/L)</th>
+            <th>H2SO4 (L)</th>
+            <th>NaOH 2N (mL)</th>
+            <th>NaOH 2N (mL)</th>
+            <th>TT acid (g/L)</th>
+            <th>Free acid (g/L)</th>
+            <th>Al3+ (g/L)</th>
+            <th>H2SO4 (L)</th>
+            <th>pH(5-8)</th>
+            <th>HNO3 62% (L)</th>
+            <th>NaOH 25% (L)</th>
+            <th>MF-115 (L)</th>
+            <th>NaOH 2N (mL)</th>
+            <th>TT H2SO4 (g/L)</th>
+            <th>H2SO4 75% (L)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><input id="anodizing3_naoh_2n_1" class="caculate no-input save-data need-clear"></th>
+            <th><input id="anodizing3_naoh_2n_2" class="caculate no-input save-data need-clear"></th>
+            <th><input disabled id="anodizing3_tt_acid" class="save-data need-clear"></th>
+            <th><input disabled id="anodizing3_free_acid" class="save-data need-clear"></th>
+            <th><input disabled id="anodizing3_al" class="save-data need-clear"></th>
+            <th><input id="anodizing3_h2so4" class="no-input save-data need-clear"></th>
+            <th><input id="anodizing4_naoh_2n_1" class="caculate no-input save-data need-clear"></th>
+            <th><input id="anodizing4_naoh_2n_2" class="caculate no-input save-data need-clear"></th>
+            <th><input disabled id="anodizing4_tt_acid" class="save-data need-clear"></th>
+            <th><input disabled id="anodizing4_free_acid" class="save-data need-clear"></th>
+            <th><input disabled id="anodizing4_al" class="save-data need-clear"></th>
+            <th><input id="anodizing4_h2so4" class="no-input save-data need-clear"></th>
+            <th><input id="hole_sealing_ph" class="no-input save-data need-clear"></th>
+            <th><input id="hole_sealing_hno3_62" class="no-input save-data need-clear"></th>
+            <th><input id="hole_sealing_naoh_25" class="no-input save-data need-clear"></th>
+            <th><input id="hole_sealing_mf115" class="no-input save-data need-clear"></th>
+            <th><input id="acid_cleaning_naoh_2n" class="caculate no-input save-data need-clear"></th>
+            <th><input disabled id="acid_cleaning_tt_h2so4" class="save-data need-clear"></th>
+            <th><input id="acid_cleaning_h2so4_75" class="no-input save-data need-clear"></th>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    <div id="button_wrapper">
+      <button disabled id="save">
+        Save
+      </button>
+      <button disabled id="update">
+        Update
+      </button>
+    </div>
+    <div class="top__wrapper">
+      <table id="summary_table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th rowspan="2">Time</th>
+            <th rowspan="2">Staff Check</th>
+            <th colspan="3">Tẩy dầu - Oil remover</th>
+            <th colspan="3">Etching</th>
+            <th colspan="3">Polishing</th>
+            <th colspan="2">Smut</th>
+            <th colspan="2">Anod</th>
+            <th colspan="2">Fuco</th>
+            <th colspan="2">Acid rinse</th>
+          </tr>
+          <tr>
+            <th>id</th>
+            <th style="width: 60px">H2SO4 75% (ml/L)</th>
+            <th style="width: 60px">H2SO4 75% (L)</th>
+            <th>SO4- (L)</th>
+            <th>NaOH 25% (ml/L)</th>
+            <th>NaOH 25% (L)</th>
+            <th>SK- (L)</th>
+            <th>HNO3 62% (ml/L)</th>
+            <th>HNO3 62% (L)</th>
+            <th>SL (L)</th>
+            <th>H2SO4 75% (ml/L)</th>
+            <th>H2SO4 75% (L)</th>
+            <th>H2SO4 75% (ml/L)</th>
+            <th>H2SO4 75% (L)</th>
+            <th>MF-115 (g/L)</th>
+            <th>MF-115 (L)</th>
+            <th>H2SO4 75% (ml/L)</th>
+            <th>H2SO4 75% (L)</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script src="../Lib/jquery.min.js"></script>
+    <script src="./scr/index.js"></script>
+  </body>
+</html>

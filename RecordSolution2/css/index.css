@@ -1,0 +1,99 @@
+body {
+  margin: 4px;
+  border: solid 1px #0000cc;
+  display: flex;
+  flex-direction: column;
+  height: calc(680px - 2px);
+  width: calc(1330px - 2px);
+}
+input {
+  width: 59px;
+  /* height: 40px; */
+  text-align: left;
+  /* border: 0; */
+  padding: 0;
+  margin: 0;
+}
+td,
+th {
+  text-align: left;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+select {
+  width: 130px;
+}
+.top__wrapper, 
+.bottom__wrapper {
+  width: 100%;
+  /* height: 50px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+#button_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#save,
+#update {
+  width: 40px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+#data_table tbody,
+#summary_table tbody {
+  height: 30px;
+  overflow: auto;
+}
+#summary_table tbody {
+  height: 450px;
+  overflow: auto;
+}
+#data_table thead tr th:nth-child(1),
+#data_table tbody tr td:nth-child(1) {
+  width: 110px;
+}
+/* #data_table tbody tr th:nth-child(1) {
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+} */
+/* #data_table tbody tr th:nth-child(1) input {
+  width: 110px;
+} */
+#data_table thead tr th:nth-child(2),
+#data_table tbody tr td:nth-child(2) {
+  width: 60px;
+}
+#data_table tbody tr td:nth-child(3) {
+  width: 110px;
+}
+#data_table tbody tr td:nth-child(3) select  {
+  width: 110px;
+}
+#data_table tbody tr td:nth-child(4) select  {
+  width: 60px;
+}
+#data_table thead td, thead th {
+  background-color: #0000ff;
+  border: solid 1px white;
+  color: white;
+  text-align: center;
+  font-size: 9pt;
+  font-weight: normal;
+  width: 60px;
+}
+#shift {
+  width: 60px;
+}
+#date {
+  width: 110px;
+}

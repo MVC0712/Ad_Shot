@@ -4,9 +4,10 @@ $dbh = new DBHandler();
 if ($dbh->getInstance() === null) {
     die("No database connection");
 }
-$production_number = $_POST["production_number"];
+
+$datetime = date("Y-m-d H:i:s");
 try {
-    $sql = "SELECT id, product_name FROM m_product WHERE product_name LIKE '%$production_number%'";
+    $sql = "SELECT * FROM m_shift WHERE 1";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

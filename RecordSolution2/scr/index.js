@@ -69,10 +69,10 @@ function selStaff() {
   var sendData = {
   };
   myAjax.myAjax(fileName, sendData);
-  $("#staff option").remove();
-  $("#staff").append($("<option>").val(0).html("NO"));
+  $("#staff_id option").remove();
+  $("#staff_id").append($("<option>").val(0).html("NO"));
   ajaxReturnData.forEach(function(value) {
-      $("#staff").append(
+      $("#staff_id").append(
           $("<option>").val(value["id"]).html(value["name"])
       );
   });
@@ -82,10 +82,10 @@ function selShift() {
   var sendData = {
   };
   myAjax.myAjax(fileName, sendData);
-  $("#shift option").remove();
-  $("#shift").append($("<option>").val(0).html("NO"));
+  $("#shift_id option").remove();
+  $("#shift_id").append($("<option>").val(0).html("NO"));
   ajaxReturnData.forEach(function(value) {
-      $("#shift").append(
+      $("#shift_id").append(
           $("<option>").val(value["id"]).html(value["shift"])
       );
   });
@@ -101,6 +101,7 @@ $(document).on("click", "#summary_table tbody tr", function (e) {
     sendData = {
       targetId: $("#selected__tr").find("td").eq(0).html(),
     };
+    console.log(sendData);
     myAjax.myAjax(fileName, sendData);
     putDataToInput(ajaxReturnData);
   } else {

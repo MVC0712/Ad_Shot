@@ -32,6 +32,7 @@ select {
   flex-direction: column;
   justify-content: center;
   align-items: left;
+  overflow: auto;
 }
 #button_wrapper {
   width: 100%;
@@ -91,9 +92,38 @@ select {
   font-weight: normal;
   width: 60px;
 }
-#shift {
+#shift_id {
   width: 60px;
 }
 #date {
   width: 110px;
+}
+
+#summary_table tbody {
+  height: 300px;
+  width: 3700px;
+  overflow: auto;
+}
+#summary_table th {
+  text-align: center;
+}
+#summary_table th:nth-child(1),
+#summary_table td:nth-child(1) {
+  display: none;
+}
+#summary_table th:nth-child(n + 1) {
+  width: 60px;
+  text-align: center;
+}
+#summary_table td:nth-child(n + 1) {
+  width: 60px;
+  text-align: center;
+}
+#summary_table td:nth-child(2) {
+  width: 100px;
+  text-align: center;
+}
+#summary_table td:nth-child(3) {
+  width: 150px;
+  text-align: center;
 }

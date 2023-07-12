@@ -342,6 +342,9 @@ $(document).on("change", "#product tbody tr td", function () {
   sendData = {
     targetId : $("#product__tr td:nth-child(1)").html(),
     product_name : $("#product__tr td:nth-child(2) input").val(),
+    area : $("#product__tr td:nth-child(3) input").val(),
+    current_density : $("#product__tr td:nth-child(4) input").val(),
+    cond_no : $("#product__tr td:nth-child(5) input").val(),
   };
   myAjax.myAjax(fileName, sendData);
   selProduct();

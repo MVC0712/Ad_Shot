@@ -135,7 +135,7 @@ $(document).on("change keyup", ".caculate", function() {
   let chemical_polishing_tt_hno3 = $("#chemical_polishing_tt_hno3");
   chemical_polishing_tt_hno3.val(($("#chemical_polishing_fenh4_1").val()*(8/$("#chemical_polishing_fenh4_2").val())*0.00525*100)/$("#chemical_polishing_density").val());
   let chemical_polishing_tt_h3po4 = $("#chemical_polishing_tt_h3po4");
-  chemical_polishing_tt_h3po4.val(($("#chemical_polishing_naoh_1n").val()*1.003*9.8)/$("#chemical_polishing_density").val());
+  chemical_polishing_tt_h3po4.val(($("#chemical_polishing_naoh_1n").val()*1.003*9.8)/$("#chemical_polishing_density").val() - $("#chemical_polishing_tt_hno3").val()*0.778);
   let chemical_polishing_tt_alpo4 = $("#chemical_polishing_tt_alpo4");
   chemical_polishing_tt_alpo4.val(($("#chemical_polishing_edta").val()*0.122*100)/($("#chemical_polishing_density").val()*5));
 
@@ -147,28 +147,28 @@ $(document).on("change keyup", ".caculate", function() {
   let anodizing1_free_acid = $("#anodizing1_free_acid");
   anodizing1_free_acid.val($("#anodizing1_naoh_2n_2").val()*0.999*19.6);
   let anodizing1_al = $("#anodizing1_al");
-  anodizing1_al.val((anodizing1_tt_acid.val() - anodizing1_free_acid.val())*3.6*0.999);
+  anodizing1_al.val(($("#anodizing1_naoh_2n_1").val() - $("#anodizing1_naoh_2n_2").val())*3.6*0.999);
 
   let anodizing2_tt_acid = $("#anodizing2_tt_acid");
   anodizing2_tt_acid.val($("#anodizing2_naoh_2n_1").val()*0.999*19.6);
   let anodizing2_free_acid = $("#anodizing2_free_acid");
   anodizing2_free_acid.val($("#anodizing2_naoh_2n_2").val()*0.999*19.6);
   let anodizing2_al = $("#anodizing2_al");
-  anodizing2_al.val((anodizing2_tt_acid.val() - anodizing2_free_acid.val())*3.6*0.999);
+  anodizing2_al.val(($("#anodizing2_naoh_2n_1").val() - $("#anodizing2_naoh_2n_1").val())*3.6*0.999);
 
   let anodizing3_tt_acid = $("#anodizing3_tt_acid");
   anodizing3_tt_acid.val($("#anodizing3_naoh_2n_1").val()*0.999*19.6);
   let anodizing3_free_acid = $("#anodizing3_free_acid");
   anodizing3_free_acid.val($("#anodizing3_naoh_2n_2").val()*0.999*19.6);
   let anodizing3_al = $("#anodizing3_al");
-  anodizing3_al.val((anodizing3_tt_acid.val() - anodizing3_free_acid.val())*3.6*0.999);
+  anodizing3_al.val(($("#anodizing3_naoh_2n_1").val() - $("#anodizing3_naoh_2n_1").val())*3.6*0.999);
 
   let anodizing4_tt_acid = $("#anodizing4_tt_acid");
   anodizing4_tt_acid.val($("#anodizing4_naoh_2n_1").val()*0.999*19.6);
   let anodizing4_free_acid = $("#anodizing4_free_acid");
   anodizing4_free_acid.val($("#anodizing4_naoh_2n_2").val()*0.999*19.6);
   let anodizing4_al = $("#anodizing4_al");
-  anodizing4_al.val((anodizing4_tt_acid.val() - anodizing4_free_acid.val())*3.6*0.999);
+  anodizing4_al.val(($("#anodizing4_naoh_2n_1").val() - $("#anodizing4_naoh_2n_1").val())*3.6*0.999);
 
   let acid_cleaning_tt_h2so4 = $("#acid_cleaning_tt_h2so4");
   acid_cleaning_tt_h2so4.val($("#acid_cleaning_naoh_2n").val()*0.999*19.6) ;

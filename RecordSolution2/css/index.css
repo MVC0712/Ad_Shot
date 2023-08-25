@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(680px - 2px);
-  width: calc(1330px - 2px);
+  width: calc(1350px - 2px);
 }
 input {
   width: 59px;
@@ -92,6 +92,7 @@ select {
   font-weight: normal;
   width: 60px;
 }
+#anod_machine_id,
 #shift_id {
   width: 60px;
 }

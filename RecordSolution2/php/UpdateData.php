@@ -64,6 +64,7 @@ $smut_naoh_2n = $_POST['smut_naoh_2n'];
 $smut_tt_h2so4 = $_POST['smut_tt_h2so4'];
 $staff_id = $_POST['staff_id'];
 $time = $_POST['time'];
+$anod_machine_id = $_POST['anod_machine_id'];
 $targetId = $_POST['targetId'];
 
 try {
@@ -126,6 +127,7 @@ try {
     smut_naoh_2n= '$smut_naoh_2n',
     smut_tt_h2so4= '$smut_tt_h2so4',
     staff_id= '$staff_id',
+    anod_machine_id= '$anod_machine_id',
     time= '$time' WHERE id = '$targetId'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

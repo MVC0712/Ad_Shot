@@ -7,7 +7,7 @@ if ($dbh->getInstance() === null) {
 $datetime = date("Y-m-d H:i:s");
 try {
     $sql = "SELECT t_solution.id, CONCAT(DATE_FORMAT(date,'%y-%m-%d'),' ', TIME_FORMAT(time, '%H:%i')) AS dt, 
-    m_staff.name, shift, degreasing_naoh_1n, degreasing_tt_h2so4, degreasing_h2so4_75, degreasing_so4,
+    m_staff.name, shift, machine, degreasing_naoh_1n, degreasing_tt_h2so4, degreasing_h2so4_75, degreasing_so4,
     etching_hcl_1n1, etching_hcl_1n2, etching_tt_naoh, etching_free_naoh, etching_al, etching_naoh_25, etching_sl, 
     chemical_polishing_density, chemical_polishing_fenh4_1, chemical_polishing_fenh4_2, chemical_polishing_tt_hno3, chemical_polishing_naoh_1n, chemical_polishing_tt_h3po4, chemical_polishing_edta, chemical_polishing_tt_alpo4, chemical_polishing_hno3_62, chemical_polishing_sl,
     smut_naoh_2n, smut_tt_h2so4, smut_h2so4_75, 
@@ -22,6 +22,8 @@ try {
     m_staff ON m_staff.id = t_solution.staff_id
     LEFT JOIN
     m_shift ON m_shift.id = t_solution.shift_id
+    LEFT JOIN
+    m_machine ON m_machine.id = t_solution.anod_machine_id
     ORDER BY date DESC, time DESC;";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();

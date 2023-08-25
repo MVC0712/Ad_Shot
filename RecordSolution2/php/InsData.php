@@ -63,6 +63,7 @@ $smut_h2so4_75 = $_POST['smut_h2so4_75'];
 $smut_naoh_2n = $_POST['smut_naoh_2n'];
 $smut_tt_h2so4 = $_POST['smut_tt_h2so4'];
 $staff_id = $_POST['staff_id'];
+$anod_machine_id = $_POST['anod_machine_id'];
 $time = $_POST['time'];
 
 try {
@@ -76,7 +77,7 @@ try {
     date, degreasing_naoh_1n, degreasing_h2so4_75, degreasing_so4, degreasing_tt_h2so4, 
     etching_al, etching_free_naoh, etching_hcl_1n1, etching_hcl_1n2, etching_naoh_25, etching_sl, etching_tt_naoh, 
     hole_sealing_hno3_62, hole_sealing_mf115, hole_sealing_naoh_25, hole_sealing_ph, shift_id, 
-    smut_h2so4_75, smut_naoh_2n, smut_tt_h2so4, staff_id, time) VALUES 
+    smut_h2so4_75, smut_naoh_2n, smut_tt_h2so4, staff_id, time, anod_machine_id) VALUES 
     ('$acid_cleaning_h2so4_75','$acid_cleaning_naoh_2n','$acid_cleaning_tt_h2so4',
     '$anodizing1_al','$anodizing1_free_acid','$anodizing1_h2so4','$anodizing1_naoh_2n_1','$anodizing1_naoh_2n_2','$anodizing1_tt_acid',
     '$anodizing2_al','$anodizing2_free_acid','$anodizing2_h2so4','$anodizing2_naoh_2n_1','$anodizing2_naoh_2n_2','$anodizing2_tt_acid',
@@ -87,7 +88,7 @@ try {
     '$date','$degreasing_naoh_1n','$degreasing_h2so4_75','$degreasing_so4','$degreasing_tt_h2so4',
     '$etching_al','$etching_free_naoh','$etching_hcl_1n1','$etching_hcl_1n2','$etching_naoh_25','$etching_sl','$etching_tt_naoh',
     '$hole_sealing_hno3_62','$hole_sealing_mf115','$hole_sealing_naoh_25','$hole_sealing_ph','$shift_id',
-    '$smut_h2so4_75','$smut_naoh_2n','$smut_tt_h2so4','$staff_id','$time')";
+    '$smut_h2so4_75','$smut_naoh_2n','$smut_tt_h2so4','$staff_id','$time','$anod_machine_id')";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

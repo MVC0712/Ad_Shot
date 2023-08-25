@@ -35,6 +35,7 @@ $(function () {
   makeSummaryTable();
   selStaff();
   selShift();
+  selMachine();
 });
 function makeSummaryTable() {
   var fileName = "SelSummary.php";
@@ -43,6 +44,19 @@ function makeSummaryTable() {
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary_table tbody"));
+};
+function selMachine() {
+  var fileName = "SelMachine.php";
+  var sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#anod_machine_id option").remove();
+  $("#anod_machine_id").append($("<option>").val(0).html("NO"));
+  ajaxReturnData.forEach(function(value) {
+      $("#anod_machine_id").append(
+          $("<option>").val(value["id"]).html(value["machine"])
+      );
+  });
 };
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
@@ -121,57 +135,62 @@ $(document).on("change keyup", ".save-data", function() {
   checkInput();
   checkUpdate();
 });
+
+function roundNum(number) {
+  return Math.round(number*100)/100;
+}
+
 $(document).on("change keyup", ".caculate", function() {
   let degreasing_tt_h2so4 = $("#degreasing_tt_h2so4");
-  degreasing_tt_h2so4.val($("#degreasing_naoh_1n").val()*1.003*9.8);
+  degreasing_tt_h2so4.val(roundNum($("#degreasing_naoh_1n").val()*1.003*9.8));
 
   let etching_tt_naoh = $("#etching_tt_naoh");
-  etching_tt_naoh.val($("#etching_hcl_1n1").val()*1.002*8);
+  etching_tt_naoh.val(roundNum($("#etching_hcl_1n1").val()*1.002*8));
   let etching_free_naoh = $("#etching_free_naoh");
-  etching_free_naoh.val(($("#etching_hcl_1n1").val() - ($("#etching_hcl_1n2").val()/3))*1.002*8);
+  etching_free_naoh.val(roundNum(($("#etching_hcl_1n1").val() - ($("#etching_hcl_1n2").val()/3))*1.002*8));
   let etching_al = $("#etching_al");
-  etching_al.val($("#etching_hcl_1n2").val()*1.002*1.8);
+  etching_al.val(roundNum($("#etching_hcl_1n2").val()*1.002*1.8));
 
   let chemical_polishing_tt_hno3 = $("#chemical_polishing_tt_hno3");
-  chemical_polishing_tt_hno3.val(($("#chemical_polishing_fenh4_1").val()*(8/$("#chemical_polishing_fenh4_2").val())*0.00525*100)/$("#chemical_polishing_density").val());
+  chemical_polishing_tt_hno3.val(roundNum(($("#chemical_polishing_fenh4_1").val()*(8/$("#chemical_polishing_fenh4_2").val())*0.00525*100)/$("#chemical_polishing_density").val()));
   let chemical_polishing_tt_h3po4 = $("#chemical_polishing_tt_h3po4");
-  chemical_polishing_tt_h3po4.val(($("#chemical_polishing_naoh_1n").val()*1.003*9.8)/$("#chemical_polishing_density").val() - $("#chemical_polishing_tt_hno3").val()*0.778);
+  chemical_polishing_tt_h3po4.val(roundNum(($("#chemical_polishing_naoh_1n").val()*1.003*9.8)/$("#chemical_polishing_density").val() - $("#chemical_polishing_tt_hno3").val()*0.778));
   let chemical_polishing_tt_alpo4 = $("#chemical_polishing_tt_alpo4");
-  chemical_polishing_tt_alpo4.val(($("#chemical_polishing_edta").val()*0.122*100)/($("#chemical_polishing_density").val()*5));
+  chemical_polishing_tt_alpo4.val(roundNum(($("#chemical_polishing_edta").val()*0.122*100)/($("#chemical_polishing_density").val()*5)));
 
   let smut_tt_h2so4 = $("#smut_tt_h2so4");
-  smut_tt_h2so4.val($("#smut_naoh_2n").val()*0.999*19.6);
+  smut_tt_h2so4.val(roundNum($("#smut_naoh_2n").val()*0.999*19.6));
 
   let anodizing1_tt_acid = $("#anodizing1_tt_acid");
-  anodizing1_tt_acid.val($("#anodizing1_naoh_2n_1").val()*0.999*19.6);
+  anodizing1_tt_acid.val(roundNum($("#anodizing1_naoh_2n_1").val()*0.999*19.6));
   let anodizing1_free_acid = $("#anodizing1_free_acid");
-  anodizing1_free_acid.val($("#anodizing1_naoh_2n_2").val()*0.999*19.6);
+  anodizing1_free_acid.val(roundNum($("#anodizing1_naoh_2n_2").val()*0.999*19.6));
   let anodizing1_al = $("#anodizing1_al");
-  anodizing1_al.val(($("#anodizing1_naoh_2n_1").val() - $("#anodizing1_naoh_2n_2").val())*3.6*0.999);
+  anodizing1_al.val(roundNum(($("#anodizing1_naoh_2n_1").val() - $("#anodizing1_naoh_2n_2").val())*3.6*0.999));
 
   let anodizing2_tt_acid = $("#anodizing2_tt_acid");
-  anodizing2_tt_acid.val($("#anodizing2_naoh_2n_1").val()*0.999*19.6);
+  anodizing2_tt_acid.val(roundNum($("#anodizing2_naoh_2n_1").val()*0.999*19.6));
   let anodizing2_free_acid = $("#anodizing2_free_acid");
-  anodizing2_free_acid.val($("#anodizing2_naoh_2n_2").val()*0.999*19.6);
+  anodizing2_free_acid.val(roundNum($("#anodizing2_naoh_2n_2").val()*0.999*19.6));
   let anodizing2_al = $("#anodizing2_al");
-  anodizing2_al.val(($("#anodizing2_naoh_2n_1").val() - $("#anodizing2_naoh_2n_1").val())*3.6*0.999);
+  anodizing2_al.val(roundNum(($("#anodizing2_naoh_2n_1").val() - $("#anodizing2_naoh_2n_2").val())*3.6*0.999));
 
   let anodizing3_tt_acid = $("#anodizing3_tt_acid");
-  anodizing3_tt_acid.val($("#anodizing3_naoh_2n_1").val()*0.999*19.6);
+  anodizing3_tt_acid.val(roundNum($("#anodizing3_naoh_2n_1").val()*0.999*19.6));
   let anodizing3_free_acid = $("#anodizing3_free_acid");
-  anodizing3_free_acid.val($("#anodizing3_naoh_2n_2").val()*0.999*19.6);
+  anodizing3_free_acid.val(roundNum($("#anodizing3_naoh_2n_2").val()*0.999*19.6));
   let anodizing3_al = $("#anodizing3_al");
-  anodizing3_al.val(($("#anodizing3_naoh_2n_1").val() - $("#anodizing3_naoh_2n_1").val())*3.6*0.999);
+  anodizing3_al.val(roundNum(($("#anodizing3_naoh_2n_1").val() - $("#anodizing3_naoh_2n_2").val())*3.6*0.999));
 
   let anodizing4_tt_acid = $("#anodizing4_tt_acid");
-  anodizing4_tt_acid.val($("#anodizing4_naoh_2n_1").val()*0.999*19.6);
+  anodizing4_tt_acid.val(roundNum($("#anodizing4_naoh_2n_1").val()*0.999*19.6));
   let anodizing4_free_acid = $("#anodizing4_free_acid");
-  anodizing4_free_acid.val($("#anodizing4_naoh_2n_2").val()*0.999*19.6);
+  anodizing4_free_acid.val(roundNum($("#anodizing4_naoh_2n_2").val()*0.999*19.6));
   let anodizing4_al = $("#anodizing4_al");
-  anodizing4_al.val(($("#anodizing4_naoh_2n_1").val() - $("#anodizing4_naoh_2n_1").val())*3.6*0.999);
+  anodizing4_al.val(roundNum(($("#anodizing4_naoh_2n_1").val() - $("#anodizing4_naoh_2n_2").val())*3.6*0.999));
 
   let acid_cleaning_tt_h2so4 = $("#acid_cleaning_tt_h2so4");
-  acid_cleaning_tt_h2so4.val($("#acid_cleaning_naoh_2n").val()*0.999*19.6) ;
+  acid_cleaning_tt_h2so4.val(roundNum($("#acid_cleaning_naoh_2n").val()*0.999*19.6));
 });
 function getInputData() {
   let inputData = new Object();

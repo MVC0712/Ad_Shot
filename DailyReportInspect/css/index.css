@@ -1,0 +1,540 @@
+body {
+  margin: 4px;
+  border: solid 1px #0000cc;
+  display: flex;
+  flex-direction: column;
+  height: calc(680px - 2px);
+  width: calc(850px - 2px);
+}
+input {
+  text-align: left;
+}
+.top__wrapper {
+  width: 100%;
+  /* height: 50px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.top_up__wrapper,
+.top_down__wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.error__wrapper {
+  width: 100%;
+  /* height: 600px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: left;
+}
+.left__error {
+  flex: 1;
+  flex-direction: column;
+}
+.right__error {
+  /* flex: 1; */
+  flex-direction: column;
+  margin-right: 10px;
+}
+.element__wrapper {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.melting__wrapper {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.casting__wrapper {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.code_outer {
+  width: 170px;
+  margin-right: 10px;
+}
+.code_title {
+  width: 70px;
+}
+#code {
+  width: 100px;
+}
+.order_sheet_id_outer {
+  width: 170px;
+  margin-right: 10px;
+}
+.order_sheet_id_title {
+  width: 45px;
+}
+#order_sheet_id {
+  width: 100px;
+}
+#ods {
+  display: flex;
+  flex-direction: row;
+}
+.product_id_outer {
+  width: 170px;
+  margin-right: 10px;
+}
+.product_id_title {
+  width: 50px;
+}
+#product_id {
+  width: 120px;
+}
+.shift_outer {
+  width: 110px;
+  margin-right: 10px;
+}
+.shift_title {
+  width: 30px;
+}
+#shift {
+  width: 60px;
+}
+.machine_id_outer {
+  width: 120px;
+  margin-right: 10px;
+}
+.machine_id_title {
+  width: 40px;
+}
+#machine_id {
+  width: 80px;
+}
+.product_date_outer {
+  width: 180px;
+  margin-right: 10px;
+}
+.product_date_title {
+  width: 65px;
+}
+#product_date {
+  width: 100px;
+}
+.worker_id_outer {
+  width: 240px;
+  margin-right: 10px;
+}
+.worker_id_title {
+  width: 90px;
+}
+#worker_id {
+  width: 150px;
+}
+.confirm_id_outer {
+  width: 220px;
+  margin-right: 10px;
+}
+.confirm_id_title {
+  width: 70px;
+}
+#confirm_id {
+  width: 150px;
+}
+.input_quantity_outer {
+  width: 100px;
+  margin-right: 10px;
+}
+.input_quantity_title {
+  width: 50px;
+}
+#input_quantity {
+  width: 50px;
+}
+.ng_quantity_outer {
+  width: 100px;
+  margin-right: 10px;
+}
+.ng_quantity_title {
+  width: 50px;
+}
+#ng_quantity {
+  width: 50px;
+}
+.performance_outer {
+  width: 100px;
+  margin-right: 10px;
+}
+.performance_title {
+  width: 73px;
+}
+#performance {
+  width: 27px;
+}
+.file_outer {
+  width: 350px;
+  margin-right: 10px;
+}
+.file_title {
+  width: 30px;
+}
+#file_upload {
+  /* width: 270px; */
+  display: none;
+}
+#file_upload + label {
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+  border: solid 1px #0000ff;
+  width: 280px;
+  height: 20px;
+}
+/* #file_url {
+  width: 250px;
+} */
+#preview__button {
+  width: 50px;
+}
+
+#add_machine_error_table {
+  height: 20px;
+  margin-left: 10px;
+}
+#add_machine_error_table tbody tr td:nth-child(1),
+#add_machine_error_table thead tr th:nth-child(1) {
+  width: 100px;
+}
+#add_machine_error_table tbody tr td:nth-child(2),
+#add_machine_error_table thead tr th:nth-child(2) {
+  width: 100px;
+}
+#add_machine_error_table tbody tr td:nth-child(3),
+#add_machine_error_table thead tr th:nth-child(3) {
+  width: 60px;
+}
+#add_machine_error_table tbody tr td:nth-child(4),
+#add_machine_error_table thead tr th:nth-child(4) {
+  width: 60px;
+}
+#add_machine_error_table tbody tr td:nth-child(5),
+#add_machine_error_table thead tr th:nth-child(5) {
+  width: 100px;
+}
+#add_machine_error_table thead tr th:nth-child(1) input {
+  width: 94px;
+}
+#add_machine_error_table thead tr th:nth-child(2) input {
+  width: 94px;
+}
+#add_machine_error_table thead tr th:nth-child(3) input {
+  width: 94px;
+}
+#add_machine_error_table thead tr th:nth-child(4) input {
+  width: 94px;
+}
+#machine_error_table {
+  margin-left: 10px;
+}
+#machine_error_table tbody {
+  height: 240px;
+  width: 260px;
+  overflow: auto;
+}
+#machine_error_table thead tr th:nth-child(1),
+#machine_error_table tbody tr td:nth-child(1){
+  display: none;
+}
+#machine_error_table thead tr th:nth-child(2),
+#machine_error_table tbody tr td:nth-child(2) {
+  width: 90px;
+}
+#machine_error_table thead tr th:nth-child(3),
+#machine_error_table tbody tr td:nth-child(3) {
+  width: 90px;
+}
+#machine_error_table thead tr th:nth-child(4),
+#machine_error_table tbody tr td:nth-child(4) {
+  width: 50px;
+  text-align: center;
+}
+#machine_error_table thead tr th:nth-child(5),
+#machine_error_table tbody tr td:nth-child(5) {
+  width: 100px;
+}
+#machine_error_table tbody tr td:nth-child(2) input {
+  width: 94px;
+}
+#machine_error_table tbody tr td:nth-child(3) input {
+  width: 94px;
+}
+#machine_error_table tbody tr td:nth-child(4) input {
+  width: 44px;
+}
+#machine_error_table tbody tr td:nth-child(5) input {
+  width: 94px;
+}
+#add_machine_error {
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+#add_stop_human_table {
+  height: 20px;
+  margin-left: 10px;
+}
+#add_stop_human_table tbody tr td:nth-child(1),
+#add_stop_human_table thead tr th:nth-child(1) {
+  width: 90px;
+}
+#add_stop_human_table tbody tr td:nth-child(2),
+#add_stop_human_table thead tr th:nth-child(2) {
+  width: 90px;
+}
+#add_stop_human_table tbody tr td:nth-child(3),
+#add_stop_human_table thead tr th:nth-child(3) {
+  width: 50px;
+}
+#add_stop_human_table tbody tr td:nth-child(4),
+#add_stop_human_table thead tr th:nth-child(4) {
+  width: 50px;
+}
+#add_stop_human_table tbody tr td:nth-child(5),
+#add_stop_human_table thead tr th:nth-child(5) {
+  width: 60px;
+}
+#add_stop_human_table thead tr th:nth-child(1) input {
+  width: 84px;
+}
+#add_stop_human_table thead tr th:nth-child(2) input {
+  width: 84px;
+}
+#add_stop_human_table thead tr th:nth-child(3) input {
+  width: 84px;
+}
+#add_stop_human_table thead tr th:nth-child(4) input {
+  width: 44px;
+}
+#stop_human_table {
+  margin-left: 10px;
+}
+#stop_human_table tbody {
+  height: 240px;
+  width: 360px;
+  overflow: auto;
+}
+#stop_human_table thead tr th:nth-child(1),
+#stop_human_table tbody tr td:nth-child(1){
+  display: none;
+}
+#stop_human_table thead tr th:nth-child(2),
+#stop_human_table tbody tr td:nth-child(2) {
+  width: 100px;
+}
+#stop_human_table thead tr th:nth-child(3),
+#stop_human_table tbody tr td:nth-child(3) {
+  width: 90px;
+}
+#stop_human_table thead tr th:nth-child(4),
+#stop_human_table tbody tr td:nth-child(4) {
+  width: 90px;
+}
+#stop_human_table thead tr th:nth-child(5),
+#stop_human_table tbody tr td:nth-child(5) {
+  width: 50px;
+  text-align: center;
+}
+#stop_human_table tbody tr td:nth-child(2) input {
+  width: 90px;
+}
+#stop_human_table tbody tr td:nth-child(3) input {
+  width: 94px;
+}
+#stop_human_table tbody tr td:nth-child(4) input {
+  width: 94px;
+}
+#stop_human_table tbody tr td:nth-child(5) input {
+  width: 44px;
+}
+#add_stop_human,
+#add_inspect_error {
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+}
+#add_button {
+  width: 40px;
+  height: 22px;
+  padding: 0;
+  margin: 0;
+}
+#button_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#save,
+#update {
+  width: 40px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+#download {
+  width: 60px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+#pro_code,
+#start,
+#end {
+  width: 100px;
+}
+
+#summary_table tbody {
+  height: 210px;
+  width: 820px;
+  overflow: auto;
+}
+#summary_table thead tr th:nth-child(1),
+#summary_table tbody tr td:nth-child(1) {
+  display: none;
+}
+#summary_table thead tr th:nth-child(2),
+#summary_table tbody tr td:nth-child(2) {
+  width: 120px;
+}
+#summary_table thead tr th:nth-child(3),
+#summary_table tbody tr td:nth-child(3) {
+  width: 70px;
+}
+#summary_table thead tr th:nth-child(4),
+#summary_table tbody tr td:nth-child(4) {
+  width: 80px;
+}
+#summary_table thead tr th:nth-child(5),
+#summary_table tbody tr td:nth-child(5) {
+  width: 80px;
+}
+#summary_table thead tr th:nth-child(6),
+#summary_table tbody tr td:nth-child(6) {
+  width: 140px;
+}
+#summary_table thead tr th:nth-child(7),
+#summary_table tbody tr td:nth-child(7),
+#summary_table thead tr th:nth-child(8),
+#summary_table tbody tr td:nth-child(8),
+#summary_table thead tr th:nth-child(9),
+#summary_table tbody tr td:nth-child(9) {
+  width: 40px;
+}
+#summary_table thead tr th:nth-child(10),
+#summary_table tbody tr td:nth-child(10),
+#summary_table thead tr th:nth-child(11),
+#summary_table tbody tr td:nth-child(11),
+#summary_table thead tr th:nth-child(12),
+#summary_table tbody tr td:nth-child(12),
+#summary_table thead tr th:nth-child(13),
+#summary_table tbody tr td:nth-child(13),
+#summary_table thead tr th:nth-child(14),
+#summary_table tbody tr td:nth-child(14) {
+  width: 30px;
+}
+
+.right_error__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#summary_material_table {
+  margin-right: 20px;
+}
+#summary_material_table tbody {
+  height: 140px;
+  width: 430px;
+  overflow: auto;
+}
+#summary_material_table thead tr th:nth-child(1),
+#summary_material_table tbody tr td:nth-child(1){
+  width: 60px;
+}
+#summary_material_table thead tr th:nth-child(2),
+#summary_material_table tbody tr td:nth-child(2) {
+  width: 50px;
+}
+
+#staff_id {
+  width: 200px;
+}
+.staff_id_title {
+  width: 150px;
+}
+.staff_id_outer {
+  width: 300px;
+  margin-right: 10px;
+}
+
+#add_inspect_error_table {
+  height: 20px;
+  margin-left: 10px;
+}
+#add_inspect_error_table tbody tr td:nth-child(1),
+#add_inspect_error_table thead tr th:nth-child(1) {
+  width: 90px;
+}
+#add_inspect_error_table tbody tr td:nth-child(2),
+#add_inspect_error_table thead tr th:nth-child(2) {
+  width: 50px;
+}
+#add_inspect_error_table thead tr th:nth-child(1) select {
+  width: 90px;
+}
+#add_inspect_error_table thead tr th:nth-child(2) input {
+  width: 44px;
+}
+
+#inspect_error_table {
+  margin-left: 10px;
+}
+#inspect_error_table tbody {
+  height: 240px;
+  width: 170px;
+  overflow: auto;
+}
+#inspect_error_table thead tr th:nth-child(1),
+#inspect_error_table tbody tr td:nth-child(1){
+  display: none;
+}
+#inspect_error_table thead tr th:nth-child(2),
+#inspect_error_table tbody tr td:nth-child(2) {
+  width: 90px;
+}
+#inspect_error_table thead tr th:nth-child(3),
+#inspect_error_table tbody tr td:nth-child(3) {
+  width: 50px;
+}
+#inspect_error_table tbody tr td:nth-child(2) select {
+  width: 94px;
+}
+#inspect_error_table tbody tr td:nth-child(3) input {
+  width: 44px;
+}

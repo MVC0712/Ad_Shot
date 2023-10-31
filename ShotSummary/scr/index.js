@@ -175,7 +175,7 @@ function renderHead(div, start, end) {
     r_days2 += "</tr>";
     r_year += '<th colspan="' + (daysInYear) + '">' + c_year + '</th>';
     r_year1 += '<th>' + c_year + '</th>';
-    // r_year += "<th rowspan='4' style ='width: 40px;'>Total</th><th rowspan='4' style ='width: 45px;'>Per</th></tr>";
+    r_year += "<th rowspan='4' style ='width: 40px;'>Total</th></tr>";
     r_year += "</tr>";
     r_year += "</tr>";
     r_year1 += "</tr>";
@@ -189,7 +189,7 @@ function renderHead(div, start, end) {
 }
 
 function Total() {
-  hideValue();
+  // hideValue();
   $('#summary__table tbody tr').each(function(){
     var sum = 0;
     if ((Number($(this).find("td").eq(0).html()) == 1) || (Number($(this).find("td").eq(0).html()) == 2)) {
@@ -203,40 +203,42 @@ function Total() {
       $(this).append('<td>'+sum+'</td>');
     }
     if ((Number($(this).find("td").eq(0).html()) == 3) || (Number($(this).find("td").eq(0).html()) == 4)) {
-      $(this).find('td').each(function(){
-        if((Number($(this).text()) > 0 )){
-          max = Number($(this).text());
-        }
-      });
+      // $(this).find('td').each(function(){
+      //   if((Number($(this).text()) > 0 )){
+      //     max = Number($(this).text());
+      //   }
+      // });
+      max = Number($(this).find('td:last-child').html());
       $(this).append('<td>'+max+'</td>');
     }
   });
-};
 
-function hideValue() {
-  var table = document.getElementById("summary__table");
-  var tbody = table.getElementsByTagName("tbody")[0];
-  var tr = tbody.getElementsByTagName("tr");
+  var tr = $('#summary__table tbody tr');
   for (i = 0; i < tr.length; i += 1) {
-    for(var j = 0; j < tr[i].getElementsByTagName("td").length; j +=1) {
-      var td =  tr[i].getElementsByTagName("td")[0];
-      if($(td).html() == 1) {
-        var tdh =  tr[i].getElementsByTagName("td")[j];
-        if($(tdh).html() == "") {
-          var tdh2 =  tr[i+2].getElementsByTagName("td")[j];
-          $(tdh2).html("");
-        }
-      }
-      if($(td).html() == 2) {
-        var tdh =  tr[i].getElementsByTagName("td")[j];
-        if($(tdh).html() == "") {
-          var tdh2 =  tr[i+2].getElementsByTagName("td")[j];
-          $(tdh2).html("");
-        }
-      }
+    td21 = $(tr)[i]
+    td22 = $(tr)[i+1]
+    td23 = $(tr)[i+2]
+    td24 = $(tr)[i+3]
+
+    // console.log($(td21).find("td:last-child").html())
+    td2v1 = $(td21).find("td").eq(2).html();
+    td2v2 = $(td22).find("td").eq(2).html();
+    td2v3 = $(td23).find("td").eq(2).html();
+    td2v4 = $(td24).find("td").eq(2).html();
+    if((td2v1 = td2v2) && (td2v1 == td2v3) && (td2v1 == td2v4)) {
+      $(td21).show();
+      $(td22).show();
+      $(td23).show();
+      $(td24).show();
+    } else {
+      $(td21).hide();
+      $(td22).hide();
+      $(td23).hide();
+      $(td24).hide();
     }
   }
 };
+
 
 function drawChart() {
   var fileName = "SelSummaryForChart.php";

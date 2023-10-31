@@ -5,6 +5,8 @@ let sendData = new Object();
 let ajaxReturnData;
 let line_id = 1;
 let ctx = document.getElementById('chart_area').getContext('2d');
+
+let data;
 const myAjax = {
   myAjax: function (fileName, sendData) {
     $.ajax({
@@ -68,7 +70,33 @@ function makeSummaryTable() {
     sendObj["start_s"] = $('#std').val();
     sendObj["end_s"] = $("#end").val();
     myAjax.myAjax(fileName, sendObj);
-    fillTableBody1(ajaxReturnData, $("#summary__table tbody"));
+
+  data = ajaxReturnData;
+  newArray = [];
+  for (i = 0; i < data.length - 3; i += 1) {
+      var d = data[i].product_name;
+      var d1 = data[i+1].product_name;
+      var d2 = data[i+2].product_name;
+      var d3 = data[i+3].product_name;
+      s = 0;
+      if (d == d1) {
+        s +=1;
+      } 
+      if (d == d2) {
+        s +=1;
+      }
+      if (d == d3) {
+        s +=1;
+      }
+      if (s == 3) {
+        newArray.push(data[i])
+        newArray.push(data[i+1])
+        newArray.push(data[i+2])
+        newArray.push(data[i+3])
+      }
+  }
+  console.log(newArray)
+    fillTableBody1(newArray, $("#summary__table tbody"));
     Total();
 }
 
@@ -175,7 +203,7 @@ function renderHead(div, start, end) {
     r_days2 += "</tr>";
     r_year += '<th colspan="' + (daysInYear) + '">' + c_year + '</th>';
     r_year1 += '<th>' + c_year + '</th>';
-    // r_year += "<th rowspan='4' style ='width: 40px;'>Total</th><th rowspan='4' style ='width: 45px;'>Per</th></tr>";
+    r_year += "<th rowspan='4' style ='width: 40px;'>Total</th></tr>";
     r_year += "</tr>";
     r_year += "</tr>";
     r_year1 += "</tr>";
@@ -189,7 +217,7 @@ function renderHead(div, start, end) {
 }
 
 function Total() {
-  hideValue();
+  // hideValue();
   $('#summary__table tbody tr').each(function(){
     var sum = 0;
     if ((Number($(this).find("td").eq(0).html()) == 1) || (Number($(this).find("td").eq(0).html()) == 2)) {
@@ -203,39 +231,40 @@ function Total() {
       $(this).append('<td>'+sum+'</td>');
     }
     if ((Number($(this).find("td").eq(0).html()) == 3) || (Number($(this).find("td").eq(0).html()) == 4)) {
-      $(this).find('td').each(function(){
-        if((Number($(this).text()) > 0 )){
-          max = Number($(this).text());
-        }
-      });
+      // $(this).find('td').each(function(){
+      //   if((Number($(this).text()) > 0 )){
+      //     max = Number($(this).text());
+      //   }
+      // });
+      max = Number($(this).find('td:last-child').html());
       $(this).append('<td>'+max+'</td>');
     }
   });
-};
 
-function hideValue() {
-  var table = document.getElementById("summary__table");
-  var tbody = table.getElementsByTagName("tbody")[0];
-  var tr = tbody.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i += 1) {
-    for(var j = 0; j < tr[i].getElementsByTagName("td").length; j +=1) {
-      var td =  tr[i].getElementsByTagName("td")[0];
-      if($(td).html() == 1) {
-        var tdh =  tr[i].getElementsByTagName("td")[j];
-        if($(tdh).html() == "") {
-          var tdh2 =  tr[i+2].getElementsByTagName("td")[j];
-          $(tdh2).html("");
-        }
-      }
-      if($(td).html() == 2) {
-        var tdh =  tr[i].getElementsByTagName("td")[j];
-        if($(tdh).html() == "") {
-          var tdh2 =  tr[i+2].getElementsByTagName("td")[j];
-          $(tdh2).html("");
-        }
-      }
-    }
-  }
+  // var tr = $('#summary__table tbody tr');
+  // for (i = 0; i < tr.length; i += 1) {
+  //   td21 = $(tr)[i]
+  //   td22 = $(tr)[i+1]
+  //   td23 = $(tr)[i+2]
+  //   td24 = $(tr)[i+3]
+
+  //   // console.log($(td21).find("td:last-child").html())
+  //   td2v1 = $(td21).find("td").eq(2).html();
+  //   td2v2 = $(td22).find("td").eq(2).html();
+  //   td2v3 = $(td23).find("td").eq(2).html();
+  //   td2v4 = $(td24).find("td").eq(2).html();
+  //   if((td2v1 = td2v2) && (td2v1 == td2v3) && (td2v1 == td2v4)) {
+  //     $(td21).show();
+  //     $(td22).show();
+  //     $(td23).show();
+  //     $(td24).show();
+  //   } else {
+  //     $(td21).hide();
+  //     $(td22).hide();
+  //     $(td23).hide();
+  //     $(td24).hide();
+  //   }
+  // }
 };
 
 function drawChart() {
@@ -320,110 +349,58 @@ function drawChart() {
   });
   };
 
-
-  // used for example purposes
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// create initial empty chart
-var ctx_live = document.getElementById("mycanvas");
-var myChart = new Chart(ctx_live, {
-  type: 'bar',
-  data: {
-    labels: [],
-    datasets: [{
-      data: [],
-      borderWidth: 1,
-      borderColor:'#00c0ef',
-      label: 'liveCount',
-    }]
-  },
-  options: {
-    responsive: true,
-    title: {
-      display: true,
-      text: "Chart.js - Dynamically Update Chart Via Ajax Requests",
-    },
-    legend: {
-      display: false
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-        }
-      }]
-    }
-  }
+$(document).on("click", "#download", function() {
+  gennerateData();
 });
 
-// this post id drives the example data
-var postId = 1;
-
-// logic to get new data
-var getData = function() {
-  $.ajax({
-    url: 'https://jsonplaceholder.typicode.com/posts/' + postId + '/comments',
-    success: function(data) {
-      // process your data to pull out what you plan to use to update the chart
-      // e.g. new label and a new data point
-      
-      // add new label and data point to chart's underlying data structures
-      myChart.data.labels.push("Post " + postId++);
-      myChart.data.datasets[0].data.push(getRandomIntInclusive(1, 25));
-      
-      // re-render the chart
-      myChart.update();
-    }
-  });
-};
-
-// get new data every 3 seconds
-// setInterval(getData, 3000);
-
-
-$(document).on("click", "#download", function() {
-  var fileName = "SelForExcel.php";
+function gennerateData() {
   var sendObj = new Object();
   sendObj["start_s"] = $('#std').val();
   sendObj["end_s"] = $("#end").val();
+
+  var fileName = "SelForExcel.php";
   myAjax.myAjax(fileName, sendObj);
-
-  // console.log(ajaxReturnData);
-  ajaxReturnData.push(sendObj["start_s"])
-  ajaxReturnData.push(sendObj["end_s"])
-  let data = new Object();
-  let donwloadFileName;
   data = ajaxReturnData;
-  donwloadFileName = $('#std').val() + "_" + $("#end").val() + "_ReportAnod.xlsx";
+  newArray = [];
+  newArray.push(data[0]);
+  newArray.push(data[1]);
+  newArray.push(data[2]);
+  newArray.push(data[3]);
+  newArray.push(data[4]);
+  newArray.push(data[5]);
+  newArray.push(data[6]);
+  for (i = 7; i < data.length - 4; i += 1) {
+      var d = data[i].品番;
+      var d1 = data[i+1].品番;
+      var d2 = data[i+2].品番;
+      var d3 = data[i+3].品番;
+      var d4 = data[i+4].品番;
+      s = 0;
+      if (d == d1) {
+        s +=1;
+      } 
+      if (d == d2) {
+        s +=1;
+      }
+      if (d == d3) {
+        s +=1;
+      }
+      if (d == d4) {
+        s +=1;
+      }
+      if (s == 4) {
+        newArray.push(data[i])
+        newArray.push(data[i+1])
+        newArray.push(data[i+2])
+        newArray.push(data[i+3])
+        newArray.push(data[i+4])
+      }
 
-  let JSONdata = JSON.stringify(data);
-
-  $.ajax({
-      async: false,
-      url: "../../AD_Shot/Py/ExportDataAnod.py",
-      type: "post",
-      data: JSONdata,
-      dataType: "json",
-  })
-  .done(function(data) {
-      console.log(data);
-      downloadExcelFile(donwloadFileName);
-  })
-  .fail(function() {
-      console.log("failed");
-  });
-});
-
-function downloadExcelFile(donwloadFileName) {
-const a = document.createElement("a");
-document.body.appendChild(a);
-a.download = donwloadFileName;
-a.href = "../FileDownLoad/Excel/" + donwloadFileName;
-
-a.click();
-a.remove();
-}
+  }
+  var ws = XLSX.utils.json_to_sheet(newArray);
+  var wb = XLSX.utils.book_new();
+  ws['!cols'] = [];
+  ws['!cols'][0] = { hidden: true };
+  XLSX.utils.book_append_sheet(wb, ws, "Data");
+  XLSX.writeFile(wb, `AnodSummary report ${sendObj["start_s"]}-${sendObj["end_s"]}.xlsx`);
+};

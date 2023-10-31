@@ -17,15 +17,15 @@ $sql9 = "";
 $sql10 = "";
 $sql11 = "";
 $sqL12 = "";
-$total = "(";
-$total1 = "(";
+$total = "";
+$total1 = "";
 
 $arr = array();
 
-// $start_s = "2023/09/12";
-// $end_s = "2023/09/15";
-$start_s = $_POST['start_s'];
-$end_s = $_POST['end_s'];
+$start_s = "2022/12/01";
+$end_s = "2022/12/03";
+// $start_s = $_POST['start_s'];
+// $end_s = $_POST['end_s'];
 
 $begin = new DateTime($start_s);
 $end = new DateTime($end_s);
@@ -42,16 +42,13 @@ for ($i = 0; $i <= iterator_count($period)-1; $i++) {
     $total = $total."t1003._".$arr[$i]."+";
 }
 $total = substr(trim($total), 0, -1);
-$total = $total." )";
 
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
     $total1 = $total1."t1004._".$arr[$i]."+";
 }
 $total1 = substr(trim($total1), 0, -1);
-$total1 = $total1." )";
 
 $sql1 = "SELECT 
-    '1' AS a,
     '合計' AS 品番,
     '' AS 計画数量,
     '' AS 実績数量,
@@ -82,7 +79,6 @@ GROUP BY product_date) t103 ON t103.iddd = t_anod_plan.production_id
     AND t103.product_date = t_anod_plan.product_date ";
 
 $sql2 = " UNION SELECT 
-    '2' AS a,
     '合計' AS 品番,
     '' AS 計画数量,
     (
@@ -132,7 +128,6 @@ GROUP BY product_date) t103 ON t103.iddd = t_anod_plan.production_id
     AND t103.product_date = t_anod_plan.product_date) t1003 ";
 
 $sqL4 = " UNION SELECT 
-            '4' AS a,
             '合計' AS 品番,
             '' AS 計画数量,
             '' AS 実績数量,
@@ -155,7 +150,7 @@ m_product ON m_product.id = t_record_anod.product_id
         m_product.id AS idddd,
         product_date,
         m_product.product_name,
-        IFNULL(SUM(input_quantity), 0) - IFNULL(SUM(ng_quantity), 0) AS ttqq
+        SUM(input_quantity) - SUM(ng_quantity) AS ttqq
 FROM
     t_record_anod
 LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
@@ -163,7 +158,6 @@ GROUP BY product_date) t104 ON t104.idddd = t_record_anod.product_id
     AND t104.product_date = t_record_anod.product_date ";
 
 $sql5 = " UNION SELECT 
-    '5' AS a,
     '合計' AS 品番,
     (
 ";
@@ -205,7 +199,7 @@ LEFT JOIN (SELECT
         m_product.id AS idddd,
         product_date,
         m_product.product_name,
-        IFNULL(SUM(input_quantity), 0) - IFNULL(SUM(ng_quantity), 0) AS ttqq
+        SUM(input_quantity) - SUM(ng_quantity) AS ttqq
 FROM
     t_record_anod
 LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
@@ -213,7 +207,6 @@ GROUP BY product_date) t104 ON t104.idddd = t_record_anod.product_id
     AND t104.product_date = t_record_anod.product_date) t1004 ";
 
 $sql3 = " UNION SELECT 
-    '3' AS a,
     '合計' AS 品番,
     '' AS 計画数量,
     (
@@ -228,12 +221,12 @@ $sql3 = $sql3.") AS 実績数量,
     '完成率計画' AS 計画／実績,
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
-    $sql3 = $sql3." ROUND((";
+    $sql3 = $sql3."(";
     for ($j = 0; $j <= $i; $j++) {
         $sql3 = $sql3."t1003._".$arr[$j]."+";
     }
     $sql3 = substr(trim($sql3), 0, -1);
-    $sql3 = $sql3.")/".$total.",1) AS _".$arr[$i];
+    $sql3 = $sql3.")/".$total." AS _".$arr[$i];
     $sql3 = $sql3." , ";
 }
 $sql3 = substr(trim($sql3), 0, -1);
@@ -263,7 +256,6 @@ GROUP BY product_date) t103 ON t103.iddd = t_anod_plan.production_id
     AND t103.product_date = t_anod_plan.product_date) t1003 ";
 
 $sql6 = " UNION SELECT 
-    '6' AS a,
     '合計' AS 品番,
     (
 ";
@@ -278,12 +270,12 @@ $sql6 = $sql6.") AS 計画数量,
     '完成率実績' AS 計画／実績,
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
-    $sql6 = $sql6."ROUND((";
+    $sql6 = $sql6."(";
     for ($j = 0; $j <= $i; $j++) {
         $sql6 = $sql6."t1004._".$arr[$j]."+";
     }
     $sql6 = substr(trim($sql6), 0, -1);
-    $sql6 = $sql6.")/".$total1.",1) AS _".$arr[$i];
+    $sql6 = $sql6.")/".$total1." AS _".$arr[$i];
     $sql6 = $sql6." , ";
 }
 $sql6 = substr(trim($sql6), 0, -1);
@@ -305,7 +297,7 @@ LEFT JOIN (SELECT
         m_product.id AS idddd,
         product_date,
         m_product.product_name,
-        IFNULL(SUM(input_quantity), 0) - IFNULL(SUM(ng_quantity), 0) AS ttqq
+        SUM(input_quantity) - SUM(ng_quantity) AS ttqq
 FROM
     t_record_anod
 LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
@@ -314,7 +306,6 @@ GROUP BY product_date) t104 ON t104.idddd = t_record_anod.product_id
 
 
 $sqL8 = " UNION SELECT 
-    '7' AS a,
     '合計' AS 品番,
     '' AS 計画数量,
     '' AS 実績数量,
@@ -332,7 +323,6 @@ $sqL8 = $sqL8." FROM
 t_record_anod ";
 
 $sql7 = " UNION SELECT 
-    '1' AS a,
     m_product.product_name AS 品番,
     '' AS 計画数量,
     '' AS 実績数量,
@@ -364,7 +354,6 @@ GROUP BY product_date , iddd) t10 ON t10.iddd = t_anod_plan.production_id
 GROUP BY m_product.product_name ";
 
 $sql9 = " UNION SELECT 
-    '2' AS a,
     t1003.product_name AS 品番,
     '' AS 計画数量,
     (
@@ -415,7 +404,6 @@ GROUP BY product_date , iddd) t103 ON t103.iddd = t_anod_plan.production_id
 GROUP BY product_name) t1003  ";
 
 $sql10 = " UNION SELECT 
-    '4' AS a,
     m_product.product_name AS 品番,
     '' AS 計画数量,
     '' AS 実績数量,
@@ -438,7 +426,7 @@ m_product ON m_product.id = t_record_anod.product_id
     m_product.id AS iddd,
         product_date,
         m_product.product_name,
-        IFNULL(SUM(input_quantity), 0) - IFNULL(SUM(ng_quantity), 0) AS ttq
+        SUM(input_quantity) - SUM(ng_quantity) AS ttq
 FROM
     t_record_anod
 LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
@@ -447,7 +435,6 @@ GROUP BY product_date , iddd) t10 ON t10.iddd = t_record_anod.product_id
 GROUP BY m_product.product_name ";
 
 $sql11 = " UNION SELECT 
-    '5' AS a,
     t1004.product_name AS 品番,
     (
 ";
@@ -489,7 +476,7 @@ LEFT JOIN (SELECT
         m_product.id AS idddd,
         product_date,
         m_product.product_name,
-        IFNULL(SUM(input_quantity), 0) - IFNULL(SUM(ng_quantity), 0) AS ttqq
+        SUM(input_quantity) - SUM(ng_quantity) AS ttqq
 FROM
     t_record_anod
 LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
@@ -498,7 +485,6 @@ GROUP BY product_date , idddd) t104 ON t104.idddd = t_record_anod.product_id
 GROUP BY product_name) t1004 ";
 
 $sqL12 = " UNION SELECT 
-    '6' AS a,
     t1004.product_name AS 品番,
     (
 ";
@@ -513,12 +499,12 @@ $sqL12 = $sqL12.") AS 計画数量,
     '完成率' AS 計画／実績,
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
-    $sqL12 = $sqL12."ROUND((";
+    $sqL12 = $sqL12."(";
     for ($j = 0; $j <= $i; $j++) {
         $sqL12 = $sqL12."t1004._".$arr[$j]."+";
     }
     $sqL12 = substr(trim($sqL12), 0, -1);
-    $sqL12 = $sqL12.")/".$total1.",1) AS _".$arr[$i];
+    $sqL12 = $sqL12.")/".$total1." AS _".$arr[$i];
     $sqL12 = $sqL12." , ";
 }
 $sqL12 = substr(trim($sqL12), 0, -1);
@@ -540,7 +526,7 @@ LEFT JOIN (SELECT
         m_product.id AS idddd,
         product_date,
         m_product.product_name,
-        IFNULL(SUM(input_quantity), 0) - IFNULL(SUM(ng_quantity), 0) AS ttqq
+        SUM(input_quantity) - SUM(ng_quantity) AS ttqq
 FROM
     t_record_anod
 LEFT JOIN m_product ON m_product.id = t_record_anod.product_id
@@ -551,10 +537,22 @@ GROUP BY product_name) t1004";
 
 $sql = "SELECT * FROM (".$sql1.$sql2.$sql3.$sqL4.$sql5.$sql6.$sql7.$sqL8.$sql9.$sql10.$sql11.$sqL12.") tt 
     ORDER BY 
-    tt.品番 DESC,
-    tt.a ASC";
+    CASE tt.品番
+        WHEN '合計' THEN 10
+        ELSE 0
+    END DESC,
+    CASE tt.計画／実績
+        WHEN '計画' THEN 10
+        WHEN '累計計画' THEN 9
+        WHEN '完成率計画' THEN 8
+        WHEN '実績' THEN 7
+        WHEN '累計実績' THEN 6
+        WHEN '完成率実績' THEN 5
+        WHEN '稼働率' THEN 5
+        ELSE 0
+    END DESC";
 
-// print_r($sql6);
+print_r($sql);
 
 try {
     $stmt = $dbh->getInstance()->prepare($sql);

@@ -273,10 +273,10 @@ input {
   width: 100px;
 }
 #machine_error_table tbody tr td:nth-child(2) input {
-  width: 94px;
+  width: 84px;
 }
 #machine_error_table tbody tr td:nth-child(3) input {
-  width: 94px;
+  width: 84px;
 }
 #machine_error_table tbody tr td:nth-child(4) input {
   width: 44px;

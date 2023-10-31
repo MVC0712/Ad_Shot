@@ -115,10 +115,10 @@ background-color: #d2cdff;
   border-bottom: 2px solid rgb(0, 0, 0);
 }
 
-/* #summary__table tr td:last-child {
+#summary__table tr td:last-child {
   background: #fff9f9;
   width: 40px;
-} */
+}
 
 #summary__table tbody tr.selected-record {
   background-color: #c2ecff;

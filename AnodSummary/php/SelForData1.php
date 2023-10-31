@@ -22,10 +22,10 @@ $total1 = "(";
 
 $arr = array();
 
-// $start_s = "2023/09/12";
-// $end_s = "2023/09/15";
-$start_s = $_POST['start_s'];
-$end_s = $_POST['end_s'];
+$start_s = "2023/09/12";
+$end_s = "2023/09/15";
+// $start_s = $_POST['start_s'];
+// $end_s = $_POST['end_s'];
 
 $begin = new DateTime($start_s);
 $end = new DateTime($end_s);
@@ -228,12 +228,12 @@ $sql3 = $sql3.") AS 実績数量,
     '完成率計画' AS 計画／実績,
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
-    $sql3 = $sql3." ROUND((";
+    $sql3 = $sql3."(";
     for ($j = 0; $j <= $i; $j++) {
         $sql3 = $sql3."t1003._".$arr[$j]."+";
     }
     $sql3 = substr(trim($sql3), 0, -1);
-    $sql3 = $sql3.")/".$total.",1) AS _".$arr[$i];
+    $sql3 = $sql3.")/".$total." AS _".$arr[$i];
     $sql3 = $sql3." , ";
 }
 $sql3 = substr(trim($sql3), 0, -1);
@@ -278,12 +278,12 @@ $sql6 = $sql6.") AS 計画数量,
     '完成率実績' AS 計画／実績,
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
-    $sql6 = $sql6."ROUND((";
+    $sql6 = $sql6."(";
     for ($j = 0; $j <= $i; $j++) {
         $sql6 = $sql6."t1004._".$arr[$j]."+";
     }
     $sql6 = substr(trim($sql6), 0, -1);
-    $sql6 = $sql6.")/".$total1.",1) AS _".$arr[$i];
+    $sql6 = $sql6.")/".$total1." AS _".$arr[$i];
     $sql6 = $sql6." , ";
 }
 $sql6 = substr(trim($sql6), 0, -1);
@@ -513,12 +513,12 @@ $sqL12 = $sqL12.") AS 計画数量,
     '完成率' AS 計画／実績,
 ";
 for ($i = 0; $i <= iterator_count($period)-1; $i++) {
-    $sqL12 = $sqL12."ROUND((";
+    $sqL12 = $sqL12."(";
     for ($j = 0; $j <= $i; $j++) {
         $sqL12 = $sqL12."t1004._".$arr[$j]."+";
     }
     $sqL12 = substr(trim($sqL12), 0, -1);
-    $sqL12 = $sqL12.")/".$total1.",1) AS _".$arr[$i];
+    $sqL12 = $sqL12.")/".$total1." AS _".$arr[$i];
     $sqL12 = $sqL12." , ";
 }
 $sqL12 = substr(trim($sqL12), 0, -1);
@@ -554,7 +554,7 @@ $sql = "SELECT * FROM (".$sql1.$sql2.$sql3.$sqL4.$sql5.$sql6.$sql7.$sqL8.$sql9.$
     tt.品番 DESC,
     tt.a ASC";
 
-// print_r($sql6);
+print_r($sql6);
 
 try {
     $stmt = $dbh->getInstance()->prepare($sql);

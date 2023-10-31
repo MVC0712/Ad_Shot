@@ -23,13 +23,11 @@ const myAjax = {
 };
 
 const getTwoDigits = (value) => value < 10 ? `0${value}` : value;
-const getDateTime = (date) => {
+const getToday = (date) => {
     const day = getTwoDigits(date.getDate());
     const month = getTwoDigits(date.getMonth() + 1);
     const year = date.getFullYear();
-    const hours = getTwoDigits(date.getHours());
-    const mins = getTwoDigits(date.getMinutes());
-    return `${year}-${month}-${day} ${hours}:${mins}:00`;
+    return `${year}-${month}-${day}`;
 }
 $(function () {
   makeSummaryTable();
@@ -235,6 +233,12 @@ function stafSelect(data, dom, pos) {
       };
   });
 };
+$(document).on("change keyup", "input[type='date']", function() {
+  makeSummaryTable();
+});
+$(document).on("change keyup", "#pro_code", function() {
+  makeSummaryTable();
+});
 $(document).on("change keyup", ".save-data", function() {
   if ($(this).val() != ""||$(this).val() != 0) {
       $(this).removeClass("no-input").addClass("complete-input");
@@ -415,8 +419,10 @@ $(document).on("change", "#end", function () {
 function downloadButton() {
   if ($("#start").val() == "" || $("#end").val() == "") {
       $("#download").prop("disabled", true);
+      $("#download_ng").prop("disabled", true);
   } else {
       $("#download").prop("disabled", false);
+      $("#download_ng").prop("disabled", false);
   }
 };
 $("#add_stop_human").on("click", function () {
@@ -758,3 +764,21 @@ a.href = "../FileDownLoad/Excel/" + donwloadFileName;
 a.click();
 a.remove();
 }
+$(document).on("click", "#download_ng", function() {
+  gennerateData()
+});
+function gennerateData() {
+  var sendObj = new Object();
+  sendObj["start_s"] = $('#start').val();
+  sendObj["end_s"] = $("#end").val();
+
+  var fileName = "SelErrorSummary.php";
+  myAjax.myAjax(fileName, sendObj);
+  data = ajaxReturnData;
+  var ws = XLSX.utils.json_to_sheet(data);
+  var wb = XLSX.utils.book_new();
+  // ws['!cols'] = [];
+  // ws['!cols'][0] = { hidden: true };
+  XLSX.utils.book_append_sheet(wb, ws, "Data");
+  XLSX.writeFile(wb, `Summary NG report ${sendObj["start_s"]}-${sendObj["end_s"]}.xlsx`);
+};

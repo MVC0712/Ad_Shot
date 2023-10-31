@@ -21,6 +21,7 @@
       <div style="flex-direction: row; display:flex;">
         <button id="anod_summary">Anod summary</button>
         <button id="shot_summary">Shot summary</button>
+        <button id="daily_input_inspect">Daily Input Inspect</button>
         <button id="order_sheet">Order Sheet</button>
         <button id="product_staff">Param</button>
       </div>
@@ -50,6 +51,9 @@
       });
       $(document).on("click", "#shot_summary", function () {
         window.open("/AD_Shot/ShotSummary");
+      });
+      $(document).on("click", "#daily_input_inspect", function () {
+        window.open("/AD_Shot/DailyReportInspect");
       });
       $(document).on("click", "#order_sheet", function () {
         window.open("/AD_Shot/OrderSheet");

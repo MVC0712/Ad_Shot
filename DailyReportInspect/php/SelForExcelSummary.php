@@ -22,10 +22,10 @@ $total1 = "(";
 
 $arr = array();
 
-// $start_s = "2023/09/12";
-// $end_s = "2023/09/15";
-$start_s = $_POST['start_s'];
-$end_s = $_POST['end_s'];
+$start_s = "2023/09/13";
+$end_s = "2023/09/15";
+// $start_s = $_POST['start_s'];
+// $end_s = $_POST['end_s'];
 
 $begin = new DateTime($start_s);
 $end = new DateTime($end_s);

@@ -63,9 +63,17 @@ function fillTableBody(data, tbodyDom) {
       $(newTr).appendTo(tbodyDom);
   });
 };
+$(document).on("change", "#product_input", function() {
+  if ($(this).val() != 0) {
+    selProduct();
+  } else {
+    
+  }
+});
 function selProduct() {
   var fileName = "SelProduct.php";
   var sendData = {
+    product_input: $("#product_input").val(),
   };
   myAjax.myAjax(fileName, sendData);
   $("#product_id option").remove();

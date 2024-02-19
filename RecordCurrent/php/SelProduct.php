@@ -4,10 +4,9 @@ $dbh = new DBHandler();
 if ($dbh->getInstance() === null) {
     die("No database connection");
 }
-
-$datetime = date("Y-m-d H:i:s");
+$product_input = $_POST['product_input'];
 try {
-    $sql = "SELECT * FROM m_product WHERE 1";
+    $sql = "SELECT * FROM m_product WHERE product_name LIKE '%$product_input%'";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

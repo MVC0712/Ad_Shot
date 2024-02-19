@@ -107,9 +107,9 @@ function fillTableBody(data, tbodyDom) {
         } else if (tdVal == "anod_error_id") {
           $("<td>").append(anodErrorCodeOption(trVal[tdVal])).appendTo(newTr);
         } else if (tdVal == "start_time" || tdVal == "end_time") {
-            $("<td>")
-                .append(makeTime(trVal[tdVal]))
-                .appendTo(newTr);
+          $("<td>").append(makeTime(trVal[tdVal])).appendTo(newTr);
+        } else if (tdVal == "ng_quantityy") {
+          $("<td>").append(makeInput(trVal[tdVal])).appendTo(newTr);
         } else {
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
         }
@@ -544,6 +544,12 @@ function anodErrorCodeOption(seletedId) {
 function makeTime(time) {
   let targetDom = $("<input>");
   targetDom.attr("type", "time");
+  targetDom.val(time);
+  return targetDom;
+}
+function makeInput(time) {
+  let targetDom = $("<input>");
+  targetDom.attr("type", "number");
   targetDom.val(time);
   return targetDom;
 }

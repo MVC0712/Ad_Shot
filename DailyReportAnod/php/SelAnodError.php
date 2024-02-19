@@ -7,7 +7,7 @@ if ($dbh->getInstance() === null) {
 $targetId = "";
 $targetId = $_POST['targetId'];
 try {
-    $sql = "SELECT id, anod_error_id, ng_quantity FROM t_record_anod_error
+    $sql = "SELECT id, anod_error_id, ng_quantity AS ng_quantityy FROM t_record_anod_error
     WHERE record_anod_id = '$targetId';";
     $stmt = $dbh->getInstance()->prepare($sql);
     $stmt->execute();
